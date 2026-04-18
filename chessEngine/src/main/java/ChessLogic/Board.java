@@ -196,7 +196,19 @@ public class Board {
    * @return If the game is in a game over state.
    */
   public boolean isGameOver() {
+    int numKing = 0;
+    for (int i = 0; i < this.ROWS; i++) {
+      for (int j = 0; j < this.COLS; j++) {
+        Piece piece = this.getPiece(i, j);
+        if (piece != null &&
+            ( piece.representation == PieceRepresentation.WHITE_KING ||
+                piece.representation == PieceRepresentation.BLACK_KING) {
+          numKing++;
+        }
+      }
+    }
 
+    return numKing < 2;
   }
 
   /**
