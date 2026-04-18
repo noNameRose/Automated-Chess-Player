@@ -188,7 +188,20 @@ public class Board {
    * @return Whether the move was successfully completed or not. (Moves are not completed if they are not legal.)
    */
   public boolean movePiece(int startRow, int startCol, int endRow, int endCol) {
-
+    Piece startPiece = this.board[startRow][startCol];
+    if (startPiece == null) {
+      return false;
+    }
+    if (!verifySourceAndDestination(startRow, startCol, endRow, endCol, startPiece.isBlack)) {
+      return false;
+    }
+    if (!startPiece.isMoveLegal(this, endRow, endCol)) {
+      return false;
+    }
+    this.setPiece(startRow, startCol, null);
+    this.setPiece(endRow, endCol, startPiece);
+    startPiece.setPosition(endRow, endCol);
+    return true;
   }
 
   /**
@@ -202,7 +215,7 @@ public class Board {
         Piece piece = this.getPiece(i, j);
         if (piece != null &&
             ( piece.representation == PieceRepresentation.WHITE_KING ||
-                piece.representation == PieceRepresentation.BLACK_KING) {
+                piece.representation == PieceRepresentation.BLACK_KING)) {
           numKing++;
         }
       }
