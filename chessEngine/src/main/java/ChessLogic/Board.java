@@ -3,6 +3,8 @@ package ChessLogic;
 public class Board {
   // Instance variables (add more if you need)
   private Piece[][] board;
+  private final int ROWS = 8;
+  private final int COLS = 8;
 
 
   /**
@@ -10,6 +12,7 @@ public class Board {
    */
   public Board() {
     // initialize the board to chessboard dimensions.
+    board = new Piece[this.ROWS][this.COLS];
   }
 
   // Accessor Methods
@@ -21,6 +24,7 @@ public class Board {
    * @return          The piece at the specified row and column of the board.
    */
   public Piece getPiece(int row, int col) {
+    return this.board[row][col];
   }
 
   /**
@@ -30,6 +34,7 @@ public class Board {
    * @param piece     The piece to place at the specified row and column.
    */
   public void setPiece(int row, int col, Piece piece) {
+    this.board[row][col] = piece;
   }
 
   // Movement helper functions
@@ -49,6 +54,28 @@ public class Board {
    * @return True if the above conditions are met, false otherwise.
    */
   public boolean verifySourceAndDestination(int startRow, int startCol, int endRow, int endCol, boolean isBlack) {
+    if (startRow < 0 || startRow >= 8) {
+      return false;
+    }
+    if (startCol < 0 || startCol >= 8) {
+      return false;
+    }
+    if (endRow < 0 || endRow >= 8) {
+      return false;
+    }
+    if (endCol < 0 || endCol >= 8) {
+      return false;
+    }
+    if (this.board[startRow][startCol] == null) {
+      return false;
+    }
+    if (this.board[startRow][startCol].isBlack != isBlack) {
+      return false;
+    }
+    if (this.board[endRow][endCol] != null && this.board[endRow][endCol].isBlack == isBlack) {
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -66,6 +93,7 @@ public class Board {
    * @return True if the source and destination squares are adjacent, false otherwise.
    */
   public boolean verifyAdjacent(int startRow, int startCol, int endRow, int endCol) {
+
   }
 
   /**
@@ -131,6 +159,11 @@ public class Board {
    * Sets all indexes in the board to null
    */
   public void clear() {
+    for (int i = 0; i < this.ROWS; i++) {
+      for (int j = 0; j < this.COLS; j++) {
+        this.board[i][j] = null;
+      }
+    }
   }
 
   public void display() {
