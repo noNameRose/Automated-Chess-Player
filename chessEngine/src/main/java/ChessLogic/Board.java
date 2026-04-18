@@ -159,7 +159,21 @@ public class Board {
    * @return True if source and destination are on the same diagonal with no pieces between them, false otherwise.
    */
   public boolean verifyDiagonal(int startRow, int startCol, int endRow, int endCol) {
+    int verticalStep = endCol > startCol ? 1 : -1;
+    int horizontalStep = endRow > startRow ? 1 : -1;
 
+    int row = startRow + verticalStep;
+    int col = startCol + horizontalStep;
+
+    while (row != endRow && col != endCol) {
+      if (this.getPiece(row, col) != null) {
+        return false;
+      }
+      row += verticalStep;
+      col += horizontalStep;
+    }
+
+    return true;
   }
 
   // Game functionality methods
