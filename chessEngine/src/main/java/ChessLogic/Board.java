@@ -93,7 +93,9 @@ public class Board {
    * @return True if the source and destination squares are adjacent, false otherwise.
    */
   public boolean verifyAdjacent(int startRow, int startCol, int endRow, int endCol) {
-
+    int dx = Math.abs(startCol - endCol);
+    int dy = Math.abs(startRow - endRow);
+    return dx >= 0 && dx <= 1 && dy >= 0 && dy <= 1;
   }
 
   /**
@@ -106,6 +108,19 @@ public class Board {
    * @return True if source and destination are in same row with no pieces between them, false otherwise.
    */
   public boolean verifyHorizontal(int startRow, int startCol, int endRow, int endCol) {
+    if (startRow != endRow) {
+      return false;
+    }
+
+    int step = endCol > startCol ? 1 : -1;
+    int col = startCol + step;
+    while (col != endCol) {
+      if (this.getPiece(startRow, col) != null) {
+        return false;
+      }
+      col += step;
+    }
+    return true;
   }
 
   /**
@@ -118,6 +133,20 @@ public class Board {
    * @return True if source and destination are in same column with no pieces between them, false otherwise.
    */
   public boolean verifyVertical(int startRow, int startCol, int endRow, int endCol) {
+    if (startCol != endCol) {
+      return false;
+    }
+
+    int step = endRow > startRow ? 1 : -1;
+    int row = startRow + step;
+    while (row != endRow) {
+      if (this.getPiece(row, startCol) != null) {
+        return false;
+      }
+      row += step;
+    }
+
+    return true;
   }
 
   /**
@@ -130,6 +159,7 @@ public class Board {
    * @return True if source and destination are on the same diagonal with no pieces between them, false otherwise.
    */
   public boolean verifyDiagonal(int startRow, int startCol, int endRow, int endCol) {
+
   }
 
   // Game functionality methods
