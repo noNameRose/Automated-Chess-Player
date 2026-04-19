@@ -11,7 +11,6 @@ public class Pawn extends Piece{
   }
 
   @Override
-  public boolean isMoveLegal(Board board, int endRow, int endColo) {
-    return false;
+  public boolean isMoveLegal(Board board, int endRow, int endCol) {
   }
 }
