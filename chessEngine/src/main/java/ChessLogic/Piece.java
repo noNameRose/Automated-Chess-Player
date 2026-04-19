@@ -23,6 +23,10 @@ public abstract  class Piece {
     return this.col;
   }
 
+  public String getStringPosition() {
+    return this.row + " " + this.col;
+  }
+
   public boolean isBlack() {
     return this.isBlack;
   }

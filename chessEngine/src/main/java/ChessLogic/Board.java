@@ -1,5 +1,10 @@
 package ChessLogic;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Board {
   // Instance variables (add more if you need)
   private Piece[][] board;
@@ -234,6 +239,39 @@ public class Board {
       }
     }
   }
+
+
+  public Map<String, List<int[]>> getLegalMoves(boolean isBlack) {
+    List<Piece> pieces = new ArrayList<>();
+
+    for (int i = 0; i < this.ROWS; i++) {
+      for (int j = 0; j < this.COLS; j++) {
+        Piece piece = this.getPiece(i, j);
+        if (piece != null && piece.isBlack == isBlack) {
+          pieces.add(piece);
+        }
+      }
+    }
+
+
+    Map<String, List<int[]>> movesMap = new HashMap<>();
+    for (int i = 0; i < this.ROWS; i++) {
+      for (int j = 0; j < this.COLS; j++) {
+        for (Piece piece: pieces) {
+          if (piece.isMoveLegal(this, i, j)) {
+            String piecePosition = piece.getStringPosition();
+            if (!movesMap.containsKey(piecePosition)) {
+              movesMap.put(piecePosition, new ArrayList<>());
+            }
+            movesMap.get(piecePosition).add(new int[] {i, j});
+          }
+        }
+      }
+    }
+    return movesMap;
+
+  }
+
 
   public void display() {
     System.out.print("\t\t\t");
