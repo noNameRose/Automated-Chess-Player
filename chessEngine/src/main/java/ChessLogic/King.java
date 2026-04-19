@@ -15,4 +15,9 @@ public class King extends Piece{
     return board.verifyAdjacent(this.row, this.col, endRow, endCol) &&
            board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack);
   }
+
+  @Override
+  public Piece clone() {
+    return new King(this.row, this.col, this.isBlack);
+  }
 }

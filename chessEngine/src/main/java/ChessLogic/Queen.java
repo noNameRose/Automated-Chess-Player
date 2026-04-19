@@ -19,4 +19,11 @@ public class Queen extends Piece {
             board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack)
         ;
   }
+
+
+
+  @Override
+  public Piece clone() {
+    return new Queen(this.row, this.col, this.isBlack);
+  }
 }

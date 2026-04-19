@@ -1,6 +1,6 @@
 package ChessLogic;
 
-public abstract  class Piece {
+public abstract class Piece {
   protected int row;
   protected int col;
 
@@ -9,6 +9,7 @@ public abstract  class Piece {
   protected  char representation;
 
   public abstract boolean isMoveLegal(Board board, int endRow, int endColo);
+  public abstract Piece clone();
 
   public  void setPosition(int row, int col) {
     this.row = row;

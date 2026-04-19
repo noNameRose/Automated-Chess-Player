@@ -15,4 +15,11 @@ public class Bishop extends Piece{
     return board.verifyDiagonal(this.row, this.col, endRow, endCol) &&
            board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack);
   }
+
+  @Override
+  public Piece clone() {
+    return new Bishop(this.row, this.col, this.isBlack);
+  }
+
+
 }

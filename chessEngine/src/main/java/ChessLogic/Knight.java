@@ -17,4 +17,11 @@ public class Knight extends Piece{
     return (( dy == 2 && dx == 1) || (dx == 2 && dy == 1)) &&
               board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack);
   }
+
+  @Override
+  public Piece clone() {
+    return new Knight(this.row, this.col, this.isBlack);
+  }
+
+
 }

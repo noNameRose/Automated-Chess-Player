@@ -32,4 +32,10 @@ public class Pawn extends Piece{
     }
     return board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack);
   }
+
+
+  @Override
+  public Piece clone() {
+    return new Pawn(this.row, this.col, this.isBlack);
+  }
 }
