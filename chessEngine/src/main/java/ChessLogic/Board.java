@@ -272,24 +272,18 @@ public class Board {
 
   }
 
+  public Character[][] getState() {
+    Character[][] state = new Character[this.ROWS][this.COLS];
 
-  public void display() {
-    System.out.print("\t\t\t");
-    for (int i = 0; i < 8; i++) {
-      System.out.print(i + "\t\t");
-    }
-    System.out.print("\n");
-    for (int i = 0; i < 8; i++) {
-      System.out.print("\t" + i + "\t");
-      for (int j = 0; j < 8; j++) {
-        if (board[i][j] == null) {
-          System.out.print("|\t\t");
-        } else {
-          System.out.print("|\t" + board[i][j] + "\t");
+    for (int i = 0; i < this.ROWS; i++) {
+      for (int j = 0; j < this.COLS; j++) {
+        Piece piece = this.getPiece(i, j);
+        if (piece != null) {
+          state[i][j] = piece.representation;
         }
       }
-      System.out.print("|\n");
     }
+    return  state;
   }
 
   public String toString() {
