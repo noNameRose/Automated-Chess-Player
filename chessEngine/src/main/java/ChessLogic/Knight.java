@@ -1,6 +1,7 @@
 package ChessLogic;
 
 public class Knight extends Piece{
+
   public Knight(int row, int col, boolean isBlack) {
     super.row = row;
     super.col = col;
@@ -15,6 +16,4 @@ public class Knight extends Piece{
     int dx = Math.abs(endCol - this.col);
     return (dy == 2 && dx == 1) || (dx == 2 && dy == 1);
   }
-
-
 }
