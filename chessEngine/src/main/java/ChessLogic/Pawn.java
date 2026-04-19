@@ -30,7 +30,6 @@ public class Pawn extends Piece{
     if (!this.isBlack && this.row == 1 && dy != -1 && dy != 2) {
       return false;
     }
-
-    return true;
+    return board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack);
   }
 }

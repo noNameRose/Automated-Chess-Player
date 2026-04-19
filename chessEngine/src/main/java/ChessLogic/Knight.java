@@ -14,6 +14,7 @@ public class Knight extends Piece{
   public boolean isMoveLegal(Board board, int endRow, int endCol) {
     int dy = Math.abs(endRow - this.row);
     int dx = Math.abs(endCol - this.col);
-    return (dy == 2 && dx == 1) || (dx == 2 && dy == 1);
+    return (( dy == 2 && dx == 1) || (dx == 2 && dy == 1)) &&
+              board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack);
   }
 }

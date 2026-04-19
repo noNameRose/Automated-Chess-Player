@@ -12,6 +12,7 @@ public class Bishop extends Piece{
 
   @Override
   public boolean isMoveLegal(Board board, int endRow, int endCol) {
-    return board.verifyDiagonal(this.row, this.col, endRow, endCol);
+    return board.verifyDiagonal(this.row, this.col, endRow, endCol) &&
+           board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack);
   }
 }
