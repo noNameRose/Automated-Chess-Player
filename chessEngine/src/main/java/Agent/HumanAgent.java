@@ -36,14 +36,14 @@ public class HumanAgent extends Agent{
         int row = Integer.parseInt(coordinate[0]);
         int col = Integer.parseInt(coordinate[1]);
         Piece piece = board.getPiece(row, col);
-        System.out.print(piece + " can move to: ");
+        System.out.print(piece + " at " + row + ", " + col + " can move to: ");
 
         // Print out all moves
         for (int[] dest: legalMoves.get(position)) {
           System.out.print("(" + dest[0] + ", " + dest[1] + ") ");
         }
+        System.out.println();
       }
-
       String input = this.askUser("Enter your move as start_row start_col end_row end_col");
       try {
         String[] action = input.split(" ");
