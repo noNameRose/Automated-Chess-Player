@@ -164,6 +164,12 @@ public class Board {
    * @return True if source and destination are on the same diagonal with no pieces between them, false otherwise.
    */
   public boolean verifyDiagonal(int startRow, int startCol, int endRow, int endCol) {
+    int dx = Math.abs(endCol - startCol);
+    int dy = Math.abs(endRow - startRow);
+
+    if (dx != dy) {
+      return false;
+    }
     int horizontalStep = endCol > startCol ? 1 : -1;
     int verticalStep = endRow > startRow ? 1 : -1;
 
