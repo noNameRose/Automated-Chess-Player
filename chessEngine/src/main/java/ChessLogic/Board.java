@@ -219,8 +219,8 @@ public class Board {
       for (int j = 0; j < this.COLS; j++) {
         Piece piece = this.getPiece(i, j);
         if (piece != null &&
-            ( piece.representation == PieceRepresentation.WHITE_KING ||
-                piece.representation == PieceRepresentation.BLACK_KING)) {
+            ( piece.representation == PieceRepresentation.WHITE_KING_CODE ||
+                piece.representation == PieceRepresentation.BLACK_KING_CODE)) {
           numKing++;
         }
       }
@@ -272,6 +272,8 @@ public class Board {
 
   }
 
+
+
   public Character[][] getState() {
     Character[][] state = new Character[this.ROWS][this.COLS];
 
@@ -285,6 +287,7 @@ public class Board {
     }
     return  state;
   }
+
 
   public String toString() {
     StringBuilder out = new StringBuilder();

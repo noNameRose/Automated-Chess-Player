@@ -6,7 +6,7 @@ public class Bishop extends Piece{
     super.row = row;
     super.col = col;
     super.isBlack = isBlack;
-    super.representation = isBlack ? PieceRepresentation.BLACK_BISHOP : PieceRepresentation.WHITE_BISHOP;
+    super.representation = isBlack ? PieceRepresentation.BLACK_BISHOP_CODE : PieceRepresentation.WHITE_BISHOP_CODE;
   }
 
 

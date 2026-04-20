@@ -6,7 +6,7 @@ public class Pawn extends Piece{
     super.row = row;
     super.col = col;
     super.isBlack = isBlack;
-    super.representation = isBlack ? PieceRepresentation.BLACK_PAWN : PieceRepresentation.WHITE_PAWN;
+    super.representation = isBlack ? PieceRepresentation.BLACK_PAWN_CODE : PieceRepresentation.WHITE_PAWN_CODE;
 
   }
 

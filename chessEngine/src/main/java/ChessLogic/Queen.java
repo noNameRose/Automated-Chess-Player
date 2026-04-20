@@ -6,7 +6,7 @@ public class Queen extends Piece {
     super.row = row;
     super.col = col;
     super.isBlack = isBlack;
-    super.representation = isBlack ? PieceRepresentation.BLACK_QUEEN : PieceRepresentation.WHITE_QUEEN;
+    super.representation = isBlack ? PieceRepresentation.BLACK_QUEEN_CODE : PieceRepresentation.WHITE_QUEEN_CODE;
   }
 
 

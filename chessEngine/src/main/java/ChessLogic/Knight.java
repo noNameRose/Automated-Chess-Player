@@ -6,7 +6,7 @@ public class Knight extends Piece{
     super.row = row;
     super.col = col;
     super.isBlack = isBlack;
-    super.representation = isBlack ? PieceRepresentation.BLACK_KNIGHT : PieceRepresentation.WHITE_KNIGHT;
+    super.representation = isBlack ? PieceRepresentation.BLACK_KNIGHT_CODE : PieceRepresentation.WHITE_KNIGHT_CODE;
   }
 
 
