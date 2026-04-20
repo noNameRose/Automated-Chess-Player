@@ -12,8 +12,9 @@ public class King extends Piece{
 
   @Override
   public boolean isMoveLegal(Board board, int endRow, int endCol) {
-    return board.verifyAdjacent(this.row, this.col, endRow, endCol) &&
-           board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack);
+    return  board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack) &&
+            board.verifyAdjacent(this.row, this.col, endRow, endCol);
+
   }
 
   @Override
