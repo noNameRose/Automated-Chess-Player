@@ -6,3 +6,11 @@
     font-family: "Varela Round", sans-serif;
 }
 
+
+@theme {
+    --color-blue-200: #4C8CE4;
+    --color-blue-500: #406093;
+    --color-yellow-100: #FFF799;
+    --color-green-200: #91D06C;
+    --color-gray-50: #FBF6F6;
+}
