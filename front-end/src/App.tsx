@@ -1,8 +1,12 @@
+import { Route, Routes } from "react-router-dom";
+
 const App = () => {
   return (
-    <div className="">
-      Hello world
-    </div>
+    <>
+      <Routes>
+        <Route path="/"/>
+      </Routes>
+    </>
   );
 };
 
