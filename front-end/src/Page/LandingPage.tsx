@@ -1,8 +1,10 @@
+import FloatingText from "../Component/FloatingText";
+
 const LandingPage = () => {
 
     return (
-        <div>
-            Home page
+        <div className="w-screen min-h-screen bg-gray-50 overflow-hidden">
+            <FloatingText message="Chess Engine"/>
         </div>
     );
 };
