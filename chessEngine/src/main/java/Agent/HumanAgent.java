@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class HumanAgent extends Agent{
+
+  private final Scanner scanner = new Scanner(System.in);
+
   public HumanAgent(String name, boolean myPieceBlack) {
     super.name = name;
     super.myPieceIsBlack = myPieceBlack;
@@ -15,9 +18,7 @@ public class HumanAgent extends Agent{
 
   private String askUser(String messege) {
     System.out.println(messege);
-    Scanner scanner = new Scanner(System.in);
-    String input = scanner.nextLine();
-    scanner.close();
+    String input = this.scanner.nextLine();
     return input;
   }
 
@@ -84,7 +85,6 @@ public class HumanAgent extends Agent{
           }
         }
       }
-
     }
     return  move;
   }
