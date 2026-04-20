@@ -289,6 +289,11 @@ public class Board {
   }
 
 
+  public void display() {
+    System.out.println(this);
+  }
+
+
   public String toString() {
     StringBuilder out = new StringBuilder();
     out.append(" ");
