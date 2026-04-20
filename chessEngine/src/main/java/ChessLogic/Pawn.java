@@ -12,25 +12,31 @@ public class Pawn extends Piece{
 
   @Override
   public boolean isMoveLegal(Board board, int endRow, int endCol) {
-    int dy = endCol - this.col;
-    int dx = endRow - this.row;
+    if (!board.verifySourceAndDestination(this.row, this.col, endRow, endCol, super.isBlack)) {
+      return false;
+    }
 
-    if (dx < -1 || dx > 1) {
-      return false;
+    if (board.verifyVertical(super.row, super.col, endRow, endCol) && board.getPiece(endRow, endCol) == null) {
+      if (super.isBlack) {
+        return (endRow == super.row + 1) || ((endRow == super.row + 2) && super.row == 1);
+      }
+      else {
+        return (endRow == super.row - 1) || ((endRow == super.row - 2) && super.row == 6);
+      }
     }
-    if (this.isBlack && this.row != 6 && dy != 1) {
-      return false;
+
+    else if (endCol == this.col + 1 || endCol == this.col - 1) {
+      if (board.getPiece(endRow, endCol) != null && board.getPiece(endRow, endCol).isBlack != super.isBlack) {
+        if (super.isBlack) {
+          return endRow == this.row + 1;
+        }
+        else {
+          return endRow == this.row - 1;
+        }
+      }
     }
-    if (this.isBlack && this.row == 6 && dy != 1 && dy != 2) {
-      return false;
-    }
-    if (!this.isBlack && this.row != 1 && dy != -1) {
-      return false;
-    }
-    if (!this.isBlack && this.row == 1 && dy != -1 && dy != 2) {
-      return false;
-    }
-    return board.verifySourceAndDestination(this.row, this.col, endRow, endCol, this.isBlack);
+
+    return false;
   }
 
 
