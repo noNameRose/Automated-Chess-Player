@@ -1,5 +1,6 @@
 package com.example.chessEngine;
 
+import Agent.Agent;
 import ChessLogic.Board;
 import ChessLogic.BoardInitializer;
 import jakarta.annotation.PostConstruct;
@@ -16,6 +17,12 @@ public class ChessEngineApplication {
     Board board = new Board();
     BoardInitializer.initialize(board);
     board.display();
+
+    Agent humanPlayer = new Agent.HumanAgent()
+
+    while (true) {
+
+    }
 	}
 
 }
