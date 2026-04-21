@@ -1,10 +1,12 @@
 export class Piece {
     public x: number;
     public y: number;
+    public name: string;
     public isBlack: boolean;
     public dom!: HTMLDivElement;
     
-    constructor(x: number, y: number, isBlack: boolean) {
+    constructor(name: string, x: number, y: number, isBlack: boolean) {
+        this.name = name;
         this.x = x;
         this.y = y;
         this.isBlack = isBlack;
