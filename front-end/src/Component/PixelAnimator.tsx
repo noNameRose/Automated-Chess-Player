@@ -1,31 +1,46 @@
+import { useContext, useEffect, useRef, useState } from "react";
+import type { PixelController } from "../Entity/PixelController";
+import type { PixelEntity } from "../Entity/PixelEntity";
 import Pixel from "./Pixel";
-
-const NUM_HORIZONTAL_BOX = 18;
-const NUM_VERTICAL_BOX = 15
-;
-type coordinate = {
-    row: number,
-    col: number
-}
+import gsap from "gsap";
+import { TransitionContext } from "../context/TransitionContext";
 
 
-const PixelAnimator = () => {
-    const arr: coordinate[] = [];
-    
-    for (let i = 0; i < NUM_HORIZONTAL_BOX; i++) {
-        for (let j = 0; j < NUM_VERTICAL_BOX; j++) {
-            arr.push({row: i, col: j});
+const PixelAnimator = ({pixelController} : {pixelController: PixelController}) => {
+    const tl = useRef<gsap.core.Timeline>(null);
+    const transition = useContext(TransitionContext);
+    useEffect(() => {
+        if (transition?.isTransition) {
+            tl.current = gsap.timeline();   
+            tl.current.to(pixelController.pixels.filter(pixel => !pixel.notChangeColor).map(pixel => pixel.dom), {
+                background: "#FBF6F6",
+                delay: 1,
+                stagger: {
+                    grid: [pixelController.NUM_ROW_PIXEL, pixelController.NUM_COL_PIXEL],
+                    from: "edges",
+                    amount: 1.5
+
+                },
+                onComplete: () => transition.setIsTransition(false)
+            });
         }
-    }
+
+        return () => {
+            if (tl.current) {
+                tl.current.kill();
+                tl.current = null;
+            }
+        }
+    }, [transition]);
+    
     return (
         <div>
-            {arr.map(({row, col}: coordinate) => (
-                 <Pixel
-                    row={row}
-                    col={col}
-                    width={`100vw/${NUM_HORIZONTAL_BOX}`}
-                    height={`100vh/${NUM_VERTICAL_BOX}`}
-                />
+            {pixelController.pixels.map((pixel: PixelEntity) => (
+                    <Pixel
+                        pixel={pixel}
+                        width={`100vw/${pixelController.NUM_COL_PIXEL}`}
+                        height={`100vh/${pixelController.NUM_ROW_PIXEL}`}
+                    />
             ))}
         </div>
     );

@@ -1,12 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import FloatingText from "../Component/FloatingText";
 import Hero from "../Component/Hero";
 import { Piece } from "../Entity/Piece";
 import { BISHOP, KNIGHT, PAWN, QUEEN, ROOK } from "../static/pieceName";
 import gsap from "gsap";
+import { TransitionContext } from "../context/TransitionContext";
 
 const LandingPage = () => {
     const tl = useRef<gsap.core.Timeline | null>(null);
+    const transition = useContext(TransitionContext);
     const blackKnight = new Piece(KNIGHT, 0, 300, true);
     const blackPawn = new Piece(PAWN, 500, 0, true);
     const blackBishop = new Piece(BISHOP, 1000, 300, true);
@@ -30,13 +32,14 @@ const LandingPage = () => {
                         blackQueen.container
                     ], {
             y: 1000,
-            delay: .5,
+            delay: 2,
             stagger: 0.2
         });
 
+
         return () => {
             if (tl.current) {
-                tl.current.revert();
+                tl.current.kill();
                 tl.current = null;
             }
         }

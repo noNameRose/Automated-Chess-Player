@@ -21,8 +21,10 @@ export class Piece {
             attr: {
                 transform: `translate(${this.x}, ${this.y + DY})`
             },
-            repeat: -1,
-            yoyo: true
+        }).to(this.container, {
+            attr: {
+                transform: `translate(${this.x}, ${this.y - DY})`
+            }
         });
     }
 

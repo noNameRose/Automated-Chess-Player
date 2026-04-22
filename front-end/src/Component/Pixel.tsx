@@ -1,89 +1,87 @@
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import type { PixelEntity } from "../Entity/PixelEntity";
+import { TransitionContext } from "../context/TransitionContext";
 
 type PixelConfig = {
-    row: number,
-    col: number,
+    pixel: PixelEntity,
     width: string,
     height: string,
     
 }
 
-const LEFT = 4;
-const RIGHT = 13;
-const TOP = 1;
-const BOTTOM = 5;
 
-
-const Pixel = ({row, col, width, height}: PixelConfig) => {
-    
+const Pixel = ({pixel, width, height}: PixelConfig) => {
+    const row = pixel.row;
+    const col = pixel.col;
     const [isHover, setIsHover] = useState<boolean | null>(null);
     const tl1 = useRef<gsap.core.Timeline | null>(null);
     const tl2 = useRef<gsap.core.Timeline | null>(null);
     const dom = useRef<HTMLDivElement>(null);
-    const isBorder = row === LEFT || row === RIGHT || col == TOP || col == BOTTOM; 
-    const isInBound = row > LEFT && row < RIGHT && col > TOP && col < BOTTOM;
+    const transition = useContext(TransitionContext);
     
+    useEffect(() => {
+        pixel.dom = dom.current;
+        return () => {
+            pixel.dom = null;
+        }
+    }, [pixel]);
 
-
-    // useEffect(() => {
-    //     tl1.current = gsap.timeline({defaults: {
-    //         duration: 1
-    //     }});
+    useEffect(() => {
+        tl1.current = gsap.timeline();
         
-    //     if (isHover) {
-    //         if (isHover !== null) {
-    //             tl1.current.to(dom.current, {
-    //                 backgroundColor: "#4C8CE4",
-    //                 scale: 1.1,
-    //                 transformOrigin: "center center"
-    //             });
-    //         }
-    //     }
-    //     else {
-    //         if (isHover !== null) {
-    //             tl1.current.to(dom.current, {
-    //                 background: "#FBF6F6",
-    //                 duration: 5,
-    //                 scale: 1.1
-    //             });
-    //         }
-    //     }
-    //     return () => {
-    //         if (tl1.current) {
-    //             tl1.current.kill();
-    //             tl1.current = null;
-    //         }
-    //     }
+        if (isHover) {
+            if (isHover !== null) {
+                tl1.current.to(dom.current, {
+                    backgroundColor: "#4C8CE4",
+                    transformOrigin: "center center"
+                });
+            }
+        }
+        else {
+            if (isHover !== null) {
+                tl1.current.to(dom.current, {
+                    background: "#FBF6F6",
+                    duration: 5,
+                    scale: 1.1
+                });
+            }
+        }
+        return () => {
+            if (tl1.current) {
+                tl1.current.kill();
+                tl1.current = null;
+            }
+        }
         
-    // }, [isHover]);
+    }, [isHover]);
 
-    // useEffect(() => {
+    useEffect(() => {
         
-    //     tl2.current = gsap.timeline({
-    //         defaults: {
-    //             repeat: -1,
-    //             yoyo: true,
-    //             duration: Math.random() * 3 + 1
-    //         }
-    //     });
-
-
-    //     if (isBorder) {
-    //         tl2.current.to(dom.current, {
-    //             background: "#FBF6F6",
-    //         });
-    //     }
-
-    //     return () => {
-    //         if (tl2.current) {
-    //             tl2.current.revert();
-    //             tl2.current = null;
-    //         }
-    //     }
+        tl2.current = gsap.timeline({
+            defaults: {
+                repeat: -1,
+                yoyo: true,
+                duration: Math.random() * 2 + 1
+            }
+        });
 
         
-    // }, []);
+        if (pixel.isGlitter && !transition?.isTransition) {
+            tl2.current.to(dom.current, {
+                background: "#4C8CE4",
+            });
+        }
+
+        return () => {
+            if (tl2.current) {
+                tl2.current.kill();
+                tl2.current = null;
+            }
+        }
+
+        
+    }, [transition]);
 
 
     
@@ -91,14 +89,14 @@ const Pixel = ({row, col, width, height}: PixelConfig) => {
         <div
             ref={dom}
             className={"absolute bg-blue-200" }
-            onMouseOver={ isInBound ?  () => {} : () =>  setIsHover(true)}
-            onMouseOut={ isInBound ? () => {} : () => setIsHover(false)}
+            onMouseOver={ pixel.notChangeColor ?  () => {} : () =>  setIsHover(true)}
+            onMouseOut={ pixel.notChangeColor ? () => {} : () => setIsHover(false)}
             style={
                 {
                     width: `calc(${width})`,
                     height: `calc(${height})`,
-                    left: `calc(${row} * ${width})`,
-                    top: `calc(${col} * ${height})`
+                    left: `calc(${col} * ${width})`,
+                    top: `calc(${row} * ${height})`
                 }
             }
         ></div>
