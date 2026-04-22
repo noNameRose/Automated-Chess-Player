@@ -40,6 +40,7 @@ const PieceIcon = ({piece}: {piece: Piece}) => {
     return (
         <g
             ref={dom}
+            transform={`translate(${piece.x}, ${piece.y})`}
         >
             <path 
                 className="fill-green-200 stroke-blue-500" 
