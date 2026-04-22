@@ -26,71 +26,71 @@ const Pixel = ({row, col, width, height}: PixelConfig) => {
     
 
 
-    useEffect(() => {
-        tl1.current = gsap.timeline({defaults: {
-            duration: 1
-        }});
+    // useEffect(() => {
+    //     tl1.current = gsap.timeline({defaults: {
+    //         duration: 1
+    //     }});
         
-        if (isHover) {
-            if (isHover !== null) {
-                tl1.current.to(dom.current, {
-                    backgroundColor: "#4C8CE4",
-                    scale: 1.1,
-                    transformOrigin: "center center"
-                });
-            }
-        }
-        else {
-            if (isHover !== null) {
-                tl1.current.to(dom.current, {
-                    background: "#FBF6F6",
-                    duration: 5,
-                    scale: 1.1
-                });
-            }
-        }
-        return () => {
-            if (tl1.current) {
-                tl1.current.kill();
-                tl1.current = null;
-            }
-        }
+    //     if (isHover) {
+    //         if (isHover !== null) {
+    //             tl1.current.to(dom.current, {
+    //                 backgroundColor: "#4C8CE4",
+    //                 scale: 1.1,
+    //                 transformOrigin: "center center"
+    //             });
+    //         }
+    //     }
+    //     else {
+    //         if (isHover !== null) {
+    //             tl1.current.to(dom.current, {
+    //                 background: "#FBF6F6",
+    //                 duration: 5,
+    //                 scale: 1.1
+    //             });
+    //         }
+    //     }
+    //     return () => {
+    //         if (tl1.current) {
+    //             tl1.current.kill();
+    //             tl1.current = null;
+    //         }
+    //     }
         
-    }, [isHover]);
+    // }, [isHover]);
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        tl2.current = gsap.timeline({
-            defaults: {
-                repeat: -1,
-                yoyo: true,
-                duration: Math.random() * 3 + 1
-            }
-        });
+    //     tl2.current = gsap.timeline({
+    //         defaults: {
+    //             repeat: -1,
+    //             yoyo: true,
+    //             duration: Math.random() * 3 + 1
+    //         }
+    //     });
 
 
-        if (isBorder) {
-            tl2.current.to(dom.current, {
-                background: "#FBF6F6",
-            });
-        }
+    //     if (isBorder) {
+    //         tl2.current.to(dom.current, {
+    //             background: "#FBF6F6",
+    //         });
+    //     }
 
-        return () => {
-            if (tl2.current) {
-                tl2.current.revert();
-                tl2.current = null;
-            }
-        }
+    //     return () => {
+    //         if (tl2.current) {
+    //             tl2.current.revert();
+    //             tl2.current = null;
+    //         }
+    //     }
 
         
-    }, []);
+    // }, []);
 
 
     
     return (
         <div
             ref={dom}
-            className={"absolute rounded-[.5em] " + ((row >= LEFT && row <= RIGHT && col >= TOP && col <= BOTTOM) ? "bg-blue-200" : "bg-gray-50")}
+            className={"absolute bg-blue-200" }
             onMouseOver={ isInBound ?  () => {} : () =>  setIsHover(true)}
             onMouseOut={ isInBound ? () => {} : () => setIsHover(false)}
             style={
@@ -106,3 +106,5 @@ const Pixel = ({row, col, width, height}: PixelConfig) => {
 };
 
 export default Pixel;
+
+// + ((row >= LEFT && row <= RIGHT && col >= TOP && col <= BOTTOM) ? "bg-blue-200" : "bg-gray-50")
