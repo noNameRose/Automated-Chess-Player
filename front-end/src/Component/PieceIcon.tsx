@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Piece } from "../Entity/Piece";
 import { BISHOP, KING, KNIGHT, PAWN, QUEEN, ROOK } from "../static/pieceName";
+import gsap from "gsap";
 
 const getChessPath = (name: string) : string | null => {
     let chessPath: string | null = null;
@@ -29,6 +30,8 @@ const getChessPath = (name: string) : string | null => {
 
 const PieceIcon = ({piece}: {piece: Piece}) => {
     const pieceName: string = piece.name;
+    const [isHover, setIsHover] = useState<boolean>(false);
+    const tl = useRef<gsap.core.Timeline | null>(null);
     const container = useRef<SVGGElement | null>(null);
     const wrapper = useRef<SVGGElement | null>(null);
     let chessPath: string = getChessPath(pieceName) as string;
@@ -42,14 +45,40 @@ const PieceIcon = ({piece}: {piece: Piece}) => {
             piece.wrapper = null;
         }
     }, [piece]);
+
+    useEffect(() => {
+        tl.current = gsap.timeline({
+            defaults: {
+                ease: "power4.out"
+            }
+        });
+        if (isHover) {
+            tl.current.to(wrapper.current, {
+                attr: {
+                    transform: "scale(1.1)",
+                },
+            })
+        }
+        else {
+            tl.current.to(wrapper.current, {
+                attr: {
+                    transform: "scale(1)",
+                },
+            })
+        }
+
+    }, [isHover]);
     
     return (
         <g
             ref={container}
             transform={`translate(${piece.x}, ${piece.y})`}
+            onMouseOver={() => {setIsHover(true)}}
+            onMouseOut={() => setIsHover(false)}
         >
             <g
                 ref={wrapper}
+                transform="scale(1)"
             >
                 <path 
                     className="fill-green-200 stroke-blue-500" 

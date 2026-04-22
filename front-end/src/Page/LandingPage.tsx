@@ -32,7 +32,7 @@ const LandingPage = () => {
             y: 1000,
             delay: .5,
             stagger: 0.2
-        })
+        });
 
         return () => {
             if (tl.current) {

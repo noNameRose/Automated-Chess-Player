@@ -16,7 +16,7 @@ export class Piece {
 
 
     floating(tl: gsap.core.Timeline) : void {
-        const DY = 100;
+        const DY = 20;
         tl.to(this.container, {
             attr: {
                 transform: `translate(${this.x}, ${this.y + DY})`
@@ -25,5 +25,6 @@ export class Piece {
             yoyo: true
         });
     }
+
 }
 
