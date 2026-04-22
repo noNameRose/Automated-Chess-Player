@@ -3,7 +3,8 @@ export class Piece {
     public y: number;
     public name: string;
     public isBlack: boolean;
-    public dom: SVGGElement | null = null;
+    public container: SVGGElement | null = null;
+    
     
     constructor(name: string, x: number, y: number, isBlack: boolean) {
         this.name = name;
