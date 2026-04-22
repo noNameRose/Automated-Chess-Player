@@ -30,12 +30,16 @@ const getChessPath = (name: string) : string | null => {
 const PieceIcon = ({piece}: {piece: Piece}) => {
     const pieceName: string = piece.name;
     const container = useRef<SVGGElement | null>(null);
+    const wrapper = useRef<SVGGElement | null>(null);
     let chessPath: string = getChessPath(pieceName) as string;
 
     useEffect(() => {
         piece.container = container.current;
+        piece.wrapper = wrapper.current;
+        
         return () => {
             piece.container = null;
+            piece.wrapper = null;
         }
     }, [piece]);
     
@@ -44,7 +48,9 @@ const PieceIcon = ({piece}: {piece: Piece}) => {
             ref={container}
             transform={`translate(${piece.x}, ${piece.y})`}
         >
-            <g>
+            <g
+                ref={wrapper}
+            >
                 <path 
                     className="fill-green-200 stroke-blue-500" 
                     strokeWidth={20}

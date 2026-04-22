@@ -4,6 +4,7 @@ export class Piece {
     public name: string;
     public isBlack: boolean;
     public container: SVGGElement | null = null;
+    public wrapper: SVGGElement | null = null;
     
     
     constructor(name: string, x: number, y: number, isBlack: boolean) {
