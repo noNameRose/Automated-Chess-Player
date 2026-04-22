@@ -13,4 +13,17 @@ export class Piece {
         this.y = y;
         this.isBlack = isBlack;
     }    
+
+
+    floating(tl: gsap.core.Timeline) : void {
+        const DY = 100;
+        tl.to(this.container, {
+            attr: {
+                transform: `translate(${this.x}, ${this.y + DY})`
+            },
+            repeat: -1,
+            yoyo: true
+        });
+    }
 }
+
