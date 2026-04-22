@@ -34,7 +34,9 @@ const Pixel = ({row, col, width, height}: PixelConfig) => {
         if (isHover) {
             if (isHover !== null) {
                 tl1.current.to(dom.current, {
-                    backgroundColor: "#4C8CE4"
+                    backgroundColor: "#4C8CE4",
+                    scale: 1.1,
+                    transformOrigin: "center center"
                 });
             }
         }
@@ -42,7 +44,8 @@ const Pixel = ({row, col, width, height}: PixelConfig) => {
             if (isHover !== null) {
                 tl1.current.to(dom.current, {
                     background: "#FBF6F6",
-                    duration: 5
+                    duration: 5,
+                    scale: 1.1
                 });
             }
         }
