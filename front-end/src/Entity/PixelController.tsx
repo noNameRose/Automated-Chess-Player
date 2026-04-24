@@ -23,4 +23,13 @@ export class PixelController {
             }
         }
     }
+
+    changeColor(tl: gsap.core.Timeline, color: string, callback: () => void) : void {
+
+        tl.to(this.pixels.map(pixel => pixel.dom), {
+            background: color,
+            onComplete: callback
+        });
+
+    }
 }

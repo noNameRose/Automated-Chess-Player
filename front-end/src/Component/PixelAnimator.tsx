@@ -9,6 +9,7 @@ import { TransitionContext } from "../context/TransitionContext";
 const PixelAnimator = ({pixelController} : {pixelController: PixelController}) => {
     const tl = useRef<gsap.core.Timeline>(null);
     const transition = useContext(TransitionContext);
+
     useEffect(() => {
         if (transition?.isTransition) {
             tl.current = gsap.timeline();   
@@ -32,6 +33,8 @@ const PixelAnimator = ({pixelController} : {pixelController: PixelController}) =
             }
         }
     }, [transition]);
+
+    
     
     return (
         <div>

@@ -5,6 +5,7 @@ import { Piece } from "../Entity/Piece";
 import { BISHOP, KNIGHT, PAWN, QUEEN, ROOK } from "../static/pieceName";
 import gsap from "gsap";
 import { TransitionContext } from "../context/TransitionContext";
+import Button from "../Component/Button";
 
 const LandingPage = () => {
     const tl = useRef<gsap.core.Timeline | null>(null);
@@ -53,10 +54,11 @@ const LandingPage = () => {
                         flex-col
                         items-center
                         justify-center
-                        gap-[5em]
+                        gap-[3em]
                         ">
             <FloatingText message="Chess Engine"/>
             <Hero pieceList={pieceArray}/>
+            <Button className="relative z-20 cursor-pointer font-black" onClick={() => transition?.setIsTransition(true)}>Play</Button>
         </div>
     );
 };

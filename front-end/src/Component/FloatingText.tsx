@@ -6,7 +6,7 @@ const DY: number = 0.015;
 const FloatingText = ({message}: {message: string}) => {
     const texts: string[] = new Array(NUM_SHADOW).fill(message);
     return (
-        <div className="font-bold -translate-y-[5vh]">
+        <div className="font-bold">
             <h1
                 className="relative z-100 whitespace-nowrap"
                 style={
