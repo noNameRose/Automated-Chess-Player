@@ -1,21 +1,20 @@
 const LandingPage = () => { 
     return (
         <>
-            <div className="max-w-[100vw] mx-auto flex flex-col items-center">
-                <h1 className="font-bold text-7xl">AI Chess</h1>
+            <div className="flex flex-col items-center overflow-hidden">
+               
                 <div    
                     className="grid"
                     style={
                         {
-                            width: "clamp(216px, 70vw, 800px)",
-                            height: "clamp(72px, 60vw,300px)",
-                            gridTemplateColumns: "repeat(15, 1fr)",
-                            gridTemplateRows: "repeat(6, 1fr)",
-
+                            transform: "translateY(clamp(25px, 4vw,60px))",
+                            gridTemplateColumns: "repeat(15, clamp(25px, 4vw,60px))",
+                            gridTemplateRows: "repeat(6, clamp(25px, 4vw,60px))",
                         }
                     }
                 >
-                    {(new Array(6)).fill(null).map((_, index) => {
+                
+                    {(new Array(10)).fill(null).map((_, index) => {
                         let col = "";
                         let row = "";
                         if (index === 0) {
@@ -42,17 +41,44 @@ const LandingPage = () => {
                             row = "5/6";
                             col = "3/4"
                         }
+                        if (index === 6) {
+                            row = "1/2";
+                            col = "5/6";
+                        }
+                        if (index === 7) {
+                            row = "1/2";
+                            col = "8/9"
+                        }
+                        if (index === 8) {
+                            row = "1/2";
+                            col = "10/11";
+                        }
+                        if (index === 9) {
+                            row = "1/2";
+                            col = "13/14";
+                        }
                         return (
                             <div 
-                                className="bg-black text-center" 
+                                className="bg-black text-center relative z-10" 
                                 style={{
                                     gridColumn: col,
                                     gridRow: row
                                 }}>
-                                {`Item ${index}`}
                             </div>);
                     })
                     }
+                     <div className="relative col-[3/14] row-[2/5] z-30 flex items-center justify-center">
+                        <h1 
+                            className="font-bold absolute text-7xl text-white text-center"
+                            style={
+                                {
+                                    fontSize: "clamp(37px, 5vw, 90px)"
+                                }
+                            }
+                        >
+                            AI Chess
+                        </h1>
+                    </div>
                 </div>
             </div>
         </>
