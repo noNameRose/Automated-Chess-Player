@@ -81,8 +81,8 @@ const LandingPage = () => {
                         </h1>
                     </div>
                 </div>
-                <div className="w-full flex flex-col gap-4">
-                    <div className="flex items-center w-full justify-evenly">
+                <div className="w-full flex flex-col items-center gap-7">
+                    <div className="flex flex-col sm:flex-row items-center w-full justify-evenly gap-4">
                         <AgentOptions
                             names={["Claude", "ChatGPT", "Random", "Human"]}
                         />

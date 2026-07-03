@@ -36,7 +36,12 @@ const Button = ({children, ...props}: ButtonProp) => {
                 ref={button}
                 onMouseOver={() => setIsHover(true)}
                 onMouseOut={() => setIsHover(false)}
-                className="font-black text-xl text-center border-2 px-[2em] py-[.5em] relative z-10 bg-primary cursor-pointer"
+                className="font-black text-center border-2 px-[2em] py-[.5em] relative z-10 bg-primary cursor-pointer"
+                style={
+                    {
+                        fontSize: "clamp(18px, 1.3vw, 25px)"
+                    }
+                }
                 {...props}
             >
                 {children}
