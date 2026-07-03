@@ -1,13 +1,14 @@
+import AgentOptions from "../components/AgentOptions";
+import Button from "../components/Button";
+
 const LandingPage = () => { 
     return (
         <>
-            <div className="flex flex-col items-center overflow-hidden">
-               
+            <div className="max-w-225 min-h-screen mx-auto flex flex-col items-center justify-evenly overflow-hidden">
                 <div    
                     className="grid"
                     style={
                         {
-                            transform: "translateY(clamp(25px, 4vw,60px))",
                             gridTemplateColumns: "repeat(15, clamp(25px, 4vw,60px))",
                             gridTemplateRows: "repeat(6, clamp(25px, 4vw,60px))",
                         }
@@ -78,6 +79,24 @@ const LandingPage = () => {
                         >
                             AI Chess
                         </h1>
+                    </div>
+                </div>
+                <div className="w-full flex flex-col gap-4">
+                    <div className="flex items-center w-full justify-evenly">
+                        <AgentOptions
+                            names={["Claude", "ChatGPT", "Random", "Human"]}
+                        />
+                        <p className="font-black text-3xl">VS</p>
+                        <AgentOptions
+                            names={["Claude", "ChatGPT", "Random", "Human"]}
+                        />
+                    </div>
+                    <div className="self-center">
+                        <Button>
+                            <div className="font-black text-xl text-center border-2 px-[2em] py-[.5em]">
+                                Start
+                            </div>
+                        </Button>
                     </div>
                 </div>
             </div>
