@@ -93,9 +93,7 @@ const LandingPage = () => {
                     </div>
                     <div className="self-center">
                         <Button>
-                            <div className="font-black text-xl text-center border-2 px-[2em] py-[.5em]">
-                                Start
-                            </div>
+                            Start
                         </Button>
                     </div>
                 </div>
