@@ -4,11 +4,11 @@ import HoverHandlerContext from "../contexts/HoverHandlerContext";
 
 type Agent = "Claude" | "ChatGPT" | "Human" | "Random"
 
+
 type OptionsProp = {
     names: Agent[],  
     id: number  
 };
-
 
 
 const AgentOptions = ({names, id}: OptionsProp) => {
