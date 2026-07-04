@@ -9,6 +9,14 @@ type Agent = "Claude" | "ChatGPT" | "Human" | "Random";
 const LandingPage = () => { 
     const [hover1, setHover1] = useState<Agent | null>(null);
     const [hover2, setHover2] = useState<Agent | null>(null);
+
+    const handleHover1 = (name: Agent) => {
+        setHover1(name);
+    };
+
+    const handleHover2 = (name: Agent) => {
+        setHover2(name);
+    };
     
     return (
         <>
