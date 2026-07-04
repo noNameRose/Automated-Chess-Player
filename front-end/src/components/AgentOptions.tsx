@@ -8,7 +8,7 @@ const AgentOptions = ({names}: Options) => {
     return (
         <div>
             {names.map((name: string) => (
-                <Button>
+                <Button key={name}>
                     {name}
                 </Button>
             ))}
