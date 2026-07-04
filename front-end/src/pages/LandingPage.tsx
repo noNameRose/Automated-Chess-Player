@@ -1,9 +1,15 @@
+import { useState } from "react";
 import AgentOptions from "../components/AgentOptions";
 import Button from "../components/Button";
 import OptionDescription from "../components/OptionDescriptions";
 import Title from "../components/Title";
 
+type Agent = "Claude" | "ChatGPT" | "Human" | "Random";
+
 const LandingPage = () => { 
+    const [hover1, setHover1] = useState<Agent | null>(null);
+    const [hover2, setHover2] = useState<Agent | null>(null);
+    
     return (
         <>
             <div className="max-w-260 min-h-screen mx-auto flex flex-col items-center justify-evenly overflow-hidden">
