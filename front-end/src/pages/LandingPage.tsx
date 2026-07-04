@@ -36,10 +36,12 @@ const LandingPage = () => {
                         <div className="flex flex-col sm:flex-row items-center w-full justify-evenly gap-4">
                             <AgentOptions
                                 names={["Claude", "ChatGPT", "Random", "Human"]}
+                                id={1}
                             />
                             <p className="font-black text-3xl">VS</p>
                             <AgentOptions
                                 names={["Claude", "ChatGPT", "Random", "Human"]}
+                                id={2}
                             />
                         </div>
                         <div className="self-center">
