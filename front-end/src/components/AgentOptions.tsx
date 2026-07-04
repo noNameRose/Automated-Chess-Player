@@ -1,10 +1,11 @@
 import Button from "./Button";
 
-type Options = {
+type OptionsProp = {
     names: string[],  
+    
 };
 
-const AgentOptions = ({names}: Options) => {
+const AgentOptions = ({names}: OptionsProp) => {
     return (
         <div>
             {names.map((name: string) => (

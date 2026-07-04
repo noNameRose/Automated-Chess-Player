@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from
 
 interface ButtonProp  {
     children: ReactNode,
-    button?: ComponentProps<'button'>
+    button?: ComponentProps<'div'>
 };
 
 const Button = ({children, ...props}: ButtonProp) => {
@@ -34,8 +34,18 @@ const Button = ({children, ...props}: ButtonProp) => {
             <div className="w-full h-full bg-black absolute top-0 left-0"></div>
             <div 
                 ref={button}
-                onMouseOver={() => setIsHover(true)}
-                onMouseOut={() => setIsHover(false)}
+                onMouseOver={(e) => {
+                    setIsHover(true);
+                    if (props.button && props.button.onMouseOver) {
+                        props.button.onMouseOver(e);
+                    }
+                }}
+                onMouseOut={(e) => {
+                    setIsHover(false);
+                    if (props.button && props.button.onMouseOut) {
+                        props.button.onMouseOut(e);
+                    }
+                }}
                 className="font-black text-center border-2 px-[2em] py-[.5em] relative z-10 bg-primary cursor-pointer"
                 style={
                     {

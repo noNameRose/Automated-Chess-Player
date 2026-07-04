@@ -3,6 +3,7 @@ import AgentOptions from "../components/AgentOptions";
 import Button from "../components/Button";
 import OptionDescription from "../components/OptionDescriptions";
 import Title from "../components/Title";
+import HoverHandlerContext from "../contexts/HoverHandlerContext";
 
 type Agent = "Claude" | "ChatGPT" | "Human" | "Random";
 
@@ -19,7 +20,14 @@ const LandingPage = () => {
     };
     
     return (
-        <>
+        <HoverHandlerContext 
+            value={
+                {
+                    hoverHandler1: handleHover1,
+                    hoverHandler2: handleHover2
+                }
+            }
+        >
             <div className="max-w-260 min-h-screen mx-auto flex flex-col items-center justify-evenly overflow-hidden">
                 <Title/>
                 <div className="w-full flex">
@@ -43,7 +51,7 @@ const LandingPage = () => {
                      <OptionDescription/>
                 </div>
             </div>
-        </>
+        </HoverHandlerContext>
     );
 };
 
