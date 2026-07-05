@@ -34,6 +34,7 @@ const Button = ({children, ...props}: ButtonProp) => {
             <div className="w-full h-full bg-black absolute top-0 left-0"></div>
             <div 
                 ref={button}
+                
                 onMouseOver={(e) => {
                     setIsHover(true);
                     if (props.button && props.button.onMouseOver) {

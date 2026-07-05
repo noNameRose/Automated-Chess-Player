@@ -8,7 +8,7 @@ type OptionDescriptionProp = {
 
 const OptionDescription = ({hover}: OptionDescriptionProp) => {
     return (
-        <div className="grid -translate-y-[2em]" 
+        <div className="md:grid -translate-y-[2em] hidden" 
             style={
                 {
                     gridTemplateColumns: "repeat(3, clamp(25px, 4vw, 60px))",
