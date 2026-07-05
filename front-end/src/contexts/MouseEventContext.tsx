@@ -7,8 +7,8 @@ type Handlers = {
     hoverHandler2: (name: Player) => void,
     mouseOutHandler1: () => void;
     mouseOutHandler2: () => void;
-    clickHandler1: () => void;
-    clickHandler2: () => void;
+    clickHandler1: (name: Player) => void;
+    clickHandler2: (name: Player) => void;
 }
 
 const MouseEventContext = createContext<Handlers | null>(null);
