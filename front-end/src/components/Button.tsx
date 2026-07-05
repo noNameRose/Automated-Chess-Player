@@ -10,6 +10,22 @@ const Button = ({children, ...props}: ButtonProp) => {
     const [isHover, setIsHover] = useState<Boolean>(false);
     const button = useRef<HTMLDivElement | null>(null);
 
+    const handMouseDown = () => {
+        gsap.to(button.current, {
+            x: "0",
+            y: "0",
+            ease: "power4.out"
+        });
+    };
+
+    const handleMouseUp = () => {
+        gsap.to(button.current, {
+            x: "-0.5em",
+            y: "-0.5em",
+            ease: "power4.out"
+        });
+    }
+
     useEffect(() => {
         if (button.current) {
             if (isHover) {
@@ -34,7 +50,8 @@ const Button = ({children, ...props}: ButtonProp) => {
             <div className="w-full h-full bg-black absolute top-0 left-0"></div>
             <div 
                 ref={button}
-                
+                onMouseDown={handMouseDown}
+                onMouseUp={handleMouseUp}
                 onMouseOver={(e) => {
                     setIsHover(true);
                     if (props.button && props.button.onMouseOver) {
