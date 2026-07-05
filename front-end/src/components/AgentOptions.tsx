@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import Button from "./Button";
-import HoverHandlerContext from "../contexts/HoverHandlerContext";
+import HoverHandlerContext from "../contexts/MouseEventContext";
 import type { Player } from "../../public/static/options";
-
 
 
 type OptionsProp = {

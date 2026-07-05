@@ -7,6 +7,6 @@ type Handlers = {
     hoverHandler2: (name: Player) => void
 }
 
-const HoverHandlerContext = createContext<Handlers | null>(null);
+const MouseEventContext = createContext<Handlers | null>(null);
 
-export default HoverHandlerContext;
+export default MouseEventContext;
