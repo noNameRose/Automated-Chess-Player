@@ -5,18 +5,19 @@ import OptionDescription from "../components/OptionDescriptions";
 import Title from "../components/Title";
 import MouseEventContext from "../contexts/MouseEventContext";
 import PlayerContext from "../contexts/PlayerContext";
+import type { Player } from "../../public/static/options";
 
-type Agent = "Claude" | "ChatGPT" | "Human" | "Random";
 
 const LandingPage = () => { 
-    const [hover1, setHover1] = useState<Agent | null>(null);
-    const [hover2, setHover2] = useState<Agent | null>(null);
+    const [hover1, setHover1] = useState<Player | null>(null);
+    const [hover2, setHover2] = useState<Player | null>(null);
+    
 
-    const handleHover1 = (name: Agent) => {
+    const handleHover1 = (name: Player) => {
         setHover1(name);
     };
 
-    const handleHover2 = (name: Agent) => {
+    const handleHover2 = (name: Player) => {
         setHover2(name);
     };
 
