@@ -54,6 +54,11 @@ const Button = ({children, ...props}: ButtonProp) => {
                 ref={button}
                 onMouseDown={handMouseDown}
                 onMouseUp={handleMouseUp}
+                onClick={(e) => {
+                    if (props.button && props.button.onClick) {
+                        props.button.onClick(e);
+                    }
+                }}
                 onMouseOver={(e) => {
                     setIsHover(true);
                     if (props.button && props.button.onMouseOver) {
