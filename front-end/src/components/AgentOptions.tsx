@@ -29,6 +29,15 @@ const AgentOptions = ({names, id}: OptionsProp) => {
                                 if (id === 2 && context) {
                                     context.hoverHandler2(name);
                                 }
+                            },
+
+                            onMouseOut: (e) => {
+                                if (id === 1 && context) {
+                                    context.mouseOutHandler1()
+                                }
+                                if (id === 2 && context) {
+                                    context.mouseOutHandler2();
+                                }
                             }
                         }
                     }

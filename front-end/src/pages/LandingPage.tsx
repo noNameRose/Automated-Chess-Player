@@ -34,7 +34,9 @@ const LandingPage = () => {
             value={
                 {
                     hoverHandler1: handleHover1,
-                    hoverHandler2: handleHover2
+                    hoverHandler2: handleHover2,
+                    mouseOutHandler1: handleMouseOut1,
+                    mouseOutHandler2: handleMouseOut2
                 }
             }
         >
