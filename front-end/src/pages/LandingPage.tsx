@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import OptionDescription from "../components/OptionDescriptions";
 import Title from "../components/Title";
 import HoverHandlerContext from "../contexts/HoverHandlerContext";
+import PlayerContext from "../contexts/PlayerContext";
 
 type Agent = "Claude" | "ChatGPT" | "Human" | "Random";
 
@@ -31,7 +32,9 @@ const LandingPage = () => {
             <div className="max-w-260 min-h-screen mx-auto flex flex-col items-center justify-evenly overflow-hidden">
                 <Title/>
                 <div className="w-full flex">
-                    <OptionDescription/>
+                    <OptionDescription
+                        hover={hover1}
+                    />
                     <div className="w-full flex flex-col items-center gap-7">
                         <div className="flex flex-col sm:flex-row items-center w-full justify-evenly gap-4">
                             <AgentOptions
@@ -50,7 +53,10 @@ const LandingPage = () => {
                             </Button>
                         </div>
                     </div>
-                     <OptionDescription/>
+                    
+                    <OptionDescription
+                        hover={hover2}
+                    />
                 </div>
             </div>
         </HoverHandlerContext>

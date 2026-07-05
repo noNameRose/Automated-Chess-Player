@@ -1,6 +1,13 @@
 import options from "../../public/static/options";
 import Description from "./Description";
-const OptionDescription = () => {
+
+type Agent = "Human" | "ChatGPT" | "Random" | "Claude";
+
+type OptionDescriptionProp = {
+    hover: Agent | null
+};
+
+const OptionDescription = ({hover}: OptionDescriptionProp) => {
     return (
         <div className="grid -translate-y-[2em]" 
             style={
@@ -14,6 +21,7 @@ const OptionDescription = () => {
                 <Description 
                     name={option.name}
                     desc={option.desc}
+                    hover={hover}
                 />
             ))}
         </div>
