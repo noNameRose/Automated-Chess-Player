@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import Button from "./Button";
-import HoverHandlerContext from "../contexts/MouseEventContext";
+
 import type { Player } from "../../public/static/options";
+import MouseEventContext from "../contexts/MouseEventContext";
 
 
 type OptionsProp = {
@@ -11,7 +12,7 @@ type OptionsProp = {
 
 
 const AgentOptions = ({names, id}: OptionsProp) => {
-    const context = useContext(HoverHandlerContext);
+    const context = useContext(MouseEventContext);
 
     
     return (

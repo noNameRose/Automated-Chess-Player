@@ -3,7 +3,7 @@ import AgentOptions from "../components/AgentOptions";
 import Button from "../components/Button";
 import OptionDescription from "../components/OptionDescriptions";
 import Title from "../components/Title";
-import HoverHandlerContext from "../contexts/MouseEventContext";
+import MouseEventContext from "../contexts/MouseEventContext";
 import PlayerContext from "../contexts/PlayerContext";
 
 type Agent = "Claude" | "ChatGPT" | "Human" | "Random";
@@ -23,7 +23,7 @@ const LandingPage = () => {
 
     
     return (
-        <HoverHandlerContext 
+        <MouseEventContext
             value={
                 {
                     hoverHandler1: handleHover1,
@@ -61,7 +61,7 @@ const LandingPage = () => {
                     />
                 </div>
             </div>
-        </HoverHandlerContext>
+        </MouseEventContext>
     );
 };
 
