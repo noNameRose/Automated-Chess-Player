@@ -20,6 +20,13 @@ const LandingPage = () => {
         setHover2(name);
     };
 
+    const handleMouseOut1 = () => {
+        setHover1(null);
+    };
+
+    const handleMouseOut2 = () => {
+        setHover2(null);
+    };
 
     
     return (
