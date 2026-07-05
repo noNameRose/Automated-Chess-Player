@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import Button from "./Button";
 import HoverHandlerContext from "../contexts/HoverHandlerContext";
+import type { Player } from "../../public/static/options";
 
-type Agent = "Claude" | "ChatGPT" | "Human" | "Random"
 
 
 type OptionsProp = {
-    names: Agent[],  
+    names: Player[],  
     id: number  
 };
 
@@ -17,7 +17,7 @@ const AgentOptions = ({names, id}: OptionsProp) => {
     
     return (
         <div>
-            {names.map((name: Agent) => (
+            {names.map((name: Player) => (
                 <Button 
                     key={name}
                     button={

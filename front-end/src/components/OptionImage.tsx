@@ -1,7 +1,8 @@
-type option = "Claude" | "ChatGPT" | "Human" | "Random";
+import type { Player } from "../../public/static/options";
+
 
 type ImageProp = {
-    name: option
+    name: Player
 }
 
 const OptionImage = ({name}: ImageProp) => {

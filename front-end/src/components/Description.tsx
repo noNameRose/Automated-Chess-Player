@@ -1,11 +1,10 @@
 import OptionImage from "./OptionImage";
-
-type Agent = "Claude" | "ChatGPT" | "Random" | "Human";
+import {type Player} from "../../public/static/options";
 
 type DescriptionProp = {
-    name: Agent,
+    name: Player,
     desc: string;
-    hover: Agent | null
+    hover: Player | null
 };
 
 const Description = ({name, desc, hover} : DescriptionProp) => {

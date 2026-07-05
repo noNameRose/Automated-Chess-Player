@@ -19,6 +19,7 @@ const LandingPage = () => {
     const handleHover2 = (name: Agent) => {
         setHover2(name);
     };
+
     
     return (
         <HoverHandlerContext 

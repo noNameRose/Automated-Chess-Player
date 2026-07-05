@@ -1,10 +1,10 @@
 import { createContext } from "react";
+import type { Player } from "../../public/static/options";
 
-type Agent = "Claude" | "ChatGPT" | "Human" | "Random";
 
 type Handlers = {
-    hoverHandler1: (name: Agent) => void,
-    hoverHandler2: (name: Agent) => void
+    hoverHandler1: (name: Player) => void,
+    hoverHandler2: (name: Player) => void
 }
 
 const HoverHandlerContext = createContext<Handlers | null>(null);

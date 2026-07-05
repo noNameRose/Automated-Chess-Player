@@ -1,7 +1,6 @@
 import { createContext } from "react";
+import type { Player } from "../../public/static/options";
 
-type Agent = "Claude" | "Human" | "Random" | "ChatGPT";
-
-const PlayerContext = createContext<Agent | null>(null);
+const PlayerContext = createContext<Player | null>(null);
 
 export default PlayerContext;

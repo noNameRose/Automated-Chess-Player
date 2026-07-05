@@ -1,10 +1,9 @@
-import options from "../../public/static/options";
+import options, { type Player } from "../../public/static/options";
 import Description from "./Description";
 
-type Agent = "Human" | "ChatGPT" | "Random" | "Claude";
 
 type OptionDescriptionProp = {
-    hover: Agent | null
+    hover: Player | null
 };
 
 const OptionDescription = ({hover}: OptionDescriptionProp) => {
