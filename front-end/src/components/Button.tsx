@@ -14,7 +14,8 @@ const Button = ({children, ...props}: ButtonProp) => {
         gsap.to(button.current, {
             x: "0",
             y: "0",
-            ease: "power4.out"
+            ease: "power4.out",
+            duration: "0.2"
         });
     };
 
@@ -22,7 +23,8 @@ const Button = ({children, ...props}: ButtonProp) => {
         gsap.to(button.current, {
             x: "-0.5em",
             y: "-0.5em",
-            ease: "power4.out"
+            ease: "power4.out",
+            duration: "0.2"
         });
     }
 
