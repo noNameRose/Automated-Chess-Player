@@ -11,6 +11,8 @@ import type { Player } from "../../public/static/options";
 const LandingPage = () => { 
     const [hover1, setHover1] = useState<Player | null>(null);
     const [hover2, setHover2] = useState<Player | null>(null);
+    const [firstPlayer, setFirstPlayer] = useState<Player | null>(null);
+    const [secondPlayer, setSecondPlayer] = useState<Player | null>(null);
     
 
     const handleHover1 = (name: Player) => {
