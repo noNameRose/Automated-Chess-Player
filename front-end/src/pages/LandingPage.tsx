@@ -31,7 +31,14 @@ const LandingPage = () => {
         setHover2(null);
     };
 
-    
+    const handleClick1 = (name: Player) =>  {
+        setFirstPlayer(name);
+    };
+
+    const handleClick2 = (name: Player) => {
+        setSecondPlayer(name);
+    };
+
     return (
         <MouseEventContext
             value={
@@ -39,7 +46,9 @@ const LandingPage = () => {
                     hoverHandler1: handleHover1,
                     hoverHandler2: handleHover2,
                     mouseOutHandler1: handleMouseOut1,
-                    mouseOutHandler2: handleMouseOut2
+                    mouseOutHandler2: handleMouseOut2,
+                    clickHandler1: handleClick1,
+                    clickHandler2: handleClick2
                 }
             }
         >
