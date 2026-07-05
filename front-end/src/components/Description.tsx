@@ -1,5 +1,7 @@
 import OptionImage from "./OptionImage";
 import {type Player} from "../../public/static/options";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
 type DescriptionProp = {
     name: Player,
@@ -8,22 +10,42 @@ type DescriptionProp = {
 };
 
 const Description = ({name, desc, hover} : DescriptionProp) => {
+    const image = useRef<HTMLDivElement | null>(null);
+    const text = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const isShow = name === hover;
+        if (isShow) {
+            gsap.to([image.current, text.current], {
+                opacity: 1,
+            });
+        }
+        else {
+            gsap.to([image.current, text.current], {
+                opacity: 0
+            });
+        }
+    }, [hover])
+    
     return (
         <>
-            <div className="col-[1/4] row-[1/5]"
+            <div 
+                ref={image}
+                className="col-[1/4] row-[1/5]"
                 style={
                     {
-                        opacity: name === hover ? 1 : 0,
+                        opacity: 0
                     }
                 }
             >
                 <OptionImage name={name}/>
             </div>
             <div 
+                ref={text}
                 className="text-xl col-[1/4] row-[4/6] text-center"
                 style={
                     {
-                        opacity: name === hover ? 1 : 0
+                        opacity: 0
                     }
                 }
             >
