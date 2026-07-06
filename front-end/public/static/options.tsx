@@ -5,6 +5,13 @@ export type option = {
     desc: string,
 };
 
+export const playerTheme = {
+    "Claude": "#BD674C",
+    "ChatGPT": "#4FBDA1",
+    "Random": "#4B73BD",
+    "Human": "fasdf"
+};
+
 const options: option[] = [
     {
         name: "Claude",

@@ -6,6 +6,7 @@ import Title from "../components/Title";
 import MouseEventContext from "../contexts/MouseEventContext";
 import PlayerContext from "../contexts/PlayerContext";
 import type { Player } from "../../public/static/options";
+import PlayerBackGround from "../components/PlayerBackground";
 
 
 const LandingPage = () => { 
@@ -81,6 +82,9 @@ const LandingPage = () => {
                         hover={hover2}
                     />
                 </div>
+                <PlayerBackGround
+                    chosenPlayer={firstPlayer}
+                />
             </div>
         </MouseEventContext>
     );

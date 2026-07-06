@@ -14,7 +14,6 @@ type OptionsProp = {
 const AgentOptions = ({names, id}: OptionsProp) => {
     const context = useContext(MouseEventContext);
 
-    
     return (
         <div>
             {names.map((name: Player) => (
@@ -37,6 +36,15 @@ const AgentOptions = ({names, id}: OptionsProp) => {
                                 }
                                 if (id === 2 && context) {
                                     context.mouseOutHandler2();
+                                }
+                            },
+
+                            onClick: (e) => {
+                                if (id === 1 && context) {
+                                    context.clickHandler1(name);
+                                }
+                                if (id === 2 && context) {
+                                    context.clickHandler2(name);
                                 }
                             }
                         }
