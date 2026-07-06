@@ -83,7 +83,12 @@ const LandingPage = () => {
                     />
                 </div>
                 <PlayerBackGround
+                    isFirstPlayer={true}
                     chosenPlayer={firstPlayer}
+                />
+                <PlayerBackGround
+                    isFirstPlayer={false}
+                    chosenPlayer={secondPlayer}
                 />
             </div>
         </MouseEventContext>
