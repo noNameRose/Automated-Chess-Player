@@ -15,14 +15,19 @@ const Description = ({name, desc, hover, order} : DescriptionProp) => {
     const image = useRef<HTMLDivElement | null>(null);
     const text = useRef<HTMLDivElement | null>(null);
     const chosenPlayer = useContext(ChosenPlayerContext);
-    const isChosen = chosenPlayer && chosenPlayer.firstChosenPlayer === name && order === "first";
+    const isChosen = (chosenPlayer && chosenPlayer.firstChosenPlayer === name && order === "first") ||
+                    (chosenPlayer && chosenPlayer.secondChosenPlayer === name && order === "second");
+    
+    const firstPlayerChosen = chosenPlayer && chosenPlayer.firstChosenPlayer && order === "first";
+    const secondPlayerChosen = chosenPlayer && chosenPlayer.secondChosenPlayer && order === "second";
 
     useEffect(() => {
-        if (isChosen) {
+        if (isChosen)
             return;
-        }
+        if (firstPlayerChosen || secondPlayerChosen)
+            return;
         const isShow = name === hover;
-        if (isShow) {
+        if (isShow ) {
             gsap.to([image.current, text.current], {
                 opacity: 1,
             });
@@ -32,7 +37,20 @@ const Description = ({name, desc, hover, order} : DescriptionProp) => {
                 opacity: 0
             });
         }
-    }, [hover])
+    }, [hover]);
+
+    useEffect(() => {
+        if (isChosen) {
+            gsap.to([image.current, text.current], {
+                opacity: 1,
+            });
+        }
+        else {
+             gsap.to([image.current, text.current], {
+                opacity: 0,
+            });
+        }
+    }, [isChosen]);
     
     return (
         <>
@@ -41,7 +59,7 @@ const Description = ({name, desc, hover, order} : DescriptionProp) => {
                 className="col-[1/4] row-[1/5]"
                 style={
                     {
-                        opacity: isChosen ? 1 : 0
+                        opacity: 0
                     }
                 }
             >
@@ -52,7 +70,7 @@ const Description = ({name, desc, hover, order} : DescriptionProp) => {
                 className="text-xl col-[1/4] row-[4/6] text-center font-bold"
                 style={
                     {
-                        opacity: isChosen ? 1 : 0
+                        opacity: 0
                     }
                 }
             >

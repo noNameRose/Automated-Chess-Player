@@ -65,7 +65,7 @@ const LandingPage = () => {
                     <Title/>
                     <div className="w-full flex">
                         <OptionDescription
-                            order="second"
+                            order="first"
                             hover={hover1}
                         />
                         <div className="w-full flex flex-col items-center gap-7">
