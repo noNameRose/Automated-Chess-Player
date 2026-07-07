@@ -1,7 +1,8 @@
 import OptionImage from "./OptionImage";
 import {type Player} from "../../public/static/options";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import ChosenPlayerContext from "../contexts/ChosenPlayerContext";
 
 type DescriptionProp = {
     name: Player,
@@ -13,10 +14,13 @@ type DescriptionProp = {
 const Description = ({name, desc, hover, order} : DescriptionProp) => {
     const image = useRef<HTMLDivElement | null>(null);
     const text = useRef<HTMLDivElement | null>(null);
-    
-
+    const chosenPlayer = useContext(ChosenPlayerContext);
+    const isChosen = chosenPlayer && chosenPlayer.firstChosenPlayer === name && order === "first";
 
     useEffect(() => {
+        if (isChosen) {
+            return;
+        }
         const isShow = name === hover;
         if (isShow) {
             gsap.to([image.current, text.current], {
@@ -37,7 +41,7 @@ const Description = ({name, desc, hover, order} : DescriptionProp) => {
                 className="col-[1/4] row-[1/5]"
                 style={
                     {
-                        opacity: 0
+                        opacity: isChosen ? 1 : 0
                     }
                 }
             >
@@ -48,7 +52,7 @@ const Description = ({name, desc, hover, order} : DescriptionProp) => {
                 className="text-xl col-[1/4] row-[4/6] text-center font-bold"
                 style={
                     {
-                        opacity: 0
+                        opacity: isChosen ? 1 : 0
                     }
                 }
             >
