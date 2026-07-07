@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useEffect, useState, type ReactNode } from "react";
 
 const PixelTransition = ({children}: {children: ReactNode}) => {
-    const [isShow, setShow] = useState<Boolean>(false);
+    const [isShow, setShow] = useState<Boolean>(true);
 
     useEffect(() => {
         if (isShow) {
@@ -26,6 +26,19 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
             });
         }
     }, [isShow]);
+
+    useEffect(() => {
+        gsap.to(document.querySelectorAll("#pixel"), {
+                transform: "scale(0)",
+                stagger: {
+                    grid: "auto",
+                    amount: 1,
+                    from: "center",
+                },
+                delay: 1
+        });
+    }, []);
+
     return (
         <>
             <div 
