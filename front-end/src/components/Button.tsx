@@ -69,6 +69,11 @@ const Button = ({children, name, order, ...props}: ButtonProp) => {
                 right: "100%"
             });
         }
+        if (order === "second" && chosenPlayer.secondChosenPlayer !== name) {
+            gsap.to(background.current, {
+                right: "100%"
+            });
+        }
 
 
     }, [chosenPlayer])

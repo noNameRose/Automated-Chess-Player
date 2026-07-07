@@ -3,10 +3,11 @@ import Description from "./Description";
 
 
 type OptionDescriptionProp = {
-    hover: Player | null
+    hover: Player | null,
+    order: "first" | "second"
 };
 
-const OptionDescription = ({hover}: OptionDescriptionProp) => {
+const OptionDescription = ({hover, order}: OptionDescriptionProp) => {
     return (
         <div className="md:grid -translate-y-[2em] hidden" 
             style={
@@ -18,6 +19,7 @@ const OptionDescription = ({hover}: OptionDescriptionProp) => {
         >
             {options.map(option => (
                 <Description 
+                    oreder={order}
                     name={option.name}
                     desc={option.desc}
                     hover={hover}

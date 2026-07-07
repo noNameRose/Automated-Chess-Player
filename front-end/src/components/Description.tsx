@@ -6,12 +6,14 @@ import gsap from "gsap";
 type DescriptionProp = {
     name: Player,
     desc: string;
-    hover: Player | null
+    hover: Player | null,
+    oreder: "first" | "second"
 };
 
-const Description = ({name, desc, hover} : DescriptionProp) => {
+const Description = ({name, desc, hover, oreder} : DescriptionProp) => {
     const image = useRef<HTMLDivElement | null>(null);
     const text = useRef<HTMLDivElement | null>(null);
+    
 
     useEffect(() => {
         const isShow = name === hover;
@@ -42,7 +44,7 @@ const Description = ({name, desc, hover} : DescriptionProp) => {
             </div>
             <div 
                 ref={text}
-                className="text-xl col-[1/4] row-[4/6] text-center"
+                className="text-xl col-[1/4] row-[4/6] text-center font-bold"
                 style={
                     {
                         opacity: 0

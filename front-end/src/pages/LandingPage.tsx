@@ -57,6 +57,7 @@ const LandingPage = () => {
                 <Title/>
                 <div className="w-full flex">
                     <OptionDescription
+                        order="second"
                         hover={hover1}
                     />
                     <div className="w-full flex flex-col items-center gap-7">
@@ -97,6 +98,7 @@ const LandingPage = () => {
                     </div>
                     
                     <OptionDescription
+                        order="second"
                         hover={hover2}
                     />
                 </div>
