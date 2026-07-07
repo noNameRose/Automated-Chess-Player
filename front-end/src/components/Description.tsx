@@ -7,13 +7,14 @@ type DescriptionProp = {
     name: Player,
     desc: string;
     hover: Player | null,
-    oreder: "first" | "second"
+    order: "first" | "second"
 };
 
-const Description = ({name, desc, hover, oreder} : DescriptionProp) => {
+const Description = ({name, desc, hover, order} : DescriptionProp) => {
     const image = useRef<HTMLDivElement | null>(null);
     const text = useRef<HTMLDivElement | null>(null);
     
+
 
     useEffect(() => {
         const isShow = name === hover;

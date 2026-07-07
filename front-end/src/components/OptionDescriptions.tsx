@@ -19,7 +19,7 @@ const OptionDescription = ({hover, order}: OptionDescriptionProp) => {
         >
             {options.map(option => (
                 <Description 
-                    oreder={order}
+                    order={order}
                     name={option.name}
                     desc={option.desc}
                     hover={hover}
