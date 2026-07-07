@@ -6,7 +6,6 @@ const App = () => {
 
   return (
     <>
-      <PixelTransition/>
       <Routes>
         <Route path="/" element={<LandingPage/>} ></Route>
       </Routes>
