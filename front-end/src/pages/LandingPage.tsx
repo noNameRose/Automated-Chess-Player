@@ -53,64 +53,55 @@ const LandingPage = () => {
                 }
             }
         >
-            <div className="max-w-260 min-h-screen mx-auto flex flex-col items-center justify-evenly overflow-hidden">
-                <Title/>
-                <div className="w-full flex">
-                    <OptionDescription
-                        order="second"
-                        hover={hover1}
-                    />
-                    <div className="w-full flex flex-col items-center gap-7">
-                        <div className="flex flex-col sm:flex-row items-center w-full justify-evenly gap-4">
-                            <ChosenPlayerContext
-                                value={
-                                    {
-                                        firstChosenPlayer: firstPlayer, 
-                                        secondChosenPlayer: secondPlayer
-                                    }
-                                }
-                            >
+             <ChosenPlayerContext
+                value={
+                    {
+                        firstChosenPlayer: firstPlayer, 
+                        secondChosenPlayer: secondPlayer
+                    }
+                }
+            >
+                <div className="max-w-260 min-h-screen mx-auto flex flex-col items-center justify-evenly overflow-hidden">
+                    <Title/>
+                    <div className="w-full flex">
+                        <OptionDescription
+                            order="second"
+                            hover={hover1}
+                        />
+                        <div className="w-full flex flex-col items-center gap-7">
+                            <div className="flex flex-col sm:flex-row items-center w-full justify-evenly gap-4">
                                 <AgentOptions
                                     names={["Claude", "ChatGPT", "Random", "Human"]}
                                     id={1}
                                 />
-                            </ChosenPlayerContext>
-                            <p className="font-black text-3xl">VS</p>
-                            <ChosenPlayerContext
-                                value={
-                                    {
-                                        firstChosenPlayer: firstPlayer, 
-                                        secondChosenPlayer: secondPlayer
-                                    }
-                                }
-                            >
+                                <p className="font-black text-3xl">VS</p>
                                 <AgentOptions
                                     names={["Claude", "ChatGPT", "Random", "Human"]}
                                     id={2}
                                 />
-                            </ChosenPlayerContext>
+                            </div>
+                            <div className="self-center">
+                                <Button>
+                                    Start
+                                </Button>
+                            </div>
                         </div>
-                        <div className="self-center">
-                            <Button>
-                                Start
-                            </Button>
-                        </div>
+                        
+                        <OptionDescription
+                            order="second"
+                            hover={hover2}
+                        />
                     </div>
-                    
-                    <OptionDescription
-                        order="second"
-                        hover={hover2}
+                    <PlayerBackGround
+                        isFirstPlayer={true}
+                        chosenPlayer={firstPlayer}
+                    />
+                    <PlayerBackGround
+                        isFirstPlayer={false}
+                        chosenPlayer={secondPlayer}
                     />
                 </div>
-                <PlayerBackGround
-                    isFirstPlayer={true}
-                    chosenPlayer={firstPlayer}
-                />
-                <PlayerBackGround
-                    isFirstPlayer={false}
-                    chosenPlayer={secondPlayer}
-                />
-            </div>
+            </ChosenPlayerContext>
         </MouseEventContext>
     );
 };
