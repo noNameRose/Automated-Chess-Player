@@ -1,14 +1,19 @@
 import gsap from "gsap";
-import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { useContext, useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { playerTheme, type Player } from "../../public/static/options";
+import ChosenPlayerContext from "../contexts/ChosenPlayerContext";
 
 interface ButtonProp  {
     children: ReactNode,
-    button?: ComponentProps<'div'>
+    button?: ComponentProps<'div'>,
+    name?: Player
 };
 
-const Button = ({children, ...props}: ButtonProp) => {
+const Button = ({children, name, ...props}: ButtonProp) => {
     const [isHover, setIsHover] = useState<Boolean>(false);
     const button = useRef<HTMLDivElement | null>(null);
+    const background = useRef<HTMLDivElement | null>(null);
+    const chosenPlayer = useContext(ChosenPlayerContext);
 
     const handMouseDown = () => {
         gsap.to(button.current, {
@@ -17,6 +22,10 @@ const Button = ({children, ...props}: ButtonProp) => {
             ease: "power4.out",
             duration: "0.2"
         });
+        gsap.to(background.current, {
+            right: 0,
+            ease: "power4.out",
+        })
     };
 
     const handleMouseUp = () => {
@@ -71,7 +80,7 @@ const Button = ({children, ...props}: ButtonProp) => {
                         props.button.onMouseOut(e);
                     }
                 }}
-                className="font-black text-center border-2 px-[2em] py-[.5em] relative z-10 bg-primary cursor-pointer"
+                className="font-black text-center border-2 px-[2em] py-[.5em] relative z-10 bg-primary cursor-pointer overflow-hidden"
                 style={
                     {
                         fontSize: "clamp(18px, 1.3vw, 25px)"
@@ -80,6 +89,15 @@ const Button = ({children, ...props}: ButtonProp) => {
                 {...props}
             >
                 {children}
+                <div
+                    ref={background}
+                    className="w-full h-full absolute top-0 right-full -z-10"
+                    style={
+                        {
+                            backgroundColor: name ? playerTheme[name] : "black"
+                        }
+                    }
+                ></div>
             </div>
         </div>
     );

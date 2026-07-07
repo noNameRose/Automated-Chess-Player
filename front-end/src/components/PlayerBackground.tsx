@@ -27,7 +27,7 @@ const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) 
                 stagger: {
                     grid: "auto",
                     from: "edges",
-                    amount: 1.5
+                    amount: 0.7
                 }
             });
         }

@@ -18,6 +18,7 @@ const AgentOptions = ({names, id}: OptionsProp) => {
         <div>
             {names.map((name: Player) => (
                 <Button 
+                    name={name}
                     key={name}
                     button={
                         {

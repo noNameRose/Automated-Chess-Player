@@ -4,9 +4,9 @@ import Button from "../components/Button";
 import OptionDescription from "../components/OptionDescriptions";
 import Title from "../components/Title";
 import MouseEventContext from "../contexts/MouseEventContext";
-import PlayerContext from "../contexts/PlayerContext";
 import type { Player } from "../../public/static/options";
 import PlayerBackGround from "../components/PlayerBackground";
+import ChosenPlayerContext from "../contexts/ChosenPlayerContext";
 
 
 const LandingPage = () => { 
@@ -61,15 +61,23 @@ const LandingPage = () => {
                     />
                     <div className="w-full flex flex-col items-center gap-7">
                         <div className="flex flex-col sm:flex-row items-center w-full justify-evenly gap-4">
-                            <AgentOptions
-                                names={["Claude", "ChatGPT", "Random", "Human"]}
-                                id={1}
-                            />
+                            <ChosenPlayerContext
+                                value={firstPlayer}
+                            >
+                                <AgentOptions
+                                    names={["Claude", "ChatGPT", "Random", "Human"]}
+                                    id={1}
+                                />
+                            </ChosenPlayerContext>
                             <p className="font-black text-3xl">VS</p>
-                            <AgentOptions
-                                names={["Claude", "ChatGPT", "Random", "Human"]}
-                                id={2}
-                            />
+                            <ChosenPlayerContext
+                                value={secondPlayer}
+                            >
+                                <AgentOptions
+                                    names={["Claude", "ChatGPT", "Random", "Human"]}
+                                    id={2}
+                                />
+                            </ChosenPlayerContext>
                         </div>
                         <div className="self-center">
                             <Button>
