@@ -1,14 +1,18 @@
 import gsap from "gsap";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import TransitionContext from "../contexts/TransitionContext";
 
 const PixelTransition = ({children}: {children: ReactNode}) => {
-    const [isShow, setShow] = useState<Boolean>(true);
+    const [isShow, setShow] = useState<Boolean>(false);
+    const initialDelay = useRef<number | null>(1);
 
     useEffect(() => {
+        console.log(isShow);
         if (isShow) {
+           
             gsap.to(document.querySelectorAll("#pixel"), {
                 transform: "scale(1)",
+                zIndex: 200,
                 stagger: {
                     grid: "auto",
                     amount: 0.7,
@@ -19,31 +23,22 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
         else {
             gsap.to(document.querySelectorAll("#pixel"), {
                 transform: "scale(0)",
+                zIndex: 10,
+                delay: initialDelay.current ? initialDelay.current : 0,
                 stagger: {
                     grid: "auto",
                     amount: 0.7,
                     from: "center",
-                }
+                },
+                onComplete: () => initialDelay.current = 0
             });
         }
     }, [isShow]);
 
-    useEffect(() => {
-        gsap.to(document.querySelectorAll("#pixel"), {
-                transform: "scale(0)",
-                stagger: {
-                    grid: "auto",
-                    amount: 1,
-                    from: "center",
-                },
-                delay: 1
-        });
-    }, []);
-
     return (
         <>
             <div 
-                className="w-screen min-h-screen fixed z-100 grid"
+                className="w-screen min-h-screen fixed grid"
                 style={
                     {
                         gridTemplateColumns: "repeat(auto-fit, clamp(25px, 4vw, 60px))",
@@ -54,9 +49,10 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                 {(new Array(500)).fill(null).map(_ => (
                     <div 
                         id="pixel"
-                        className="bg-black"
+                        className="bg-black z-500"
                         style={{
-                            transform: "scale(1)"
+                            transform: "scale(1)",
+                            
                         }}
                     >
                     </div>

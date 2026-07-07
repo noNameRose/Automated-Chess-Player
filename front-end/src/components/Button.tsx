@@ -79,7 +79,7 @@ const Button = ({children, name, order, ...props}: ButtonProp) => {
     }, [chosenPlayer])
 
     return (
-        <div className="relative">
+        <div className="relative z-0">
             <div className="w-full h-full bg-black absolute top-0 left-0"></div>
             <div 
                 ref={button}

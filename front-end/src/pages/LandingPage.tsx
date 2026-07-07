@@ -85,8 +85,9 @@ const LandingPage = () => {
                                 <Button
                                     button={
                                         {
-                                            onClick: () => {
+                                            onClick: (e) => {
                                                 if (transitionContext) {
+                                                   
                                                     transitionContext.handleTransition(true);
                                                 }
                                             }
