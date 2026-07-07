@@ -6,11 +6,11 @@ import { BrowserRouter } from 'react-router-dom'
 import PixelTransition from './pages/PixelTransition.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  <PixelTransition>
     <BrowserRouter>
-      <StrictMode>
-        <App />
-      </StrictMode>
+      <PixelTransition>
+        <StrictMode>
+          <App />
+        </StrictMode>
+      </PixelTransition>
     </BrowserRouter>
-  </PixelTransition>
 )
