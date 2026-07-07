@@ -4,10 +4,10 @@ import TransitionContext from "../contexts/TransitionContext";
 
 const PixelTransition = ({children}: {children: ReactNode}) => {
     const [isShow, setShow] = useState<Boolean>(false);
+    const [toPage, setToPage] = useState<string | null>(null);
     const pixelContainer = useRef<HTMLDivElement | null>(null);
     const initialDelay = useRef<number | null>(1);
 
-    
 
     useEffect(() => {
         if (isShow) {
@@ -20,7 +20,8 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                     grid: "auto",
                     amount: 0.7,
                     from: "center"
-                }
+                },
+                
             });
 
         }
