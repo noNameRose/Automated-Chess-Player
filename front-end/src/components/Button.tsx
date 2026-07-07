@@ -7,10 +7,10 @@ interface ButtonProp  {
     children: ReactNode,
     button?: ComponentProps<'div'>,
     name?: Player,
-    for?: "first" | "second"
+    order?: "first" | "second"
 };
 
-const Button = ({children, name, ...props}: ButtonProp) => {
+const Button = ({children, name, order, ...props}: ButtonProp) => {
     const [isHover, setIsHover] = useState<Boolean>(false);
     const button = useRef<HTMLDivElement | null>(null);
     const background = useRef<HTMLDivElement | null>(null);
@@ -56,6 +56,22 @@ const Button = ({children, name, ...props}: ButtonProp) => {
             }
         }
     }, [isHover]);
+
+    useEffect(() => {
+        if (!background.current || !order) {
+            return;
+        }
+        if (!chosenPlayer) {
+            return;
+        }
+        if (order === "first" && chosenPlayer.firstChosenPlayer !== name) {
+            gsap.to(background.current, {
+                right: "100%"
+            });
+        }
+
+
+    }, [chosenPlayer])
 
     return (
         <div className="relative">

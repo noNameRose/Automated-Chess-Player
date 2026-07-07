@@ -62,7 +62,12 @@ const LandingPage = () => {
                     <div className="w-full flex flex-col items-center gap-7">
                         <div className="flex flex-col sm:flex-row items-center w-full justify-evenly gap-4">
                             <ChosenPlayerContext
-                                value={firstPlayer}
+                                value={
+                                    {
+                                        firstChosenPlayer: firstPlayer, 
+                                        secondChosenPlayer: secondPlayer
+                                    }
+                                }
                             >
                                 <AgentOptions
                                     names={["Claude", "ChatGPT", "Random", "Human"]}
@@ -71,7 +76,12 @@ const LandingPage = () => {
                             </ChosenPlayerContext>
                             <p className="font-black text-3xl">VS</p>
                             <ChosenPlayerContext
-                                value={secondPlayer}
+                                value={
+                                    {
+                                        firstChosenPlayer: firstPlayer, 
+                                        secondChosenPlayer: secondPlayer
+                                    }
+                                }
                             >
                                 <AgentOptions
                                     names={["Claude", "ChatGPT", "Random", "Human"]}

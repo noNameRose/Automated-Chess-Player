@@ -2,8 +2,8 @@ import { createContext } from "react";
 import type { Player } from "../../public/static/options";
 
 type ChosenPlayer = {
-    firstChosenPlayer: Player,
-    secondChosenPlayer: Player
+    firstChosenPlayer: Player | null,
+    secondChosenPlayer: Player | null
 };
 
 const ChosenPlayerContext = createContext<ChosenPlayer | null>(null);
