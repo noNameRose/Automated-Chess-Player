@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AgentOptions from "../components/AgentOptions";
 import Button from "../components/Button";
 import OptionDescription from "../components/OptionDescriptions";
@@ -7,6 +7,7 @@ import MouseEventContext from "../contexts/MouseEventContext";
 import type { Player } from "../../public/static/options";
 import PlayerBackGround from "../components/PlayerBackground";
 import ChosenPlayerContext from "../contexts/ChosenPlayerContext";
+import TransitionContext from "../contexts/TransitionContext";
 
 
 const LandingPage = () => { 
@@ -14,7 +15,7 @@ const LandingPage = () => {
     const [hover2, setHover2] = useState<Player | null>(null);
     const [firstPlayer, setFirstPlayer] = useState<Player | null>(null);
     const [secondPlayer, setSecondPlayer] = useState<Player | null>(null);
-    
+    const transitionContext = useContext(TransitionContext);
 
     const handleHover1 = (name: Player) => {
         setHover1(name);
@@ -81,7 +82,17 @@ const LandingPage = () => {
                                 />
                             </div>
                             <div className="self-center">
-                                <Button>
+                                <Button
+                                    button={
+                                        {
+                                            onClick: () => {
+                                                if (transitionContext) {
+                                                    transitionContext.handleTransition(true);
+                                                }
+                                            }
+                                        }
+                                    }
+                                >
                                     Start
                                 </Button>
                             </div>

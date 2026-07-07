@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 type transition = {
-    handleTransition: () => void
+    handleTransition: (show: boolean) => void
 }
 
 const TransitionContext = createContext<transition | null>(null);

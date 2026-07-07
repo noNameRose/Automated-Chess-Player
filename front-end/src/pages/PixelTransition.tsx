@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { useEffect, useState, type ReactNode } from "react";
+import TransitionContext from "../contexts/TransitionContext";
 
 const PixelTransition = ({children}: {children: ReactNode}) => {
     const [isShow, setShow] = useState<Boolean>(true);
@@ -61,7 +62,11 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                     </div>
                 ))}
             </div>
-            {children}
+            <TransitionContext value={{
+                handleTransition: setShow
+            }}>
+                {children}
+            </TransitionContext>
         </>
     );
 };
