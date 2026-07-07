@@ -1,7 +1,7 @@
 const Title = () => {
     return (
         <div    
-            className="grid"
+            className="grid z-200"
             style={
                 {
                     gridTemplateColumns: "repeat(15, clamp(25px, 4vw,60px))",
