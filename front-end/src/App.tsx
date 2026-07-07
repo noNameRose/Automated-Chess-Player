@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
+import PixelTransition from "./pages/PixelTransition";
 
 const App = () => {
 
   return (
     <>
+      <PixelTransition/>
       <Routes>
         <Route path="/" element={<LandingPage/>} ></Route>
       </Routes>
