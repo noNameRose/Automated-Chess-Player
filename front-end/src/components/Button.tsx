@@ -6,7 +6,8 @@ import ChosenPlayerContext from "../contexts/ChosenPlayerContext";
 interface ButtonProp  {
     children: ReactNode,
     button?: ComponentProps<'div'>,
-    name?: Player
+    name?: Player,
+    for?: "first" | "second"
 };
 
 const Button = ({children, name, ...props}: ButtonProp) => {

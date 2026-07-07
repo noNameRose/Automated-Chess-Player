@@ -18,6 +18,7 @@ const AgentOptions = ({names, id}: OptionsProp) => {
         <div>
             {names.map((name: Player) => (
                 <Button 
+                    for={id === 1 ? "first" : "second"}
                     name={name}
                     key={name}
                     button={
