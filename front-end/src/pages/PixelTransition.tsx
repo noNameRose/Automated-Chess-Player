@@ -4,33 +4,41 @@ import TransitionContext from "../contexts/TransitionContext";
 
 const PixelTransition = ({children}: {children: ReactNode}) => {
     const [isShow, setShow] = useState<Boolean>(false);
+    const pixelContainer = useRef<HTMLDivElement | null>(null);
     const initialDelay = useRef<number | null>(1);
 
+    
+
     useEffect(() => {
-        console.log(isShow);
         if (isShow) {
-           
+            gsap.set(pixelContainer.current, {
+                zIndex: 200
+            });    
             gsap.to(document.querySelectorAll("#pixel"), {
-                transform: "scale(1)",
-                zIndex: 200,
+                transform: "scale(1.2)",
                 stagger: {
                     grid: "auto",
                     amount: 0.7,
                     from: "center"
                 }
             });
+
         }
         else {
             gsap.to(document.querySelectorAll("#pixel"), {
                 transform: "scale(0)",
-                zIndex: 10,
                 delay: initialDelay.current ? initialDelay.current : 0,
                 stagger: {
                     grid: "auto",
                     amount: 0.7,
                     from: "center",
                 },
-                onComplete: () => initialDelay.current = 0
+                onComplete: () => {
+                    initialDelay.current = 0;
+                    gsap.set(pixelContainer.current, {
+                            zIndex: -100,
+                    });
+                }
             });
         }
     }, [isShow]);
@@ -38,18 +46,19 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
     return (
         <>
             <div 
-                className="w-screen min-h-screen fixed grid"
+                ref={pixelContainer}
+                className="w-screen min-h-screen fixed grid z-100"
                 style={
                     {
-                        gridTemplateColumns: "repeat(auto-fit, clamp(25px, 4vw, 60px))",
-                        gridTemplateRows: "repeat(auto-fit, clamp(25px, 4vw, 60px))",
+                        gridTemplateColumns: "repeat(auto-fit, clamp(25px, 5vw, 500px))",
+                        gridTemplateRows: "repeat(auto-fit, clamp(25px, 5vw, 500px))",
                     }
                 }
             >
                 {(new Array(500)).fill(null).map(_ => (
                     <div 
                         id="pixel"
-                        className="bg-black z-500"
+                        className="bg-black"
                         style={{
                             transform: "scale(1)",
                             
