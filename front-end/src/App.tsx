@@ -4,7 +4,6 @@ import PixelTransition from "./pages/PixelTransition";
 import GamePage from "./pages/GamePage";
 
 const App = () => {
-
   return (
     <>
       <Routes>
