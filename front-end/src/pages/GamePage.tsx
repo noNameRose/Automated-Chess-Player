@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import TransitionContext from "../contexts/TransitionContext";
+import Board from "../chess/Board";
 
 const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
@@ -11,7 +12,7 @@ const GamePage = () => {
     }, []);
     return (
         <div>
-            Game Page
+            <Board/>
         </div>
     );
 };
