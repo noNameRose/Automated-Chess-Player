@@ -37,16 +37,18 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
         else {
             if (title.current) {
                 const split = SplitText.create(title.current, {
-                    type: "words"
+                    type: "chars"
                 });
-                gsap.fromTo(split.words, {
+                gsap.fromTo(split.chars, {
                     y: 300,
                 }, 
                 {
                     y: 0,
+                    duration: 0.8,
                     stagger: {
                         amount: 0.2
-                    }
+                    },
+                    ease: "back.out"
                 });
             }
             gsap.to(document.querySelectorAll("#pixel"), {
