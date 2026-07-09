@@ -1,4 +1,4 @@
-export class Cell {
+export class CellEntity {
     public x: number;
     public y: number;
     public row: number;
@@ -42,8 +42,8 @@ export class Cell {
             return this;
         }
 
-        public build(): Cell {
-            return new Cell(this._x, this._y, this._row, this._col);
+        public build(): CellEntity {
+            return new CellEntity(this._x, this._y, this._row, this._col);
         }
 
     }
