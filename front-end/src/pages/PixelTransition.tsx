@@ -17,6 +17,20 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
 
     useEffect(() => {
         if (isShow) {
+            if (title.current) {
+                const split = SplitText.create(title.current, {
+                    type: "chars"
+                });
+                gsap.to(split.chars, 
+                {
+                    y: 300,
+                    duration: 0.8,
+                    stagger: {
+                        amount: 0.2
+                    },
+                    ease: "back.in"
+                });
+            }
             gsap.set(pixelContainer.current, {
                 zIndex: 200
             });    
