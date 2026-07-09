@@ -28,7 +28,7 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                     stagger: {
                         amount: 0.2
                     },
-                    ease: "back.in"
+                    ease: "back.in",
                 });
             }
             gsap.set(pixelContainer.current, {
