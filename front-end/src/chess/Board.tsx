@@ -26,7 +26,7 @@ const Board = () => {
                 width={50}
                 height={50}
                 fill="red"
-
+                
                 x={0}
                 y={100}
             />
