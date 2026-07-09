@@ -8,6 +8,13 @@ type PlayerBackGroundProp = {
 }
 
 const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) => {
+    let clss = "w-screen min-h-[50vh] md:w-[50vw] md:min-h-screen grid fixed -z-20 ";
+    if (isFirstPlayer) {
+        clss += "top-0 left-0";
+    }
+    else {
+        clss += "top-[50vh] left-0 md:top-0 md:left-[50vw]";
+    }
 
     useEffect(() => {
         if (chosenPlayer) {
@@ -33,18 +40,18 @@ const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) 
         }
         
     }, [chosenPlayer]);
+
     return (
         <div 
-            className="w-[50vw] min-h-screen grid fixed top-0 -z-20"
+            className={clss}
             style={
                 {
                     gridTemplateColumns: "repeat(auto-fit, clamp(25px, 5vw, 400px))",
                     gridTemplateRows: "repeat(auto-fit, clamp(25px, 5vw, 400px))",
-                    left: isFirstPlayer ? 0 : "50vw"
                 }
             }
         >
-            {(new Array(13*20)).fill(null).map(() => (
+            {(new Array(20*20)).fill(null).map(() => (
                 <div 
                     id={`bg-box-${isFirstPlayer ? 1 : 2}`}
                     style={
