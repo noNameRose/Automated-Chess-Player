@@ -7,6 +7,12 @@ type CHATGPT_CELL_FILL = "#4FBDA1";
 type CLAUDE_CELL_FILL = "#4FBDA1";
 type RANDOM_CELL_FILL = "#4B73BD";
 
-
+export const CellFill = {
+    "Claude": "#4FBDA1",
+    "ChatGPT": "#4FBDA1",
+    "Random": "#4B73BD"
+};
 
 export type CellColor = CHATGPT_CELL_FILL | CLAUDE_CELL_FILL | RANDOM_CELL_FILL;
+
+
