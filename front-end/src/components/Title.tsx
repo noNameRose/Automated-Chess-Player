@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import TitleContext from "../contexts/TitleContext";
+
 const Title = () => {
+    const titleRef = useContext(TitleContext);
     return (
         <div    
             className="grid z-200"
@@ -63,9 +67,10 @@ const Title = () => {
                     </div>);
             })
             }
-                <div className="relative col-[3/14] row-[2/5] z-30 flex items-center justify-center">
+            <div className="col-[3/14] row-[2/5] z-30 flex items-center justify-center overflow-hidden">
                 <h1 
-                    className="font-bold absolute text-7xl text-white text-center"
+                    ref={titleRef}
+                    className="font-bold text-7xl text-white translate-y-[200%]"
                     style={
                         {
                             fontSize: "clamp(37px, 5vw, 90px)"

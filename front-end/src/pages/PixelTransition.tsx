@@ -2,14 +2,15 @@ import gsap from "gsap";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import TransitionContext from "../contexts/TransitionContext";
 import { useNavigate } from "react-router-dom";
+import TitleContext from "../contexts/TitleContext";
 
 const PixelTransition = ({children}: {children: ReactNode}) => {
     const [isShow, setShow] = useState<Boolean>(false);
     const [toPage, setToPage] = useState<string | null>(null);
     const pixelContainer = useRef<HTMLDivElement | null>(null);
     const initialDelay = useRef<number | null>(1);
+    const title = useRef<HTMLHeadingElement | null>(null);
     const navigate = useNavigate();
-
 
     useEffect(() => {
         if (isShow) {
@@ -24,7 +25,6 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                     from: "center"
                 },
                 onComplete: () => {
-                    console.log(toPage);
                     if (toPage)
                         navigate(toPage);
                 }
@@ -74,12 +74,16 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                     </div>
                 ))}
             </div>
-            <TransitionContext value={{
-                handleTransition: setShow,
-                toPage: setToPage
-            }}>
-                {children}
-            </TransitionContext>
+            <TitleContext
+                value={title}
+            >
+                <TransitionContext value={{
+                    handleTransition: setShow,
+                    toPage: setToPage
+                }}>
+                    {children}
+                </TransitionContext>
+            </TitleContext>
         </>
     );
 };
