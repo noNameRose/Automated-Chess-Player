@@ -1,10 +1,14 @@
+import {type PieceString} from "../../../public/static/chessConfig"
+
 export class PieceEntity {
+    public name: PieceString;
     public x: number;
     public y: number;
     public row: number;
     public col: number;
     
-    private constructor(x: number, y: number, row: number, col: number) {
+    private constructor(name: PieceString, x: number, y: number, row: number, col: number) {
+        this.name = name;
         this.x = x;
         this.y = y;
         this.row = row;
@@ -16,10 +20,16 @@ export class PieceEntity {
     }
 
     static PieceBuilder = class {
+        private _name!: PieceString;
         private _x!: number;
         private _y!: number;
         private _row!: number;
         private _col!: number;
+
+        public name(name: PieceString) {
+            this._name = name;
+            return this;
+        }
 
         public x(x: number) {
             this._x = x;
@@ -42,7 +52,7 @@ export class PieceEntity {
         }
 
         public build(): PieceEntity {
-            return new PieceEntity(this._x, this._y, this._row, this._col);
+            return new PieceEntity(this._name, this._x, this._y, this._row, this._col);
         }
     }
 }
