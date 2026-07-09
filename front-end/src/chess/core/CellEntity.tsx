@@ -17,10 +17,10 @@ export class Cell {
     }
     
     static CellBuilder = class {
-        public _x: number = 0;
-        public _y: number = 0;
-        public _row: number = 0;
-        public _col: number = 0;
+        private _x!: number;
+        private _y!: number;
+        private _row!: number;
+        private _col!: number;
 
         public x(x: number) {
             this._x = x;
