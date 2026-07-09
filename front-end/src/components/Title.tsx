@@ -70,7 +70,7 @@ const Title = () => {
             <div className="col-[3/14] row-[2/5] z-30 flex items-center justify-center overflow-hidden">
                 <h1 
                     ref={titleRef}
-                    className="font-bold text-7xl text-white translate-y-[200%]"
+                    className="font-bold text-7xl text-white relative"
                     style={
                         {
                             fontSize: "clamp(37px, 5vw, 90px)"

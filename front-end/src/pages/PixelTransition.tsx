@@ -3,6 +3,9 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import TransitionContext from "../contexts/TransitionContext";
 import { useNavigate } from "react-router-dom";
 import TitleContext from "../contexts/TitleContext";
+import { SplitText } from "gsap/all";
+
+gsap.registerPlugin(SplitText)
 
 const PixelTransition = ({children}: {children: ReactNode}) => {
     const [isShow, setShow] = useState<Boolean>(false);
@@ -32,6 +35,20 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
 
         }
         else {
+            if (title.current) {
+                const split = SplitText.create(title.current, {
+                    type: "words"
+                });
+                gsap.fromTo(split.words, {
+                    y: 300,
+                }, 
+                {
+                    y: 0,
+                    stagger: {
+                        amount: 0.2
+                    }
+                });
+            }
             gsap.to(document.querySelectorAll("#pixel"), {
                 transform: "scale(0)",
                 delay: initialDelay.current ? initialDelay.current : 0,
