@@ -88,7 +88,7 @@ const LandingPage = () => {
                                             onClick: (e) => {
                                                 if (transitionContext) {
                                                     transitionContext.handleTransition(true);
-                                                    transitionContext.toPage("/game");
+                                                    transitionContext.toPage(`/game/${firstPlayer}/${secondPlayer}`);
                                                 }
                                             }
                                         }
