@@ -1,11 +1,10 @@
 import { useState } from "react";
+import type { PieceString } from "../../public/static/chessConfig";
 
+type PlayerString = "Claude 1" | "Claude 2" | "ChatGPT 1" | "ChatGPT 2"
+                    | "Random 1" | "Random 2" | "Human 1" | "Human 2";
 
-type PieceString = "BP" | "BR" | "BQ" | "BKI" | "BK" | "BB" 
-                  | "WP" | "WR" | "WQ" | "WKI" | "WK" | "WB";
-type Piece = PieceString | null;
-
-const initialState: Piece[][]= [
+const initialState: (PieceString | null)[][]= [
     ["BR",  "BK",  "BB",  "BQ",  "BKI", "BB",  "BK",  "BR"],
     ["BP",  "BP",  "BP",  "BP",  "BP",  "BP",  "BP",  "BP"],
     [null,  null,  null,  null,  null,  null,  null,  null],
@@ -16,8 +15,29 @@ const initialState: Piece[][]= [
     ["WR",  "WK",  "WB",  "WQ",  "WKI", "WB",  "WK",  "WR"]
 ];
 
-const Board = () => {
-    const [board, setBoard] = useState<Piece[][] | null>(initialState);
+type GameState = {
+    board: (PieceString | null)[][],
+    currentPlayer: PlayerString | null,
+    winner: PlayerString | null,
+    isGameOver: boolean,
+    atStart: boolean,
+};
+
+type BoardProp = {
+    firstPlayer: PlayerString,
+    secondPlayer: PlayerString
+}
+
+const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
+    const [state, setState] = useState<GameState>({
+                                                    board: initialState,
+                                                    isGameOver: false,
+                                                    atStart: true,
+                                                    winner: null,
+                                                    currentPlayer: null
+    });
+
+    
     return (
         <svg viewBox="0 0 500 500" 
             className="border-2 w-screen h-screen"
@@ -26,7 +46,7 @@ const Board = () => {
                 width={50}
                 height={50}
                 fill="red"
-                
+
                 x={0}
                 y={100}
             />
