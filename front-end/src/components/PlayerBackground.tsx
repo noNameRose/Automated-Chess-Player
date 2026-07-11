@@ -23,7 +23,7 @@ const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) 
                 stagger: {
                     grid: "auto",
                     from: "edges",
-                    amount: 0.7
+                    amount: 1
                 }
             });
         }
@@ -34,7 +34,7 @@ const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) 
                 stagger: {
                     grid: "auto",
                     from: "edges",
-                    amount: 0.7
+                    amount: 1
                 }
             });
         }
