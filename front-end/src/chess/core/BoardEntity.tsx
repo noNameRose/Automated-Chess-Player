@@ -4,6 +4,7 @@ import { CellEntity } from "./CellEntity";
 import { PieceEntity } from "./PieceEntity";
 import Cell from "../Cell";
 import type { PlayerString } from "../Board";
+import Piece from "../Piece";
 
 export class BoardEntity {  
     private startX: number = 0;
@@ -86,6 +87,18 @@ export class BoardEntity {
             }
         }
         return cells;
+    }
+
+    public renderPiece(): ReactNode[] {
+        const pieces = [];
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+                const pieceEntity = this.pieces[i][j];
+                if (pieceEntity)
+                    pieces.push(<Piece piece={pieceEntity}/>)
+            }
+        }
+        return pieces;
     }
     
 }
