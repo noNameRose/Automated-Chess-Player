@@ -1,6 +1,9 @@
-import { CELL_DIMENSION, type PieceString } from "../../../public/static/chessConfig";
+import type { ReactNode } from "react";
+import { CELL_DIMENSION, CellFill, type CellColor, type PieceString } from "../../../public/static/chessConfig";
 import { CellEntity } from "./CellEntity";
 import { PieceEntity } from "./PieceEntity";
+import Cell from "../Cell";
+import type { PlayerString } from "../Board";
 
 export class BoardEntity {  
     private startX: number = 0;
@@ -18,16 +21,25 @@ export class BoardEntity {
         return this.cells[row][col];
     }    
 
-    public initializeCell(): void {
+    constructor(firstPlayer: PlayerString, secondPlayer: PlayerString) {
+        // Initialize cell entity
         for (let i = 0; i < this.rows; i++) {
             const row = [];
             for (let j = 0; j < this.cols; j++) {
+                let color;
+                if (i % 2 === 0) {
+                    color = (j % 2 === 0) ? CellFill[firstPlayer] : CellFill[secondPlayer];
+                }
+                else {
+                    color = (j % 2 === 0) ? CellFill[secondPlayer] : CellFill[firstPlayer];
+                }
                 const cell: CellEntity = CellEntity
                                             .Builder()
                                             .row(i)
                                             .col(j)
                                             .x(this.startX + (CELL_DIMENSION * i))
                                             .y(this.startY + (CELL_DIMENSION * j))
+                                            .fill(color as CellColor)
                                             .build();
                 row.push(cell);
             }
@@ -35,16 +47,15 @@ export class BoardEntity {
         }
     }
 
-    public static parse(state: (PieceString | null)[][]): BoardEntity {
+    public static parse(state: (PieceString | null)[][], firstPlayer: PlayerString, secondPlayer: PlayerString): BoardEntity {
         const nRow = state.length;
         const nCol = state[0].length;
-        const board = new BoardEntity();
-        board.initializeCell();
+        const board = new BoardEntity(firstPlayer, secondPlayer);
         for (let i = 0; i < nRow; i++) {
             const row = [];
             for (let j = 0; j < nCol; j++) {
                 const name = state[i][j];
-                const cell = board.getPiece(i, j);
+                const cell = board.getCell(i, j);
                 if (!name) {
                     row.push(null);
                 }
@@ -62,6 +73,16 @@ export class BoardEntity {
             board.pieces.push(row);
         }
         return board;
+    }
+
+    public renderCell(): ReactNode[] {
+        const cells = [];
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+                cells.push(<Cell cell={this.cells[i][j]}/>)
+            }
+        }
+        return cells;
     }
     
 }

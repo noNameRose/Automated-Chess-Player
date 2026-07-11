@@ -1,10 +1,8 @@
 import { useState } from "react";
 import type { PieceString } from "../../public/static/chessConfig";
+import { BoardEntity } from "./core/BoardEntity";
 
-type PlayerString = "Claude 1" | "Claude 2" | "ChatGPT 1" | "ChatGPT 2"
-                    | "Random 1" | "Random 2" | "Human 1" | "Human 2"
-                    | "Claude" | "Human" | "ChatGPT" | "Human"                    
-;
+export type PlayerString = "Claude" | "ChatGPT" | "Random" | "Human";          
 
 const initialState: (PieceString | null)[][]= [
     ["BR",  "BK",  "BB",  "BQ",  "BKI", "BB",  "BK",  "BR"],
@@ -39,19 +37,15 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                                     currentPlayer: null
     });
 
+
+    const board = BoardEntity.parse(state.board, firstPlayer, secondPlayer);
+
     
     return (
         <svg viewBox="0 0 500 500" 
             className="border-2 w-screen h-screen"
         >
-            <rect
-                width={50}
-                height={50}
-                fill="red"
-
-                x={0}
-                y={100}
-            />
+            {board.renderCell()}
         </svg>
     );
 };
