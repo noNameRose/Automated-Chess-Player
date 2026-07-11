@@ -18,7 +18,7 @@ public class ExceptionControllerAdvice {
                 .body(
                         ErrorDetails
                                 .builder()
-                                .message("State not found for this id")
+                                .error("State not found for this id")
                                 .build()
                 );
     }
