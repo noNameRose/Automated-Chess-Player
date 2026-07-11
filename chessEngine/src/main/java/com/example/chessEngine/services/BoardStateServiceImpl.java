@@ -1,6 +1,7 @@
 package com.example.chessEngine.services;
 
 
+import com.example.chessEngine.exception.BoardStateNotFoundException;
 import com.example.chessEngine.repo.BoardStateRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class BoardStateServiceImpl implements BoardStateService{
 
     @Override
     public String[][] getBoardState(String id) {
-        return this.boardStateRepo.getBoardStateById(id);
+        String[][] state = this.boardStateRepo.getBoardStateById(id);
+        if (state == null)
+            throw new BoardStateNotFoundException();
+        return state;
     }
 }
