@@ -19,4 +19,9 @@ public class BoardStateRepoImpl implements BoardStateRepo{
         }
         return null;
     }
+
+    @Override
+    public void saveBoardState(String id, String[][] state) {
+        stateMap.put(id, state);
+    }
 }
