@@ -1,4 +1,4 @@
-import {type PieceString} from "../../../public/static/chessConfig"
+import {type PieceString, type PieceType} from "../../../public/static/chessConfig"
 
 export class PieceEntity {
     public name: PieceString;
@@ -6,6 +6,8 @@ export class PieceEntity {
     public y: number;
     public row: number;
     public col: number;
+    public type: PieceType;
+    
     
     private constructor(name: PieceString, x: number, y: number, row: number, col: number) {
         this.name = name;
@@ -13,6 +15,7 @@ export class PieceEntity {
         this.y = y;
         this.row = row;
         this.col = col;
+        this.type = name.substring(1) as PieceType;
     }
 
     public static Builder() {
