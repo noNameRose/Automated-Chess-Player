@@ -3,17 +3,18 @@ package ChessLogic;
 
 
 public final class BoardInitializer {
+
   private static final int ROWS = 8;
   private static final int COLS = 8;
   private static final String[][] congig = {
-      {"br", "bkn", "bb", "bq", "bk", "bb", "bkn", "br"},
-      {"bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp"},
+      {"BR", "BK", "BB", "BQ", "BKI", "BB", "BK", "BR"},
+      {"BP", "BP", "BP", "BP", "BP", "BP", "BP", "BP"},
       {null, null, null, null, null, null, null, null },
       {null, null, null, null, null, null, null, null },
       {null, null, null, null, null, null, null, null },
       {null, null, null, null, null, null, null, null },
-      {"wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp"},
-      {"wr", "wkn", "wb", "wq", "wk", "wb", "wkn", "wr"},
+      {"WP", "WP", "WP", "WP", "WP", "WP", "WP", "WP"},
+      {"WR", "WK", "WB", "WQ", "WKI", "WB", "WK", "WR"},
   };
 
   public static void initialize(Board board) {
@@ -23,25 +24,25 @@ public final class BoardInitializer {
         String pieceStr = congig[i][j];
         if (pieceStr != null) {
           char color = pieceStr.charAt(0);
-          boolean isBlack = color == 'b';
+          boolean isBlack = color == 'B';
           String pieceName = pieceStr.substring(1);
           switch (pieceName) {
-            case "p":
+            case "P":
               board.setPiece(i, j, new Pawn(i, j, isBlack));
               break;
-            case "r":
+            case "R":
               board.setPiece(i, j, new Rook(i, j, isBlack));
               break;
-            case "kn":
+            case "K":
               board.setPiece(i, j, new Knight(i, j, isBlack));
               break;
-            case "b":
+            case "B":
               board.setPiece(i, j, new Bishop(i, j, isBlack));
               break;
-            case "q":
+            case "Q":
               board.setPiece(i, j, new Queen(i, j, isBlack));
               break;
-            case "k":
+            case "KI":
               board.setPiece(i, j, new King(i, j, isBlack));
               break;
           }
