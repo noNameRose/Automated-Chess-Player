@@ -1,6 +1,8 @@
 export type PieceString = "BP" | "BR" | "BQ" | "BKI" | "BK" | "BB" 
                   | "WP" | "WR" | "WQ" | "WKI" | "WK" | "WB";
 
+export type PieceType = "P" | "R" | "Q" | "KI" | "K" | "B";
+
 export type PlayerString = "Human" | "Claude" | "ChatGPT" | "Random";
 
 export const CELL_DIMENSION = 50;
