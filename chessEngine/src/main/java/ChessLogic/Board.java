@@ -12,6 +12,7 @@ public class Board {
   private final int COLS = 8;
 
 
+
   /**
    * Default Constructor
    */

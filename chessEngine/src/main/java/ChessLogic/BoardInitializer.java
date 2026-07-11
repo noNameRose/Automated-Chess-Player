@@ -6,7 +6,7 @@ public final class BoardInitializer {
 
   private static final int ROWS = 8;
   private static final int COLS = 8;
-  private static final String[][] congig = {
+  public static final String[][] congig = {
       {"BR", "BK", "BB", "BQ", "BKI", "BB", "BK", "BR"},
       {"BP", "BP", "BP", "BP", "BP", "BP", "BP", "BP"},
       {null, null, null, null, null, null, null, null },
