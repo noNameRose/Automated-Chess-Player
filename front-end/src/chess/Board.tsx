@@ -2,7 +2,9 @@ import { useState } from "react";
 import type { PieceString } from "../../public/static/chessConfig";
 
 type PlayerString = "Claude 1" | "Claude 2" | "ChatGPT 1" | "ChatGPT 2"
-                    | "Random 1" | "Random 2" | "Human 1" | "Human 2";
+                    | "Random 1" | "Random 2" | "Human 1" | "Human 2"
+                    | "Claude" | "Human" | "ChatGPT" | "Human"                    
+;
 
 const initialState: (PieceString | null)[][]= [
     ["BR",  "BK",  "BB",  "BQ",  "BKI", "BB",  "BK",  "BR"],
