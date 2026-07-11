@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { CELL_DIMENSION, CellFill, type CellColor, type PieceString } from "../../../public/static/chessConfig";
+import { CELL_DIMENSION, CellFill, PieceFill, type CellColor, type PieceColor, type PieceString } from "../../../public/static/chessConfig";
 import { CellEntity } from "./CellEntity";
 import { PieceEntity } from "./PieceEntity";
 import Cell from "../Cell";
@@ -60,12 +60,15 @@ export class BoardEntity {
                     row.push(null);
                 }
                 else if (name && cell){
+                    const isBlack = name[0] === "B";
+                    const color = isBlack ? PieceFill[firstPlayer] : PieceFill[secondPlayer];
                     const piece = PieceEntity.Builder()
                                   .name(name)
                                   .row(i)
                                   .col(j)
                                   .x(cell.x)
                                   .y(cell.y)
+                                  .fill(color as PieceColor)
                                   .build();
                     row.push(piece);
                 }
