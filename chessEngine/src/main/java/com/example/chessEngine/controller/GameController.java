@@ -8,6 +8,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,11 +21,11 @@ public class GameController {
         this.boardStateService = boardStateService;
     }
 
-    @GetMapping("/game")
-    public ResponseEntity<String[][]> getBoardState(String id) {
+    @GetMapping("/game/{id}")
+    public ResponseEntity<String[][]> getBoardState(@PathVariable  String id) {
         String[][] state = this.boardStateService.getBoardState(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(state);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(state);
     }
 }
