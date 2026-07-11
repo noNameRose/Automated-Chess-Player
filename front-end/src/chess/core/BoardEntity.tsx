@@ -38,8 +38,8 @@ export class BoardEntity {
                                             .Builder()
                                             .row(i)
                                             .col(j)
-                                            .x(this.startX + (CELL_DIMENSION * i))
-                                            .y(this.startY + (CELL_DIMENSION * j))
+                                            .x(this.startX + (CELL_DIMENSION * j))
+                                            .y(this.startY + (CELL_DIMENSION * i))
                                             .fill(color as CellColor)
                                             .build();
                 row.push(cell);
@@ -61,6 +61,7 @@ export class BoardEntity {
                     row.push(null);
                 }
                 else if (name && cell){
+                    console.log(cell);
                     const isBlack = name[0] === "B";
                     const color = isBlack ? PieceFill[firstPlayer] : PieceFill[secondPlayer];
                     const piece = PieceEntity.Builder()
