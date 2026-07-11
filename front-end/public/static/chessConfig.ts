@@ -17,16 +17,16 @@ type CLAUDE_PIECE_FILL = "#FFD6C9";
 type RANDOM_PIECE_FILL = "#C9DCFF";
 
 export const CellFill = {
-    "Claude": "#BD674C",
-    "ChatGPT": "#4FBDA1",
-    "Random": "#4B73BD",
+    "Claude": "#561500",
+    "ChatGPT": "#00503C",
+    "Random": "#001B4F",
     "Human": "fasdf"
 };
 
 export const PieceFill = {
-    "Claude": "#FFD6C9",
-    "ChatGPT": "#C9FFF2",
-    "Random": "#C9DCFF",
+    "Claude": "#EEAE9A",
+    "ChatGPT": "#9AEDD8",
+    "Random": "#9AB7ED",
     "Human": "fasdf"
 };
 
