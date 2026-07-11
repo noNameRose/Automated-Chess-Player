@@ -24,9 +24,9 @@ export const CellFill = {
 };
 
 export const PieceFill = {
-    "Claude": "#C9FFF2",
-    "ChatGPT": "#4FBDA1",
-    "Random": "#4B73BD",
+    "Claude": "#FFD6C9",
+    "ChatGPT": "#C9FFF2",
+    "Random": "#C9DCFF",
     "Human": "fasdf"
 };
 
