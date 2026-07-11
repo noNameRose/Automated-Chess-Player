@@ -46,6 +46,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             className="border-2 w-screen h-screen"
         >
             {board.renderCell()}
+            {board.renderPiece()}
         </svg>
     );
 };
