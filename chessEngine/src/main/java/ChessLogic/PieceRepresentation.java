@@ -32,6 +32,14 @@ public final class PieceRepresentation {
   public static final String BLACK_QUEEN = "BQ";
   public static final String BLACK_KING = "BKI";
 
+  public static final String PAWN = "P";
+  public static final String BISHOP = "B";
+  public static final String KING = "KI";
+  public static final String QUEEN = "Q";
+  public static final String KNIGHT = "K";
+  public static final String ROOK = "R";
+
+
 
 
 
