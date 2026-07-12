@@ -17,20 +17,20 @@ public final class PieceRepresentation {
   public static final char BLACK_KING_CODE = '\u265A';
 
 
-  public static final String WHITE_PAWN = "wp";
-  public static final String WHITE_KNIGHT = "wkn";
-  public static final String WHITE_BISHOP = "wb";
-  public static final String WHITE_ROOK = "wr";
-  public static final String WHITE_QUEEN = "wq";
-  public static final String WHITE_KING = "wk";
+  public static final String WHITE_PAWN = "WP";
+  public static final String WHITE_KNIGHT = "WK";
+  public static final String WHITE_BISHOP = "WB";
+  public static final String WHITE_ROOK = "WR";
+  public static final String WHITE_QUEEN = "WQ";
+  public static final String WHITE_KING = "WKI";
 
 
-  public static final String BLACK_PAWN = "bp";
-  public static final String BLACK_KNIGHT = "bkn";
-  public static final String BLACK_BISHOP = "bb";
-  public static final String BLACK_ROOK = "br";
-  public static final String BLACK_QUEEN = "bq";
-  public static final String BLACK_KING = "bk";
+  public static final String BLACK_PAWN = "BP";
+  public static final String BLACK_KNIGHT = "BK";
+  public static final String BLACK_BISHOP = "BB";
+  public static final String BLACK_ROOK = "BR";
+  public static final String BLACK_QUEEN = "BQ";
+  public static final String BLACK_KING = "BKI";
 
 
 
