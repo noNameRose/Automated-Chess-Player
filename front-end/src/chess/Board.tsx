@@ -52,10 +52,12 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
         setState({
             ...state,
             board: body.state,
-            atStart: false
+            atStart: false,
+            currentPlayer: firstPlayer
         });
-        
     }
+
+    
 
     useEffect(() => {
         // Fetch board at the beginning of a new game
@@ -63,7 +65,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             fetchBoardState()
         }
         else {
-
+            
         }
     }, [state]);
     
