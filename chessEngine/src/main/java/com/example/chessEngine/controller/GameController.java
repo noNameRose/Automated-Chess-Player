@@ -61,7 +61,8 @@ public class GameController {
                                 .from(from)
                                 .to(to)
                                 .isGameOver(board.isGameOver())
-                                .state()
+                                .state(board.getBoardString())
+                                .build()
                 );
     }
 
