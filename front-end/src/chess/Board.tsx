@@ -2,14 +2,29 @@ import { useEffect, useState } from "react";
 import type { PieceString } from "../../public/static/chessConfig";
 import { BoardEntity } from "./core/BoardEntity";
 
-export type PlayerString = "Claude" | "ChatGPT" | "Random" | "Human";          
+export type PlayerString = "Claude" | "ChatGPT" | "Random" | "Human"; 
+
+type PieceStringBoard = (PieceString | null)[][]
 
 type StateResponse = {
-    state: (PieceString | null)[][]
+    state: PieceStringBoard
 }
 
+type MoveResponse = {
+    state: PieceStringBoard,
+    from: number[],
+    to: number[],
+    isGameOver: boolean
+};
+
+type MoveRequest = {
+    state: PieceStringBoard,
+    isBlack: boolean,
+    playerName: PlayerString
+};
+
 type GameState = {
-    board: (PieceString | null)[][] | null,
+    board: (PieceStringBoard | null),
     currentPlayer: PlayerString | null,
     winner: PlayerString | null,
     isGameOver: boolean,
@@ -22,7 +37,7 @@ type BoardProp = {
 }
 
 const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
-    const URL = "http://localhost:8080/game"
+    const URL = "http://localhost:8080/game";
     const [state, setState] = useState<GameState>({
                                                     board: null,
                                                     isGameOver: false,
@@ -44,9 +59,24 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             atStart: false,
             currentPlayer: firstPlayer
         });
-    }
+    };
 
-    
+    const fetchMove = async (): Promise<MoveResponse> => {
+        const reqBody: MoveRequest = {
+            state: state.board as PieceStringBoard,
+            isBlack: (state.currentPlayer == firstPlayer),
+            playerName: state.currentPlayer as PlayerString
+        };
+        const response = await fetch(URL, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(reqBody)
+        });
+        const body = (await response.json()) as MoveResponse;
+        return body;
+    }
 
     useEffect(() => {
         // Fetch board at the beginning of a new game
@@ -54,7 +84,13 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             fetchBoardState()
         }
         else {
-            
+            const promise = fetchMove();
+            promise.then((moveResponse: MoveResponse) => {
+                const fromCell = moveResponse.from;
+                const toCell = moveResponse.to;
+                const piece = board?.getPiece(fromCell[0], fromCell[1]);
+                const cell = board?.getCell(toCell[0], toCell[1]);
+            })
         }
     }, [state]);
     
