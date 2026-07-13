@@ -1,12 +1,14 @@
 package com.example.chessEngine.controller;
 
 
+import ChessLogic.Board;
 import ChessLogic.BoardInitializer;
 import com.example.chessEngine.dto.MoveRequest;
 import com.example.chessEngine.dto.MoveResponse;
 import com.example.chessEngine.dto.StateResponse;
 import com.example.chessEngine.services.BoardStateService;
 import com.example.chessEngine.services.ChessAgentService;
+import org.apache.tomcat.util.http.FastHttpDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +49,20 @@ public class GameController {
 
     @PostMapping("/game")
     public ResponseEntity<MoveResponse> getMove(@RequestBody MoveRequest request) {
-
+        Board board = Board.parse(request.getState());
+        int[] move = this.chessAgentService.makeMove(request.getPlayerName(), request.isBlack(), board);
+        int[] from = new int[] {move[0], move[1]};
+        int[] to = new int[] {move[2], move[3]};
+        board.movePiece(from[0], from[1], to[0], to[1]);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(
+                        MoveResponse.builder()
+                                .from(from)
+                                .to(to)
+                                .isGameOver(board.isGameOver())
+                                .state()
+                );
     }
 
 }
