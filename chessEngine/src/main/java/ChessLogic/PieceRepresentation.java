@@ -40,6 +40,33 @@ public final class PieceRepresentation {
   public static final String ROOK = "R";
 
 
+  public static String getPieceString(Piece piece) {
+    boolean isBlack = piece.isBlack();
+    char representation = piece.representation;
+    if (representation == WHITE_BISHOP_CODE) {
+      return WHITE_BISHOP;
+    }
+    if (representation == WHITE_PAWN_CODE) {
+      return WHITE_PAWN;
+    }
+    if (representation == WHITE_KING_CODE) {
+      return WHITE_KING;
+    }
+    if (representation == WHITE_KNIGHT_CODE) {
+      return WHITE_;
+    }
+    if (representation == WHITE_BISHOP_CODE) {
+      return WHITE_BISHOP;
+    }
+    if (representation == WHITE_BISHOP_CODE) {
+      return WHITE_BISHOP;
+    }
+
+
+
+
+
+  }
 
 
 

@@ -6,6 +6,7 @@ public class Rook extends Piece{
     super.col = col;
     super.isBlack = isBlack;
     super.representation = isBlack ? PieceRepresentation.BLACK_ROOK_CODE : PieceRepresentation.WHITE_ROOK_CODE;
+    super.type = PieceRepresentation.ROOK;
   }
 
 

@@ -7,6 +7,7 @@ public class Knight extends Piece{
     super.col = col;
     super.isBlack = isBlack;
     super.representation = isBlack ? PieceRepresentation.BLACK_KNIGHT_CODE : PieceRepresentation.WHITE_KNIGHT_CODE;
+    super.type = PieceRepresentation.KNIGHT;
   }
 
 

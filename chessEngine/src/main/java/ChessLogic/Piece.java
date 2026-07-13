@@ -5,6 +5,7 @@ public abstract class Piece {
   protected int col;
 
   protected  boolean isBlack;
+  protected  String type;
 
   protected  char representation;
 

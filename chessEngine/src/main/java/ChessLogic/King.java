@@ -7,6 +7,7 @@ public class King extends Piece{
     super.col = col;
     super.isBlack = isBlack;
     super.representation = isBlack ? PieceRepresentation.BLACK_KING_CODE : PieceRepresentation.WHITE_KING_CODE;
+    super.type = PieceRepresentation.KING;
   }
 
 
