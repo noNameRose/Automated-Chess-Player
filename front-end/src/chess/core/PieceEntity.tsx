@@ -8,7 +8,7 @@ export class PieceEntity {
     public col: number;
     public type: PieceType;
     public fill: PieceColor;
-    
+    public container!: SVGGElement | null;
     
     private constructor(name: PieceString, x: number, y: number, row: number, col: number, fill: PieceColor) {
         this.name = name;
