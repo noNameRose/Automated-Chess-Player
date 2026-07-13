@@ -4,17 +4,6 @@ import { BoardEntity } from "./core/BoardEntity";
 
 export type PlayerString = "Claude" | "ChatGPT" | "Random" | "Human";          
 
-const initialState: (PieceString | null)[][] = [
-    ["BR",  "BK",  "BB",  "BQ",  "BKI", "BB",  "BK",  "BR"],
-    ["BP",  "BP",  "BP",  "BP",  "BP",  "BP",  "BP",  "BP"],
-    [null,  null,  null,  null,  null,  null,  null,  null],
-    [null,  null,  null,  null,  null,  null,  null,  null],
-    [null,  null,  null,  null,  null,  null,  null,  null],
-    [null,  null,  null,  null,  null,  null,  null,  null],
-    ["WP",  "WP",  "WP",  "WP",  "WP",  "WP",  "WP",  "WP"],
-    ["WR",  "WK",  "WB",  "WQ",  "WKI", "WB",  "WK",  "WR"]
-];
-
 type StateResponse = {
     state: (PieceString | null)[][]
 }
