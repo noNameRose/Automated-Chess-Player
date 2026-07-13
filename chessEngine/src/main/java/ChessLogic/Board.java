@@ -1,5 +1,6 @@
 package ChessLogic;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,9 +8,44 @@ import java.util.Map;
 
 public class Board {
   // Instance variables (add more if you need)
-  private Piece[][] board;
-  private final int ROWS = 8;
-  private final int COLS = 8;
+    private Piece[][] board;
+    private final int ROWS = 8;
+    private final int COLS = 8;
+
+    public static Board parse(String[][] parse) {
+        Board board = new Board();
+        int nRows = 8;
+        int nCols = 8;
+        for (int i = 0; i < nRows; i++) {
+            for (int j = 0; j < nCols; j++) {
+                String piece = parse[i][j];
+                if (piece != null) {
+                    boolean isBlack = piece.charAt(0) == 'B';
+                    String pieceType = piece.substring(1);
+                    if (pieceType.equals(PieceRepresentation.PAWN)) {
+                        board.setPiece(i, j, new Pawn(i, j, isBlack));
+                    }
+                    if (pieceType.equals(PieceRepresentation.BISHOP)) {
+                        board.setPiece(i, j, new Bishop(i, j, isBlack));
+                    }
+                    if (pieceType.equals(PieceRepresentation.KNIGHT)) {
+                        board.setPiece(i, j, new Knight(i, j, isBlack));
+                    }
+                    if (pieceType.equals(PieceRepresentation.KING)) {
+                        board.setPiece(i, j, new King(i, j, isBlack));
+                    }
+                    if (pieceType.equals(PieceRepresentation.QUEEN)) {
+                        board.setPiece(i, j, new Queen(i, j, isBlack));
+                    }
+                    if (pieceType.equals(PieceRepresentation.ROOK)) {
+                        board.setPiece(i, j, new Rook(i, j, isBlack));
+                    }
+                }
+            }
+        }
+        return board;
+
+    }
 
 
 
