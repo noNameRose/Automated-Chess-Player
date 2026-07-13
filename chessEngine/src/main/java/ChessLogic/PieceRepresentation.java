@@ -42,30 +42,23 @@ public final class PieceRepresentation {
 
   public static String getPieceString(Piece piece) {
     boolean isBlack = piece.isBlack();
-    char representation = piece.representation;
-    if (representation == WHITE_BISHOP_CODE) {
-      return WHITE_BISHOP;
+    String type = piece.type;
+    if (type.equals(PAWN)) {
+      return isBlack ? BLACK_PAWN : WHITE_PAWN;
     }
-    if (representation == WHITE_PAWN_CODE) {
-      return WHITE_PAWN;
+    if (type.equals(ROOK)) {
+      return isBlack ? BLACK_ROOK : WHITE_ROOK;
     }
-    if (representation == WHITE_KING_CODE) {
-      return WHITE_KING;
+    if (type.equals(KNIGHT)) {
+      return isBlack ? BLACK_KNIGHT : WHITE_KNIGHT;
     }
-    if (representation == WHITE_KNIGHT_CODE) {
-      return WHITE_;
+    if (type.equals(BISHOP)) {
+      return isBlack ? BLACK_BISHOP : WHITE_BISHOP;
     }
-    if (representation == WHITE_BISHOP_CODE) {
-      return WHITE_BISHOP;
+    if (type.equals(KING)) {
+      return isBlack ? BLACK_KING : WHITE_KING;
     }
-    if (representation == WHITE_BISHOP_CODE) {
-      return WHITE_BISHOP;
-    }
-
-
-
-
-
+    return isBlack ? BLACK_QUEEN : WHITE_QUEEN;
   }
 
 
