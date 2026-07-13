@@ -47,6 +47,24 @@ public class Board {
 
     }
 
+    public String[][] getBoardString() {
+      String[][] state = new String[this.ROWS][this.COLS];
+      for (int i = 0; i < this.ROWS; i++) {
+        for (int j = 0; j < this.COLS; j++) {
+          Piece piece = this.getPiece(i, j);
+          String pieceString;
+          if (piece != null) {
+            pieceString = PieceRepresentation.getPieceString(piece);
+          }
+          else {
+            pieceString = null;
+          }
+          state[i][j] = pieceString;
+        }
+      }
+      return state;
+    }
+
 
 
   /**
