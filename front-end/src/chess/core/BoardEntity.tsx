@@ -1,9 +1,8 @@
 import type { ReactNode } from "react";
-import { CELL_DIMENSION, CellFill, PieceFill, type CellColor, type PieceColor, type PieceString } from "../../../public/static/chessConfig";
+import { BlackCellFill, BlackPieceFill, CELL_DIMENSION, WhiteCellFill, WhitePieceFill, type CellColor, type PieceColor, type PieceString, type PlayerString } from "../../../public/static/chessConfig";
 import { CellEntity } from "./CellEntity";
 import { PieceEntity } from "./PieceEntity";
 import Cell from "../Cell";
-import type { PlayerString } from "../Board";
 import Piece from "../Piece";
 
 export class BoardEntity {  
@@ -29,10 +28,10 @@ export class BoardEntity {
             for (let j = 0; j < this.cols; j++) {
                 let color;
                 if (i % 2 === 0) {
-                    color = (j % 2 === 0) ? CellFill[firstPlayer] : CellFill[secondPlayer];
+                    color = (j % 2 === 0) ? BlackCellFill[firstPlayer] : WhiteCellFill[secondPlayer];
                 }
                 else {
-                    color = (j % 2 === 0) ? CellFill[secondPlayer] : CellFill[firstPlayer];
+                    color = (j % 2 === 0) ? WhiteCellFill[secondPlayer] : BlackCellFill[firstPlayer];
                 }
                 const cell: CellEntity = CellEntity
                                             .Builder()
@@ -62,7 +61,7 @@ export class BoardEntity {
                 }
                 else if (name && cell){
                     const isBlack = name[0] === "B";
-                    const color = isBlack ? PieceFill[firstPlayer] : PieceFill[secondPlayer];
+                    const color = isBlack ? BlackPieceFill[firstPlayer] : WhitePieceFill[secondPlayer];
                     const piece = PieceEntity.Builder()
                                   .name(name)
                                   .row(i)
