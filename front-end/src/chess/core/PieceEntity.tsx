@@ -26,6 +26,7 @@ export class PieceEntity {
             attr: {
                 transform: `translate(${cell.x}, ${cell.y})`
             },
+            ease: "back.inOut",
             onComplete: handleComplete
         });
     }
