@@ -7,6 +7,7 @@ export type PlayerString = "Human" | "Claude" | "ChatGPT" | "Random";
 
 export const CELL_DIMENSION = 50;
 export const PIECE_DIMENSION = CELL_DIMENSION;
+export const PIECE_STROKE = PIECE_DIMENSION/2;
 
 type CHATGPT_CELL_FILL = "#BD674C";
 type CLAUDE_CELL_FILL = "#4FBDA1";
