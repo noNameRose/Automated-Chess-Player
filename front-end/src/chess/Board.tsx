@@ -27,7 +27,7 @@ type MoveRequest = {
 
 type GameState = {
     board: (PieceStringBoard | null),
-    currentPlayer: PlayerString | null,
+    currentPlayer: "BLACK" | "WHITE" | null,
     winner: PlayerString | null,
     isGameOver: boolean,
     atStart: boolean,
@@ -60,15 +60,15 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             ...state,
             board: body.state,
             atStart: false,
-            currentPlayer: firstPlayer
+            currentPlayer: "BLACK"
         });
     };
 
     const fetchMove = async (): Promise<MoveResponse> => {
         const reqBody: MoveRequest = {
             state: state.board as PieceStringBoard,
-            isBlack: (state.currentPlayer === firstPlayer),
-            playerName: state.currentPlayer as PlayerString
+            isBlack: (state.currentPlayer === "BLACK"),
+            playerName: state.currentPlayer === "BLACK" ? firstPlayer : secondPlayer
         };
         const response = await fetch(URL, {
             method: "POST",
@@ -101,7 +101,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                         ...state, 
                                         isGameOver: moveResponse.isGameOver,
                                         board: moveResponse.state,
-                                        currentPlayer: state.currentPlayer === secondPlayer ? secondPlayer : firstPlayer
+                                        currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
                                     });
                                   }
                                 );
