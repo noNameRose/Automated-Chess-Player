@@ -1,4 +1,5 @@
 import {type PieceColor, type PieceString, type PieceType} from "../../../public/static/chessConfig"
+import type { CellEntity } from "./CellEntity";
 
 export class PieceEntity {
     public name: PieceString;
@@ -18,6 +19,15 @@ export class PieceEntity {
         this.col = col;
         this.type = name.substring(1) as PieceType;
         this.fill = fill;
+    }
+
+    public moveToCell(tl: GSAPTimeline, cell: CellEntity, handleComplete?: () => void): void {
+        tl.to(this.container, {
+            attr: {
+                transform: `translate(${cell.x}, ${cell.y})`
+            },
+            onComplete: handleComplete
+        });
     }
 
     public static Builder() {

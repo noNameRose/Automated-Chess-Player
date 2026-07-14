@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { PieceString } from "../../public/static/chessConfig";
 import { BoardEntity } from "./core/BoardEntity";
+import type { CellEntity } from "./core/CellEntity";
+import gsap from "gsap";
 
 export type PlayerString = "Claude" | "ChatGPT" | "Random" | "Human"; 
 
@@ -38,6 +40,7 @@ type BoardProp = {
 
 const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     const URL = "http://localhost:8080/game";
+    const tl = useRef<GSAPTimeline | null>(null);
     const [state, setState] = useState<GameState>({
                                                     board: null,
                                                     isGameOver: false,
@@ -64,7 +67,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     const fetchMove = async (): Promise<MoveResponse> => {
         const reqBody: MoveRequest = {
             state: state.board as PieceStringBoard,
-            isBlack: (state.currentPlayer == firstPlayer),
+            isBlack: (state.currentPlayer === firstPlayer),
             playerName: state.currentPlayer as PlayerString
         };
         const response = await fetch(URL, {
@@ -76,9 +79,10 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
         });
         const body = (await response.json()) as MoveResponse;
         return body;
-    }
+    };
 
     useEffect(() => {
+        tl.current = gsap.timeline();
         // Fetch board at the beginning of a new game
         if (state.atStart) {
             fetchBoardState()
@@ -90,7 +94,24 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                 const toCell = moveResponse.to;
                 const piece = board?.getPiece(fromCell[0], fromCell[1]);
                 const cell = board?.getCell(toCell[0], toCell[1]);
+                piece?.moveToCell(tl.current as GSAPTimeline, 
+                                  cell as CellEntity,
+                                  () => {
+                                    setState({
+                                        ...state, 
+                                        isGameOver: moveResponse.isGameOver,
+                                        board: moveResponse.state,
+                                        currentPlayer: state.currentPlayer === secondPlayer ? secondPlayer : firstPlayer
+                                    });
+                                  }
+                                );
             })
+        }
+        return () => {
+            if (tl.current) {
+                tl.current.kill();
+                tl.current = null;
+            }
         }
     }, [state]);
     
