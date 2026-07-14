@@ -51,6 +51,20 @@ export const WhitePieceFill = {
     "Human": ""
 };
 
+export const BlackPieceStroke = {
+    "Claude": "#DE8D74",
+    "ChatGPT": "#73DEC3",
+    "Random": "#7398DE",
+    "Human": ""
+};
+
+export const WhitePieceStroke = {
+    "Claude": "#BD674C",
+    "ChatGPT": "#4FBDA1",
+    "Random": "#4B73BD",
+    "Human": ""
+};
+
 export type PieceColor = CHATGPT_PIECE_FILL | CLAUDE_PIECE_FILL | RANDOM_PIECE_FILL;
 export type CellColor = CHATGPT_CELL_FILL | CLAUDE_CELL_FILL | RANDOM_CELL_FILL;
 
