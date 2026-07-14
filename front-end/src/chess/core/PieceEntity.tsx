@@ -9,9 +9,10 @@ export class PieceEntity {
     public col: number;
     public type: PieceType;
     public fill: PieceColor;
+    public stroke: string;
     public container!: SVGGElement | null;
     
-    private constructor(name: PieceString, x: number, y: number, row: number, col: number, fill: PieceColor) {
+    private constructor(name: PieceString, x: number, y: number, row: number, col: number, fill: PieceColor, stroke: string) {
         this.name = name;
         this.x = x;
         this.y = y;
@@ -19,6 +20,7 @@ export class PieceEntity {
         this.col = col;
         this.type = name.substring(1) as PieceType;
         this.fill = fill;
+        this.stroke = stroke;
     }
 
     public moveToCell(tl: GSAPTimeline, cell: CellEntity, handleComplete?: () => void): void {
@@ -42,6 +44,7 @@ export class PieceEntity {
         private _row!: number;
         private _col!: number;
         private _fill!: PieceColor;
+        private _stroke!: string;
 
         public name(name: PieceString) {
             this._name = name;
@@ -73,8 +76,20 @@ export class PieceEntity {
             return this;
         }
 
+        public stroke(color: string) {
+            this._stroke = color;
+            return this;
+        }
+
         public build(): PieceEntity {
-            return new PieceEntity(this._name, this._x, this._y, this._row, this._col, this._fill);
+            return new PieceEntity( this._name, 
+                                    this._x, 
+                                    this._y, 
+                                    this._row, 
+                                    this._col, 
+                                    this._fill,
+                                    this._stroke
+            );
         }
     }
 }
