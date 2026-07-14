@@ -9,7 +9,7 @@ export const playerTheme = {
     "Claude": "#BD674C",
     "ChatGPT": "#4FBDA1",
     "Random": "#4B73BD",
-    "Human": "fasdf"
+    "Human": "#804BBD"
 };
 
 const options: option[] = [
