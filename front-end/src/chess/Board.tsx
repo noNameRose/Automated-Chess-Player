@@ -7,6 +7,7 @@ import DraggableContext from "../contexts/DraggableContext";
 import type { coordinate } from "../contexts/CellCoordinatesContext";
 import CellCoordinateContext from "../contexts/CellCoordinatesContext";
 import ValidateUserMoveContext from "../contexts/ValidateUserMoveContext";
+import BoardContext from "../contexts/BoardContext";
 
 
 type PieceStringBoard = (PieceString | null)[][]
@@ -164,29 +165,34 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     }, [state]);
     
     return (
-        <ValidateUserMoveContext
-            value={validateUserMove}
+
+        <BoardContext
+            value={board}
         >
-            <CellCoordinateContext
-                value={cellCoordinates}
+            <ValidateUserMoveContext
+                value={validateUserMove}
             >
-                <DraggableContext
-                    value={
-                        {
-                            isBlackDraggable: blackDraggable,
-                            isWhiteDraggable: whiteDraggable
-                        }
-                    }
+                <CellCoordinateContext
+                    value={cellCoordinates}
                 >
-                    <svg viewBox="0 0 500 500" 
-                        className="border-2 w-screen h-screen"
+                    <DraggableContext
+                        value={
+                            {
+                                isBlackDraggable: blackDraggable,
+                                isWhiteDraggable: whiteDraggable
+                            }
+                        }
                     >
-                        {board && board.renderCell()}
-                        {board && board.renderPiece()}
-                    </svg>
-                </DraggableContext>
-            </CellCoordinateContext>
-        </ValidateUserMoveContext>
+                        <svg viewBox="0 0 500 500" 
+                            className="border-2 w-screen h-screen"
+                        >
+                            {board && board.renderCell()}
+                            {board && board.renderPiece()}
+                        </svg>
+                    </DraggableContext>
+                </CellCoordinateContext>
+            </ValidateUserMoveContext>
+        </BoardContext>
     );
 };
 
