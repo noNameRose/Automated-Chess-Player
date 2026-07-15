@@ -3,9 +3,7 @@ package com.example.chessEngine.controller;
 
 import ChessLogic.Board;
 import ChessLogic.BoardInitializer;
-import com.example.chessEngine.dto.MoveRequest;
-import com.example.chessEngine.dto.MoveResponse;
-import com.example.chessEngine.dto.StateResponse;
+import com.example.chessEngine.dto.*;
 import com.example.chessEngine.services.BoardStateService;
 import com.example.chessEngine.services.ChessAgentService;
 import org.apache.tomcat.util.http.FastHttpDateFormat;
@@ -64,6 +62,21 @@ public class GameController {
                                 .state(board.getBoardString())
                                 .build()
                 );
+    }
+
+    @PostMapping("/game/make_move")
+    public ResponseEntity<ValidateMoveResponse> validateMove(@RequestBody ValidateMoveRequest request) {
+      Board board = Board.parse(request.getState());
+      this.chessAgentService.isMoveValid(board, request.getFrom(), request.getTo());
+      return ResponseEntity
+          .status(HttpStatus.ACCEPTED)
+          .body(
+              ValidateMoveResponse
+                  .builder()
+                  .state(board.getBoardString())
+                  .isGameOver(board.isGameOver())
+                  .build()
+          );
     }
 
 }
