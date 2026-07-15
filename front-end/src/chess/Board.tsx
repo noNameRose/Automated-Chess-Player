@@ -6,6 +6,7 @@ import gsap from "gsap";
 import DraggableContext from "../contexts/DraggableContext";
 import type { coordinate } from "../contexts/CellCoordinatesContext";
 import CellCoordinateContext from "../contexts/CellCoordinatesContext";
+import ValidateUserMoveContext from "../contexts/ValidateUserMoveContext";
 
 
 type PieceStringBoard = (PieceString | null)[][]
@@ -25,6 +26,12 @@ type MoveRequest = {
     state: PieceStringBoard,
     isBlack: boolean,
     playerName: PlayerString
+};
+
+type ValidateMoveRequest = {
+    state: PieceStringBoard,
+    from: number[],
+    to: number[]
 };
 
 type GameState = {
@@ -66,6 +73,29 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
         cellCoordinates = board.getCellCoordinates();
     }
 
+    const validateUserMove = async (from: number[], to: number[]) => {
+        const url = URL + "/make_move";
+        const reqBody: ValidateMoveRequest = {
+            state: state.board as PieceStringBoard,
+            from,
+            to
+        };
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(reqBody)
+        });
+        if (response.ok) {
+            alert("move is valid");
+        }
+        else {
+            alert("Move is not valid");
+        }
+    };
+
+
     const fetchBoardState = async () => {
         const response = await fetch(URL);
         const body = (await response.json()) as StateResponse;
@@ -93,6 +123,8 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
         const body = (await response.json()) as MoveResponse;
         return body;
     };
+    
+    
 
     useEffect(() => {
         if (state.isGameOver) {
@@ -132,25 +164,29 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     }, [state]);
     
     return (
-        <CellCoordinateContext
-            value={cellCoordinates}
+        <ValidateUserMoveContext
+            value={validateUserMove}
         >
-            <DraggableContext
-                value={
-                    {
-                        isBlackDraggable: blackDraggable,
-                        isWhiteDraggable: whiteDraggable
-                    }
-                }
+            <CellCoordinateContext
+                value={cellCoordinates}
             >
-                <svg viewBox="0 0 500 500" 
-                    className="border-2 w-screen h-screen"
+                <DraggableContext
+                    value={
+                        {
+                            isBlackDraggable: blackDraggable,
+                            isWhiteDraggable: whiteDraggable
+                        }
+                    }
                 >
-                    {board && board.renderCell()}
-                    {board && board.renderPiece()}
-                </svg>
-            </DraggableContext>
-        </CellCoordinateContext>
+                    <svg viewBox="0 0 500 500" 
+                        className="border-2 w-screen h-screen"
+                    >
+                        {board && board.renderCell()}
+                        {board && board.renderPiece()}
+                    </svg>
+                </DraggableContext>
+            </CellCoordinateContext>
+        </ValidateUserMoveContext>
     );
 };
 
