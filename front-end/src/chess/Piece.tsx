@@ -5,6 +5,7 @@ import DraggableContext from "../contexts/DraggableContext";
 import { Draggable } from "gsap/all";
 import gsap from "gsap";
 import CellCoordinateContext, { type coordinate } from "../contexts/CellCoordinatesContext";
+import ValidateUserMoveContext from "../contexts/ValidateUserMoveContext";
 
 gsap.registerPlugin(Draggable);
 
@@ -13,6 +14,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
     const draggalbe = useRef<Draggable[] | null>(null);
     const draggableContext = useContext(DraggableContext);
     const cellCoordinates = useContext(CellCoordinateContext);
+    const validateUserMove = useContext(ValidateUserMoveContext);
 
     useEffect(() => {
         piece.container = container.current;
@@ -28,6 +30,21 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
                 liveSnap: {
                     points: cellCoordinates as coordinate[],
                     radius: 15
+                },
+                onDragEnd: async () => {
+                    let attr: string | string[] = gsap.getProperty(container.current, "transform") as string;
+                    attr = attr.split(",");
+                    const x = +attr[attr.length - 2];
+                    const y = +attr[attr.length - 1].slice(0, attr[attr.length - 1].length - 1);
+                    let cell = null;
+                    for (const coordinate of (cellCoordinates as coordinate[])) {
+                        if (coordinate.x === x && coordinate.y === y) {
+                            cell = coordinate;
+                        }
+                    }
+                    if (cell != null && validateUserMove) {
+                        await validateUserMove([piece.row, piece.col], [x, y]);
+                    }
                 }
             });
         }
