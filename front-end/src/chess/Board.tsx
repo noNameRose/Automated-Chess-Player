@@ -3,6 +3,7 @@ import type { PieceString, PlayerString } from "../../public/static/chessConfig"
 import { BoardEntity } from "./core/BoardEntity";
 import type { CellEntity } from "./core/CellEntity";
 import gsap from "gsap";
+import DraggableContext from "../contexts/DraggableContext";
 
 
 type PieceStringBoard = (PieceString | null)[][]
@@ -47,6 +48,14 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                                     winner: null,
                                                     currentPlayer: null
     });
+    let blackDraggable = false;
+    let whiteDraggable = false;
+    if (firstPlayer === "Human") {
+        blackDraggable = true;
+    }
+    if (secondPlayer === "Human") {
+        whiteDraggable = true;
+    }
 
     let board: BoardEntity | null = null;
     if (state.board)
@@ -118,12 +127,21 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     }, [state]);
     
     return (
-        <svg viewBox="0 0 500 500" 
-            className="border-2 w-screen h-screen"
+        <DraggableContext
+            value={
+                {
+                    isBlackDraggable: blackDraggable,
+                    isWhiteDraggable: whiteDraggable
+                }
+            }
         >
-            {board && board.renderCell()}
-            {board && board.renderPiece()}
-        </svg>
+            <svg viewBox="0 0 500 500" 
+                className="border-2 w-screen h-screen"
+            >
+                {board && board.renderCell()}
+                {board && board.renderPiece()}
+            </svg>
+        </DraggableContext>
     );
 };
 

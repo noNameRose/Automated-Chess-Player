@@ -1,12 +1,24 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { PIECE_DIMENSION, PIECE_STROKE } from "../../public/static/chessConfig";
 import type { PieceEntity } from "./core/PieceEntity";
+import DraggableContext from "../contexts/DraggableContext";
 
 const Piece = ({piece}: {piece: PieceEntity}) => {
     const container = useRef<SVGGElement | null>(null);
+    const draggableContext = useContext(DraggableContext);
 
     useEffect(() => {
         piece.container = container.current;
+
+        if (!draggableContext) {
+            return;
+        }
+        if (draggableContext.isBlackDraggable && piece.name[0] === "B" ||
+            draggableContext.isWhiteDraggable && piece.name[0] === "W"
+        ) {
+            
+        }
+
         return () => {
             piece.container = null;
         }
