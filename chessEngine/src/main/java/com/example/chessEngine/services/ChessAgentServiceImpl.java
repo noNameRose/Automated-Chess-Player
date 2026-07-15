@@ -30,4 +30,11 @@ public class ChessAgentServiceImpl implements ChessAgentService{
         return move;
     }
 
+    @Override
+    public boolean isMoveValid(Board board, int[] from, int[] to) {
+      boolean isValid = board.movePiece(from[0], from[1], to[0], to[1]);
+      return isValid;
+    }
+
+
 }
