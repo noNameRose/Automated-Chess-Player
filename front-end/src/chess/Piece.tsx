@@ -2,10 +2,15 @@ import { useContext, useEffect, useRef } from "react";
 import { PIECE_DIMENSION, PIECE_STROKE } from "../../public/static/chessConfig";
 import type { PieceEntity } from "./core/PieceEntity";
 import DraggableContext from "../contexts/DraggableContext";
+import { Draggable } from "gsap/all";
+import gsap from "gsap";
+
+gsap.registerPlugin(Draggable);
 
 const Piece = ({piece}: {piece: PieceEntity}) => {
     const container = useRef<SVGGElement | null>(null);
     const draggableContext = useContext(DraggableContext);
+    const draggalbe = useRef<Draggable[] | null>(null);
 
     useEffect(() => {
         piece.container = container.current;
@@ -16,7 +21,9 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
         if (draggableContext.isBlackDraggable && piece.name[0] === "B" ||
             draggableContext.isWhiteDraggable && piece.name[0] === "W"
         ) {
-            
+            draggalbe.current = Draggable.create(piece.container, {
+                type: "x,y"
+            });
         }
 
         return () => {
