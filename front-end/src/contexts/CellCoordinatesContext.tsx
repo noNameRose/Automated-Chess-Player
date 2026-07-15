@@ -1,10 +1,9 @@
 import { createContext } from "react";
 
-type coordinate = {
+export type coordinate = {
     x: number,
     y: number
-}
-
+};
 
 const CellCoordinateContext = createContext<coordinate[] | null>(null);
 
