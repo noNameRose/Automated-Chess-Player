@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import type { PieceString } from "../../public/static/chessConfig";
+import type { PieceString, PlayerString } from "../../public/static/chessConfig";
 import { BoardEntity } from "./core/BoardEntity";
 import type { CellEntity } from "./core/CellEntity";
 import gsap from "gsap";
 
-export type PlayerString = "Claude" | "ChatGPT" | "Random" | "Human"; 
 
 type PieceStringBoard = (PieceString | null)[][]
 
@@ -16,7 +15,7 @@ type MoveResponse = {
     state: PieceStringBoard,
     from: number[],
     to: number[],
-    isGameOver: boolean
+    gameOver: boolean
 };
 
 type MoveRequest = {
@@ -82,6 +81,9 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     };
 
     useEffect(() => {
+        if (state.isGameOver) {
+            return;
+        }
         tl.current = gsap.timeline();
         // Fetch board at the beginning of a new game
         if (state.atStart) {
@@ -99,7 +101,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                   () => {
                                     setState({
                                         ...state, 
-                                        isGameOver: moveResponse.isGameOver,
+                                        isGameOver: moveResponse.gameOver,
                                         board: moveResponse.state,
                                         currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
                                     });
