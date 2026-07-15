@@ -7,10 +7,10 @@ import Piece from "../Piece";
 import type { coordinate } from "../../contexts/CellCoordinatesContext";
 
 export class BoardEntity {  
-    private startX: number = 0;
-    private startY: number = 0;
-    private rows: number = 8;
-    private cols: number = 8;
+    public startX: number = 0;
+    public startY: number = 0;
+    public rows: number = 8;
+    public cols: number = 8;
     public cells: CellEntity[][] = [];
     public pieces: (PieceEntity | null)[][] = [];
 
