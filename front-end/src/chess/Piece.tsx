@@ -4,13 +4,15 @@ import type { PieceEntity } from "./core/PieceEntity";
 import DraggableContext from "../contexts/DraggableContext";
 import { Draggable } from "gsap/all";
 import gsap from "gsap";
+import CellCoordinateContext from "../contexts/CellCoordinatesContext";
 
 gsap.registerPlugin(Draggable);
 
 const Piece = ({piece}: {piece: PieceEntity}) => {
     const container = useRef<SVGGElement | null>(null);
-    const draggableContext = useContext(DraggableContext);
     const draggalbe = useRef<Draggable[] | null>(null);
+    const draggableContext = useContext(DraggableContext);
+    const cellCoordinates = useContext(CellCoordinateContext);
 
     useEffect(() => {
         piece.container = container.current;

@@ -4,6 +4,8 @@ import { BoardEntity } from "./core/BoardEntity";
 import type { CellEntity } from "./core/CellEntity";
 import gsap from "gsap";
 import DraggableContext from "../contexts/DraggableContext";
+import type { coordinate } from "../contexts/CellCoordinatesContext";
+import CellCoordinateContext from "../contexts/CellCoordinatesContext";
 
 
 type PieceStringBoard = (PieceString | null)[][]
@@ -58,8 +60,11 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     }
 
     let board: BoardEntity | null = null;
-    if (state.board)
+    let cellCoordinates: coordinate[] | null = null;
+    if (state.board) {
         board = BoardEntity.parse(state.board, firstPlayer, secondPlayer);
+        cellCoordinates = board.getCellCoordinates();
+    }
 
     const fetchBoardState = async () => {
         const response = await fetch(URL);
@@ -127,21 +132,25 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     }, [state]);
     
     return (
-        <DraggableContext
-            value={
-                {
-                    isBlackDraggable: blackDraggable,
-                    isWhiteDraggable: whiteDraggable
-                }
-            }
+        <CellCoordinateContext
+            value={cellCoordinates}
         >
-            <svg viewBox="0 0 500 500" 
-                className="border-2 w-screen h-screen"
+            <DraggableContext
+                value={
+                    {
+                        isBlackDraggable: blackDraggable,
+                        isWhiteDraggable: whiteDraggable
+                    }
+                }
             >
-                {board && board.renderCell()}
-                {board && board.renderPiece()}
-            </svg>
-        </DraggableContext>
+                <svg viewBox="0 0 500 500" 
+                    className="border-2 w-screen h-screen"
+                >
+                    {board && board.renderCell()}
+                    {board && board.renderPiece()}
+                </svg>
+            </DraggableContext>
+        </CellCoordinateContext>
     );
 };
 

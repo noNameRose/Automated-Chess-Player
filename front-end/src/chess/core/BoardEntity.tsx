@@ -4,6 +4,7 @@ import { CellEntity } from "./CellEntity";
 import { PieceEntity } from "./PieceEntity";
 import Cell from "../Cell";
 import Piece from "../Piece";
+import type { coordinate } from "../../contexts/CellCoordinatesContext";
 
 export class BoardEntity {  
     private startX: number = 0;
@@ -78,6 +79,19 @@ export class BoardEntity {
             board.pieces.push(row);
         }
         return board;
+    }
+
+    public getCellCoordinates(): coordinate[] {
+        const coordinates = [];
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+                coordinates.push({
+                    x: this.cells[i][j].x,
+                    y: this.cells[i][j].y
+                });
+            }
+        }
+        return coordinates;
     }
 
     public renderCell(): ReactNode[] {
