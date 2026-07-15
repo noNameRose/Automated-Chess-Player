@@ -4,7 +4,7 @@ import type { PieceEntity } from "./core/PieceEntity";
 import DraggableContext from "../contexts/DraggableContext";
 import { Draggable } from "gsap/all";
 import gsap from "gsap";
-import CellCoordinateContext from "../contexts/CellCoordinatesContext";
+import CellCoordinateContext, { type coordinate } from "../contexts/CellCoordinatesContext";
 
 gsap.registerPlugin(Draggable);
 
@@ -24,7 +24,11 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
             draggableContext.isWhiteDraggable && piece.name[0] === "W"
         ) {
             draggalbe.current = Draggable.create(piece.container, {
-                type: "x,y"
+                type: "x,y",
+                liveSnap: {
+                    points: cellCoordinates as coordinate[],
+                    radius: 15
+                }
             });
         }
 
