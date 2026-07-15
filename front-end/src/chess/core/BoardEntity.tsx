@@ -11,7 +11,7 @@ export class BoardEntity {
     private startY: number = 0;
     private rows: number = 8;
     private cols: number = 8;
-    private cells: CellEntity[][] = [];
+    public cells: CellEntity[][] = [];
     public pieces: (PieceEntity | null)[][] = [];
 
     public getPiece(row: number, col: number): PieceEntity | null{
