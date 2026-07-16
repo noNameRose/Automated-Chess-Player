@@ -3,6 +3,7 @@ package com.example.chessEngine.services;
 import Agent.*;
 import ChessLogic.Board;
 import com.example.chessEngine.exception.AgentNotFoundException;
+import com.example.chessEngine.exception.IllegalMoveException;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -33,6 +34,9 @@ public class ChessAgentServiceImpl implements ChessAgentService{
     @Override
     public boolean isMoveValid(Board board, int[] from, int[] to) {
       boolean isValid = board.movePiece(from[0], from[1], to[0], to[1]);
+      if (!isValid) {
+        throw new IllegalMoveException();
+      }
       return isValid;
     }
 
