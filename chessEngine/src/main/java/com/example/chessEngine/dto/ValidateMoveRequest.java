@@ -1,16 +1,13 @@
 package com.example.chessEngine.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Builder
 @AllArgsConstructor
 @Getter
 @Setter
-
+@ToString
 public class ValidateMoveRequest {
   private String[][] state;
   private int[] from;
