@@ -110,7 +110,7 @@ export class BoardEntity {
             for (let j = 0; j < this.cols; j++) {
                 const pieceEntity = this.pieces[i][j];
                 if (pieceEntity)
-                    pieces.push(<Piece piece={pieceEntity}/>)
+                    pieces.push(<Piece piece={pieceEntity} key={crypto.randomUUID()}/>)
             }
         }
         return pieces;
