@@ -59,6 +59,10 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
 
         return () => {
             piece.container = null;
+            if (draggalbe.current) {
+                draggalbe.current[0].kill();
+                draggalbe.current = null;
+            }
         }
     }, [piece]);
     

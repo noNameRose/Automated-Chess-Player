@@ -29,11 +29,17 @@ type MoveRequest = {
     playerName: PlayerString
 };
 
+
 type ValidateMoveRequest = {
     state: PieceStringBoard,
     from: number[],
     to: number[]
 };
+
+type ValidateMoveResponse = {
+    state: PieceStringBoard,
+    gameOver: boolean
+}
 
 type GameState = {
     board: (PieceStringBoard | null),
@@ -89,10 +95,18 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             body: JSON.stringify(reqBody)
         });
         if (response.ok) {
-            alert("move is valid");
+            const resBody = await response.json() as ValidateMoveResponse;
+            setState({
+                ...state,
+                board: resBody.state,
+                currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
+            });
         }
         else {
-            alert("Move is not valid");
+            setState({
+                ...state,
+                board: structuredClone(state.board),
+            });
         }
     };
 
