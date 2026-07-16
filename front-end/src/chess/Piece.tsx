@@ -21,7 +21,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
 
     useEffect(() => {
         piece.container = container.current;
-
+        piece.wrapper = wrapper.current;
         if (!draggableContext) {
             return;
         }
@@ -60,6 +60,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
 
         return () => {
             piece.container = null;
+            piece.wrapper = null;
             if (draggalbe.current) {
                 draggalbe.current[0].kill();
                 draggalbe.current = null;
@@ -84,6 +85,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
             <g
                 ref={wrapper}
                 transform="scale(1)"
+                transformOrigin={`${PIECE_DIMENSION/2}, ${PIECE_DIMENSION/2}`}
             >
                 {map[piece.type]}
             </g>

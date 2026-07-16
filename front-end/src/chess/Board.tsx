@@ -161,9 +161,10 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                     const toCell = moveResponse.to;
                     const piece = board?.getPiece(fromCell[0], fromCell[1]);
                     const cell = board?.getCell(toCell[0], toCell[1]);
+                    const capturePiece = board?.getPiece(toCell[0], toCell[1]);
                     piece?.moveToCell(tl.current as GSAPTimeline, 
                                     cell as CellEntity,
-                                    () => {
+                                    capturePiece ? () => {} : () => {
                                         setState({
                                             ...state, 
                                             isGameOver: moveResponse.gameOver,
@@ -171,7 +172,18 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                             currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
                                         });
                                     }
-                                    );
+                    );
+                    if (capturePiece) {
+                        capturePiece.scale(tl.current as GSAPTimeline, 0, () => {
+                                        setState({
+                                            ...state, 
+                                            isGameOver: moveResponse.gameOver,
+                                            board: moveResponse.state,
+                                            currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
+                                        });
+                                    });
+                    }
+                    
                 });
             }
         }

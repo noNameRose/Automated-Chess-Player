@@ -1,4 +1,4 @@
-import {type PieceColor, type PieceString, type PieceType} from "../../../public/static/chessConfig"
+import {PIECE_DIMENSION, type PieceColor, type PieceString, type PieceType} from "../../../public/static/chessConfig"
 import type { CellEntity } from "./CellEntity";
 
 export class PieceEntity {
@@ -37,11 +37,11 @@ export class PieceEntity {
     public scale(tl: GSAPTimeline, factor: number, handleComplete?: () => void): void {
         tl.to(this.wrapper, {
             attr: {
-                transform: `scale(${factor})`
+                transform: `scale(${factor})`,
             },
             ease: "back.inOut",
             onComplete: handleComplete
-        });
+        }, "-=0.3");
     }
 
 
