@@ -98,6 +98,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             const resBody = await response.json() as ValidateMoveResponse;
             setState({
                 ...state,
+                isGameOver: resBody.gameOver,
                 board: resBody.state,
                 currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
             });

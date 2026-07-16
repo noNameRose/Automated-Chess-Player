@@ -12,6 +12,7 @@ gsap.registerPlugin(Draggable);
 
 const Piece = ({piece}: {piece: PieceEntity}) => {
     const container = useRef<SVGGElement | null>(null);
+    const wrapper = useRef<SVGAElement | null>(null);
     const draggalbe = useRef<Draggable[] | null>(null);
     const draggableContext = useContext(DraggableContext);
     const cellCoordinates = useContext(CellCoordinateContext);
@@ -80,7 +81,12 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
             ref={container}
             transform={`translate(${piece.x}, ${piece.y})`}
         >
-            {map[piece.type]}
+            <g
+                ref={wrapper}
+                transform="scale(1)"
+            >
+                {map[piece.type]}
+            </g>
         </g>
     );
 };

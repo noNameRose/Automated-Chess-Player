@@ -11,6 +11,7 @@ export class PieceEntity {
     public fill: PieceColor;
     public stroke: string;
     public container!: SVGGElement | null;
+    public wrapper!: SVGGElement | null;
     
     private constructor(name: PieceString, x: number, y: number, row: number, col: number, fill: PieceColor, stroke: string) {
         this.name = name;
