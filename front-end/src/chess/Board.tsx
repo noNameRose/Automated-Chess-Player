@@ -151,24 +151,28 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             fetchBoardState()
         }
         else {
-            const promise = fetchMove();
-            promise.then((moveResponse: MoveResponse) => {
-                const fromCell = moveResponse.from;
-                const toCell = moveResponse.to;
-                const piece = board?.getPiece(fromCell[0], fromCell[1]);
-                const cell = board?.getCell(toCell[0], toCell[1]);
-                piece?.moveToCell(tl.current as GSAPTimeline, 
-                                  cell as CellEntity,
-                                  () => {
-                                    setState({
-                                        ...state, 
-                                        isGameOver: moveResponse.gameOver,
-                                        board: moveResponse.state,
-                                        currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
-                                    });
-                                  }
-                                );
-            })
+            const currentPlayer = (state.currentPlayer === "BLACK") ? firstPlayer : secondPlayer;
+            const isHuman = currentPlayer === "Human";
+            if (!isHuman) {
+                const promise = fetchMove();
+                promise.then((moveResponse: MoveResponse) => {
+                    const fromCell = moveResponse.from;
+                    const toCell = moveResponse.to;
+                    const piece = board?.getPiece(fromCell[0], fromCell[1]);
+                    const cell = board?.getCell(toCell[0], toCell[1]);
+                    piece?.moveToCell(tl.current as GSAPTimeline, 
+                                    cell as CellEntity,
+                                    () => {
+                                        setState({
+                                            ...state, 
+                                            isGameOver: moveResponse.gameOver,
+                                            board: moveResponse.state,
+                                            currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
+                                        });
+                                    }
+                                    );
+                });
+            }
         }
         return () => {
             if (tl.current) {
