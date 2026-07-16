@@ -34,12 +34,13 @@ export class PieceEntity {
         });
     }
 
-    public scale(tl: GSAPTimeline, factor: number): void {
+    public scale(tl: GSAPTimeline, factor: number, handleComplete?: () => void): void {
         tl.to(this.wrapper, {
             attr: {
                 transform: `scale(${factor})`
             },
             ease: "back.inOut",
+            onComplete: handleComplete
         });
     }
 
