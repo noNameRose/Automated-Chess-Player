@@ -83,8 +83,8 @@ const Button = ({children, name, order, ...props}: ButtonProp) => {
             <div className="w-full h-full bg-black absolute top-0 left-0"></div>
             <div 
                 ref={button}
-                onMouseDown={handMouseDown}
-                onMouseUp={handleMouseUp}
+                onPointerDown={handMouseDown}
+                onPointerUp={handleMouseUp}
                 onClick={(e) => {
                     if (props.button && props.button.onClick) {
                         props.button.onClick(e);
