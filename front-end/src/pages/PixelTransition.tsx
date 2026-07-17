@@ -90,18 +90,18 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                 className="w-screen min-h-screen fixed grid z-100"
                 style={
                     {
-                        gridTemplateColumns: "repeat(auto-fill, clamp(35px, 5vw, 500px))",
-                        gridTemplateRows: "repeat(auto-fill, clamp(35px, 5vw, 500px))",
+                        gridTemplateColumns: "repeat(15, 1fr)",
+                        gridTemplateRows: "repeat(15, 1fr)",
                     }
                 }
             >
-                {(new Array(300)).fill(null).map((_, index)=> (
+                {(new Array(225)).fill(null).map((_, index)=> (
                     <div 
                         key={index}
                         id="pixel"
                         className="bg-black"
                         style={{
-                            transform: "scale(1)",
+                            transform: "scale(1.2)",
                             willChange: "transform"
                             
                         }}

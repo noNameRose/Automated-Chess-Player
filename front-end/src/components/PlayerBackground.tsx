@@ -19,7 +19,7 @@ const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) 
     useEffect(() => {
         if (chosenPlayer) {
             gsap.to(document.querySelectorAll(`#bg-box-${isFirstPlayer ? 1 : 2}`), {
-                transform: "scale(1)",
+                transform: "scale(1.2)",
                 stagger: {
                     grid: "auto",
                     from: "edges",
@@ -46,12 +46,12 @@ const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) 
             className={clss}
             style={
                 {
-                    gridTemplateColumns: "repeat(auto-fit, clamp(30px, 5vw, 400px))",
-                    gridTemplateRows: "repeat(auto-fit, clamp(30px, 5vw, 400px))",
+                    gridTemplateColumns: "repeat(15, 1fr)",
+                    gridTemplateRows: "repeat(15, 1fr)",
                 }
             }
         >
-            {(new Array(300)).fill(null).map((_, index) => (
+            {(new Array(225)).fill(null).map((_, index) => (
                 <div 
                     key={index}
                     id={`bg-box-${isFirstPlayer ? 1 : 2}`}
