@@ -174,7 +174,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                     }
                     );
                     if (capturePiece) {
-                        capturePiece.scale(tl.current as GSAPTimeline, 0, () => {
+                        capturePiece.changeOpacity(tl.current as GSAPTimeline, 0, () => {
                                         setState({
                                             ...state, 
                                             isGameOver: moveResponse.gameOver,
