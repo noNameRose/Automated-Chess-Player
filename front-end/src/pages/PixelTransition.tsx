@@ -39,7 +39,7 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                 stagger: {
                     grid: "auto",
                     amount: 0.7,
-                    from: "center"
+                    from: [0.5, 0.3]
                 },
                 onComplete: () => {
                     if (toPage)
@@ -71,7 +71,7 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                 stagger: {
                     grid: "auto",
                     amount: 0.7,
-                    from: "center",
+                    from: [0.5, 0.3],
                 },
                 onComplete: () => {
                     initialDelay.current = 0;
