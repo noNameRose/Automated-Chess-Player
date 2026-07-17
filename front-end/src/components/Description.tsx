@@ -1,6 +1,6 @@
 import OptionImage from "./OptionImage";
 import {type Player} from "../../public/static/options";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import gsap from "gsap";
 import ChosenPlayerContext from "../contexts/ChosenPlayerContext";
 

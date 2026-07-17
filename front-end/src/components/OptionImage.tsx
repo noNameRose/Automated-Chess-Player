@@ -1,6 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import type { Player } from "../../public/static/options";
-import gsap from "gsap";
 
 
 type ImageProp = {
@@ -8,7 +7,7 @@ type ImageProp = {
 }
 
 const OptionImage = ({name}: ImageProp) => {
-    const tl = useRef<GSAPTimeline | null>(null);
+    //const tl = useRef<GSAPTimeline | null>(null);
     const container = useRef<SVGGElement | null>(null);
     let component;
     let viewBox;

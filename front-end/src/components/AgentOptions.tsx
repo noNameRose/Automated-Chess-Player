@@ -23,7 +23,7 @@ const AgentOptions = ({names, id}: OptionsProp) => {
                     key={name}
                     button={
                         {
-                            onMouseOver: (e) => {
+                            onMouseOver: () => {
                                 if (id === 1 && context) {
                                     context.hoverHandler1(name);
                                 }
@@ -32,7 +32,7 @@ const AgentOptions = ({names, id}: OptionsProp) => {
                                 }
                             },
 
-                            onMouseOut: (e) => {
+                            onMouseOut: () => {
                                 if (id === 1 && context) {
                                     context.mouseOutHandler1()
                                 }
@@ -41,7 +41,7 @@ const AgentOptions = ({names, id}: OptionsProp) => {
                                 }
                             },
 
-                            onClick: (e) => {
+                            onClick: () => {
                                 if (id === 1 && context) {
                                     context.clickHandler1(name);
                                 }
