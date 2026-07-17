@@ -51,8 +51,9 @@ const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) 
                 }
             }
         >
-            {(new Array(20*20)).fill(null).map(() => (
+            {(new Array(20*20)).fill(null).map((_, index) => (
                 <div 
+                    key={index}
                     id={`bg-box-${isFirstPlayer ? 1 : 2}`}
                     style={
                         {
