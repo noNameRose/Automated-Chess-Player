@@ -95,7 +95,7 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                     }
                 }
             >
-                {(new Array(600)).fill(null).map((_, index)=> (
+                {(new Array(250)).fill(null).map((_, index)=> (
                     <div 
                         key={index}
                         id="pixel"
