@@ -81,6 +81,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
         <g
             ref={container}
             transform={`translate(${piece.x}, ${piece.y})`}
+            opacity={1}
         >
             <g
                 ref={wrapper}

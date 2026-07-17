@@ -44,6 +44,15 @@ export class PieceEntity {
         }, "-=0.3");
     }
 
+    public changeOpacity(tl: GSAPTimeline, factor: number, handleComplete?: () => void): void {
+        tl.to(this.container, {
+            attr: {
+                opacity: factor
+            },
+            onComplete: handleComplete
+        }, "-=0.3");
+    }
+
 
     public static Builder() {
         return new this.PieceBuilder();
