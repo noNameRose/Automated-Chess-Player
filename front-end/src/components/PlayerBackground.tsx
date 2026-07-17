@@ -56,7 +56,8 @@ const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) 
                     id={`bg-box-${isFirstPlayer ? 1 : 2}`}
                     style={
                         {
-                            transform: "scale(0)"
+                            transform: "scale(0)",
+                            willChange: "transform"
                         }
                     }
                 ></div>

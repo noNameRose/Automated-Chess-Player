@@ -101,6 +101,7 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                         className="bg-black"
                         style={{
                             transform: "scale(1)",
+                            willChange: "transform"
                             
                         }}
                     >
