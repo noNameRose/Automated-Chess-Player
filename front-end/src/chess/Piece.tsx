@@ -85,7 +85,6 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
             <g
                 ref={wrapper}
                 transform="scale(1)"
-                transformOrigin={`${PIECE_DIMENSION/2}, ${PIECE_DIMENSION/2}`}
             >
                 {map[piece.type]}
             </g>
