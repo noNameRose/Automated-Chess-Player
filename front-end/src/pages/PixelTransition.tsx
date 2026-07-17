@@ -90,12 +90,12 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                 className="w-screen min-h-screen fixed grid z-100"
                 style={
                     {
-                        gridTemplateColumns: "repeat(auto-fit, clamp(25px, 5vw, 500px))",
-                        gridTemplateRows: "repeat(auto-fit, clamp(25px, 5vw, 500px))",
+                        gridTemplateColumns: "repeat(auto-fill, clamp(35px, 5vw, 500px))",
+                        gridTemplateRows: "repeat(auto-fill, clamp(35px, 5vw, 500px))",
                     }
                 }
             >
-                {(new Array(250)).fill(null).map((_, index)=> (
+                {(new Array(300)).fill(null).map((_, index)=> (
                     <div 
                         key={index}
                         id="pixel"

@@ -46,12 +46,12 @@ const PlayerBackGround = ({chosenPlayer, isFirstPlayer} : PlayerBackGroundProp) 
             className={clss}
             style={
                 {
-                    gridTemplateColumns: "repeat(auto-fit, clamp(25px, 5vw, 400px))",
-                    gridTemplateRows: "repeat(auto-fit, clamp(25px, 5vw, 400px))",
+                    gridTemplateColumns: "repeat(auto-fit, clamp(30px, 5vw, 400px))",
+                    gridTemplateRows: "repeat(auto-fit, clamp(30px, 5vw, 400px))",
                 }
             }
         >
-            {(new Array(250)).fill(null).map((_, index) => (
+            {(new Array(300)).fill(null).map((_, index) => (
                 <div 
                     key={index}
                     id={`bg-box-${isFirstPlayer ? 1 : 2}`}
