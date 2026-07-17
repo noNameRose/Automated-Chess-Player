@@ -1,12 +1,11 @@
 package com.example.chessEngine.controller;
 
 
-import ChessLogic.Board;
-import ChessLogic.BoardInitializer;
+import com.example.chessEngine.ChessLogic.Board;
+import com.example.chessEngine.ChessLogic.BoardInitializer;
 import com.example.chessEngine.dto.*;
 import com.example.chessEngine.services.BoardStateService;
 import com.example.chessEngine.services.ChessAgentService;
-import org.apache.tomcat.util.http.FastHttpDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

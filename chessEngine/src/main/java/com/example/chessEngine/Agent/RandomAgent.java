@@ -1,6 +1,6 @@
-package Agent;
+package com.example.chessEngine.Agent;
 
-import ChessLogic.Board;
+import com.example.chessEngine.ChessLogic.Board;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package ChessLogic;
+package com.example.chessEngine.ChessLogic;
 
 public abstract class Piece {
   protected int row;

@@ -1,4 +1,4 @@
-package ChessLogic;
+package com.example.chessEngine.ChessLogic;
 
 public class Rook extends Piece{
   public Rook(int row, int col, boolean isBlack) {

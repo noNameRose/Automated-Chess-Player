@@ -1,4 +1,4 @@
-package Agent;
+package com.example.chessEngine.Agent;
 
 public final class AgentName {
   public static final String RANDOM = "Random";

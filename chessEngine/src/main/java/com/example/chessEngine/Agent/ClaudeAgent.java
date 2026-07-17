@@ -1,6 +1,6 @@
-package Agent;
+package com.example.chessEngine.Agent;
 
-import ChessLogic.Board;
+import com.example.chessEngine.ChessLogic.Board;
 
 public class ClaudeAgent extends Agent{
 

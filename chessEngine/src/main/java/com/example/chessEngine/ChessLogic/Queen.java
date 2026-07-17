@@ -1,4 +1,4 @@
-package ChessLogic;
+package com.example.chessEngine.ChessLogic;
 
 public class Queen extends Piece {
 

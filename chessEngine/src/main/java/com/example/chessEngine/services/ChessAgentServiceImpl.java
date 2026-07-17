@@ -1,7 +1,9 @@
 package com.example.chessEngine.services;
 
-import Agent.*;
-import ChessLogic.Board;
+import com.example.chessEngine.ChessLogic.Board;
+import com.example.chessEngine.Agent.Agent;
+import com.example.chessEngine.Agent.AgentName;
+import com.example.chessEngine.Agent.RandomAgent;
 import com.example.chessEngine.exception.AgentNotFoundException;
 import com.example.chessEngine.exception.IllegalMoveException;
 import org.springframework.stereotype.Service;

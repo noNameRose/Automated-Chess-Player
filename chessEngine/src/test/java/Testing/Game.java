@@ -1,10 +1,10 @@
 package Testing;
 
-import Agent.Agent;
-import Agent.RandomAgent;
-import Agent.HumanAgent;
-import ChessLogic.Board;
-import ChessLogic.BoardInitializer;
+import com.example.chessEngine.Agent.Agent;
+import com.example.chessEngine.Agent.RandomAgent;
+import com.example.chessEngine.Agent.HumanAgent;
+import com.example.chessEngine.ChessLogic.Board;
+import com.example.chessEngine.ChessLogic.BoardInitializer;
 
 public class Game {
   public static void main(String[] args) {

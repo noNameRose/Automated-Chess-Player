@@ -1,4 +1,4 @@
-package ChessLogic;
+package com.example.chessEngine.ChessLogic;
 
 public final class PieceRepresentation {
 

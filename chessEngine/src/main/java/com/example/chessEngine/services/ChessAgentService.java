@@ -1,6 +1,6 @@
 package com.example.chessEngine.services;
 
-import ChessLogic.Board;
+import com.example.chessEngine.ChessLogic.Board;
 
 public interface ChessAgentService {
 
