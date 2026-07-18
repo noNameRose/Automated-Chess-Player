@@ -1,5 +1,6 @@
 package com.example.chessEngine.services;
 
+import com.example.chessEngine.Agent.ChatGptAgent;
 import com.example.chessEngine.ChessLogic.Board;
 import com.example.chessEngine.Agent.Agent;
 import com.example.chessEngine.Agent.AgentName;
@@ -11,6 +12,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -18,20 +20,20 @@ public class ChessAgentServiceImpl implements ChessAgentService{
 
     private final ChatClient openAiChatClient;
     private final ChatClient claudeChatClient;
+    private final Map<String, Agent> blackAgents = new HashMap<>();
+    private final Map<String, Agent> whiteAgents = new HashMap<>();
+
 
     public ChessAgentServiceImpl(OpenAiChatModel openAiChatModel, AnthropicChatModel anthropicChatModel) {
       this.openAiChatClient = ChatClient.create(openAiChatModel);
       this.claudeChatClient = ChatClient.create(anthropicChatModel);
+
+      this.blackAgents.put(AgentName.RANDOM, new RandomAgent(AgentName.RANDOM, true));
+      this.blackAgents.put(AgentName.CHATGPT, new ChatGptAgent(AgentName.CHATGPT, openAiChatClient, true));
+
+      this.whiteAgents.put(AgentName.RANDOM, new RandomAgent(AgentName.RANDOM, false));
+      this.whiteAgents.put(AgentName.CHATGPT, new ChatGptAgent(AgentName.CHATGPT, openAiChatClient, false));
     }
-
-    private final Map<String, Agent> blackAgents = Map.of(
-            AgentName.RANDOM, new RandomAgent(AgentName.RANDOM, true)
-    );
-
-    private final Map<String, Agent> whiteAgents = Map.of(
-            AgentName.RANDOM, new RandomAgent(AgentName.RANDOM, false)
-    );
-
 
     @Override
     public int[] makeMove(String agentName, boolean isBlack, Board state) {
