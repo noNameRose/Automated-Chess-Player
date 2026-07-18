@@ -2,7 +2,10 @@ package com.example.chessEngine.Agent;
 
 import com.example.chessEngine.ChessLogic.Board;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+
+import java.util.Map;
 
 public class ClaudeAgent extends Agent{
 
@@ -12,7 +15,6 @@ public class ClaudeAgent extends Agent{
       super.name = name;
       super.myPieceIsBlack = isMyPieceBlack;
       this.claudeChatClient = claudeChatClient;
-
   }
 
   @Override
@@ -23,7 +25,7 @@ public class ClaudeAgent extends Agent{
            Analyze the position and return the best move.
         
            Board (8x8 grid, row 0 = top):
-           {board_grid}
+           {board}
         
            Legend: 
            If the representation of a piece start with "B", then it is a black piece
@@ -34,7 +36,7 @@ public class ClaudeAgent extends Agent{
         
            Instructions:
            1. Analyze the position considering material, piece activity, king safety, and pawn structure.
-           2. Choose the best legal move for {white_or_black}.
+           2. Choose the best legal move for {side}.
            3. Respond ONLY with four comma-separated integers, in this exact format:
         
            from_row, from_col, to_row, to_col
@@ -43,7 +45,16 @@ public class ClaudeAgent extends Agent{
         
            Do not include any other text, punctuation, explanation, or formatting — only the four numbers separated by commas.
     """;
+    PromptTemplate promptTemplate = new PromptTemplate(template);
+    Prompt prompt = promptTemplate.create(Map.of("board", board.toString(), "side", this.isMyPieceIsBlack() ? "Black" : "White"));
+    String response = this.claudeChatClient.prompt(prompt).call().content();
+    String[] moves = response.split(", ");
 
-    return null;
+    return new int[] {
+        Integer.parseInt(moves[0]),
+        Integer.parseInt(moves[1]),
+        Integer.parseInt(moves[2]),
+        Integer.parseInt(moves[3])
+    };
   }
 }
