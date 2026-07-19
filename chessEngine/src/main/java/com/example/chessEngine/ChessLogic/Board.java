@@ -64,6 +64,30 @@ public class Board {
       return state;
     }
 
+    public String getFen() {
+      String res = "";
+      for (int i = 0; i < this.ROWS; i++) {
+        for (int j = 0; j < this.COLS; j++) {
+          Piece piece = this.getPiece(i, j);
+          String pieceString;
+          if (piece != null) {
+            pieceString = PieceRepresentation.getPieceString(piece);
+          }
+          else {
+            pieceString = "nu";
+          }
+          res += pieceString;
+          if (j == this.COLS - 1) {
+            res += "\n";
+          }
+          else {
+            res += ",";
+          }
+        }
+      }
+      return res;
+    }
+
 
 
   /**
@@ -329,7 +353,21 @@ public class Board {
       }
     }
     return movesMap;
+  }
 
+  public String getStringLegalMoves(boolean isBlack) {
+    Map<String, List<int[]>> legalMoves = this.getLegalMoves(isBlack);
+    String res = "";
+    for (String from: legalMoves.keySet()) {
+      String[] froms = from.split(" ");
+      String fromRow = froms[0];
+      String fromCol = froms[1];
+      List<int[]> tos = legalMoves.get(from);
+      for (int[] to: tos) {
+        res += fromRow + "," + fromCol + "," + to[0] + "," + to[1] + "\n";
+      }
+    }
+    return res;
   }
 
 
