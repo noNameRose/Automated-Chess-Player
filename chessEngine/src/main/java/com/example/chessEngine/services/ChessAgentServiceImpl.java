@@ -1,10 +1,7 @@
 package com.example.chessEngine.services;
 
-import com.example.chessEngine.Agent.ChatGptAgent;
+import com.example.chessEngine.Agent.*;
 import com.example.chessEngine.ChessLogic.Board;
-import com.example.chessEngine.Agent.Agent;
-import com.example.chessEngine.Agent.AgentName;
-import com.example.chessEngine.Agent.RandomAgent;
 import com.example.chessEngine.exception.AgentNotFoundException;
 import com.example.chessEngine.exception.IllegalMoveException;
 import org.springframework.ai.anthropic.AnthropicChatModel;
@@ -30,9 +27,11 @@ public class ChessAgentServiceImpl implements ChessAgentService{
 
       this.blackAgents.put(AgentName.RANDOM, new RandomAgent(AgentName.RANDOM, true));
       this.blackAgents.put(AgentName.CHATGPT, new ChatGptAgent(AgentName.CHATGPT, openAiChatClient, true));
+      this.blackAgents.put(AgentName.CLAUDE, new ClaudeAgent(AgentName.CLAUDE, claudeChatClient,true));
 
       this.whiteAgents.put(AgentName.RANDOM, new RandomAgent(AgentName.RANDOM, false));
       this.whiteAgents.put(AgentName.CHATGPT, new ChatGptAgent(AgentName.CHATGPT, openAiChatClient, false));
+      this.whiteAgents.put(AgentName.CLAUDE, new ClaudeAgent(AgentName.CLAUDE, claudeChatClient,false));
     }
 
     @Override
