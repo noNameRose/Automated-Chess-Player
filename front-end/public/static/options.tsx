@@ -15,15 +15,15 @@ export const playerTheme = {
 const options: option[] = [
     {
         name: "Claude",
-        desc: "This agent make a move based on claude API"
+        desc: "This agent make a move based on Claude Opus-4.8 model"
     },
     {
         name: "ChatGPT",
-        desc: "This agent make a move based on ChatGPT API"
+        desc: "This agent make a move based on OpenAi gpt-5.6-luna model"
     },
     {
         name: "Random",
-        desc: "This agent choose a random move based on all possible move it has"
+        desc: "This agent choose a random move based on all possible moves it has"
     },
     {
         name: "Human",
