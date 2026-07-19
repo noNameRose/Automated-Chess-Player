@@ -1,4 +1,4 @@
-export type Player = "Claude" | "ChatGPT" | "Human" | "Random";
+export type Player = "Claude" | "ChatGPT" | "Human" | "Random" | "Alpha-Beta";
 
 export type option = {
     name: Player,
@@ -9,7 +9,8 @@ export const playerTheme = {
     "Claude": "#BD674C",
     "ChatGPT": "#4FBDA1",
     "Random": "#4B73BD",
-    "Human": "#804BBD"
+    "Human": "#804BBD",
+    "Alpha-Beta": "green"
 };
 
 const options: option[] = [
@@ -28,6 +29,10 @@ const options: option[] = [
     {
         name: "Human",
         desc: "You are the one who decide what move to take"
+    },
+    {
+        name: "Alpha-Beta",
+        desc: "Processing..."
     }
 ];
 
