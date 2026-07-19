@@ -239,7 +239,7 @@ const OptionImage = ({name}: ImageProp) => {
         );
     }
     if (name === "Random") {
-        viewBox = "0 0 150 150";
+        viewBox = "-30 -30 200 200";
         component = (
             <g
                 ref={container}
