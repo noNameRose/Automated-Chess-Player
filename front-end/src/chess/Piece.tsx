@@ -13,6 +13,7 @@ gsap.registerPlugin(Draggable);
 const Piece = ({piece}: {piece: PieceEntity}) => {
     const container = useRef<SVGGElement | null>(null);
     const wrapper = useRef<SVGAElement | null>(null);
+    const ring = useRef<SVGCircleElement | null>(null);
     const draggalbe = useRef<Draggable[] | null>(null);
     const draggableContext = useContext(DraggableContext);
     const cellCoordinates = useContext(CellCoordinateContext);
@@ -87,6 +88,16 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
                 ref={wrapper}
                 transform="scale(1)"
             >
+                <circle
+                    r={30}
+                    fill="none"
+                    stroke={piece.stroke}
+                    strokeWidth={3}
+                    cx={PIECE_DIMENSION/2}
+                    cy={PIECE_DIMENSION/2}
+                    transform="scale(0)"
+                    opacity={1}
+                />
                 {map[piece.type]}
             </g>
         </g>

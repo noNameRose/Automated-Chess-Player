@@ -12,6 +12,7 @@ export class PieceEntity {
     public stroke: string;
     public container!: SVGGElement | null;
     public wrapper!: SVGGElement | null;
+    public ring!: SVGCircleElement | null;
     
     private constructor(name: PieceString, x: number, y: number, row: number, col: number, fill: PieceColor, stroke: string) {
         this.name = name;
@@ -52,6 +53,7 @@ export class PieceEntity {
             onComplete: handleComplete
         }, "-=0.3");
     }
+
 
 
     public static Builder() {
