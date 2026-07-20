@@ -47,7 +47,14 @@ public class ChessGameState {
     int startCol = moves[1];
     int endRow = moves[2];
     int endCol = moves[3];
-    Board newBoard =
+    Board newBoard = this.board.clone();
+    newBoard.movePiece(startRow, startCol, endRow, endCol);
+    ChessGameState nextState = new ChessGameState(this.otherPlayer, this.currentPlayer, newBoard);
+    return nextState;
+  }
+
+  public ChessGameState clone() {
+    return new ChessGameState(this.currentPlayer, this.otherPlayer, this.board.clone());
   }
 
 
