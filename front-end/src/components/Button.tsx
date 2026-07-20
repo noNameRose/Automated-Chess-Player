@@ -105,7 +105,7 @@ const Button = ({children, name, order, ...props}: ButtonProp) => {
                 className="font-black text-center border-2 px-[2em] py-[.5em] relative z-10 bg-primary cursor-pointer overflow-hidden"
                 style={
                     {
-                        fontSize: "clamp(18px, 1.3vw, 25px)",
+                        fontSize: "clamp(15px, 1vw, 25px)",
                         willChange: "transform"
                     }
                 }
