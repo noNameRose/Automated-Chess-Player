@@ -18,6 +18,47 @@ public class ChessGameState {
     this.board = board;
   }
 
+  public double evaluate(Agent player) {
+    Map<String, Integer> pieceWeight = Map.of(
+        PieceRepresentation.PAWN, 1,
+        PieceRepresentation.KNIGHT, 3,
+        PieceRepresentation.BISHOP, 3,
+        PieceRepresentation.QUEEN, 9,
+        PieceRepresentation.ROOK, 5,
+        PieceRepresentation.KING, 10000000
+    );
+    double MOBILITY_WEIGHT = 0.5;
+    List<Map<String, Integer>> pieceCounts = this.board.countPiece();
+    Map<String, List<int[]>> whiteMoves =  this.board.getLegalMoves(false);
+    Map<String, List<int[]>> blackMoves = this.board.getLegalMoves(true);
+    Map<String, Integer> blackCounts = pieceCounts.get(0);
+    Map<String, Integer> whiteCounts = pieceCounts.get(1);
+    int numPieceScore = 0;
+    int whiteMobility = 0;
+    int blackMobility = 0;
+    for (List<int[]> moves: whiteMoves.values()) {
+      whiteMobility += moves.size();
+    }
+    for (List<int[]> moves: blackMoves.values()) {
+      blackMobility += moves.size();
+    }
+    for (String pieceType: pieceWeight.keySet()) {
+      int weight = pieceWeight.get(pieceType);
+      int blacks = 0;
+      int whites = 0;
+      if (blackCounts.containsKey(pieceType)) {
+        blacks += blackCounts.get(pieceType);
+      }
+      if (whiteCounts.containsKey(pieceType)) {
+        whites += whiteCounts.get(pieceType);
+      }
+      int dif = weight * ((player.isMyPieceIsBlack()) ? (blacks - whites) : (whites - blacks));
+      numPieceScore += dif;
+    }
+    double mobilityScores = MOBILITY_WEIGHT * ((player.isMyPieceIsBlack()) ? (blackMobility - whiteMobility) : (whiteMobility - blackMobility));
+    return mobilityScores + numPieceScore;
+  }
+
   public boolean isTerminal() {
     return this.board.isGameOver();
   }
