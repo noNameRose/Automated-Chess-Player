@@ -98,5 +98,13 @@ public class ChessGameState {
     return new ChessGameState(this.currentPlayer, this.otherPlayer, this.board.clone());
   }
 
+  public Agent getCurrentPlayer() {
+    return this.currentPlayer;
+  }
+
+  public Agent getOtherPlayer() {
+    return this.otherPlayer;
+  }
+
 
 }
