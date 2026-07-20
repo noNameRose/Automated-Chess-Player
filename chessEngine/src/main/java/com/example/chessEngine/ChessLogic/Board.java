@@ -386,6 +386,41 @@ public class Board {
     return  state;
   }
 
+  public Board clone() {
+    Board newBoard = new Board();
+    for (int i = 0; i < this.ROWS; i++) {
+      for (int j = 0; j < this.COLS; j++) {
+        Piece piece = this.getPiece(i, j);
+        if (piece != null) {
+          newBoard.setPiece(i, j, piece.clone());
+        }
+      }
+    }
+    return newBoard;
+  }
+
+  public List<Map<String, Integer>> countPiece() {
+    List<Map<String, Integer>> counts = new ArrayList<>();
+    Map<String, Integer> blackCounts = new HashMap<>();
+    Map<String, Integer> whiteCounts = new HashMap<>();
+    for (int i = 0; i < this.ROWS; i++) {
+      for (int j = 0; j < this.COLS; j++) {
+        Piece piece = this.getPiece(i, j);
+        if (piece == null) {
+          continue;
+        }
+        Map<String, Integer> count = piece.isBlack ? blackCounts : whiteCounts;
+        if (!count.containsKey(piece.type)) {
+            count.put(piece.type, 0);
+        }
+        count.put(piece.type, blackCounts.get(piece.type) + 1);
+      }
+    }
+    counts.add(blackCounts);
+    counts.add(whiteCounts);
+    return counts;
+  }
+
 
   public void display() {
     System.out.println(this);
