@@ -54,6 +54,20 @@ export class PieceEntity {
         }, "-=0.3");
     }
 
+    public explodeRing(tl: GSAPTimeline, handleComplete?: () => void): void {
+        tl.to(this.ring, {
+            attr: {
+                transform: "scale(1)"
+            },
+            ease: "circ.out"
+        }, "<")
+        .to(this.ring, {
+            attr: {
+                opacity: 0
+            },
+            onComplete: handleComplete
+        }, "-=0.1");
+    }
 
 
     public static Builder() {

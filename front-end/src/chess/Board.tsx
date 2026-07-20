@@ -174,14 +174,15 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                     }
                     );
                     if (capturePiece) {
-                        capturePiece.changeOpacity(tl.current as GSAPTimeline, 0, () => {
+                        capturePiece.changeOpacity(tl.current as GSAPTimeline, 0, () => {});
+                        piece?.explodeRing(tl.current as GSAPTimeline, () => {
                                         setState({
                                             ...state, 
                                             isGameOver: moveResponse.gameOver,
                                             board: moveResponse.state,
                                             currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
                                         });
-                                    });
+                        });
                     }
                     
                 });

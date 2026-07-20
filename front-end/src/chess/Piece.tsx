@@ -23,6 +23,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
     useEffect(() => {
         piece.container = container.current;
         piece.wrapper = wrapper.current;
+        piece.ring = ring.current;
         if (!draggableContext) {
             return;
         }
@@ -62,6 +63,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
         return () => {
             piece.container = null;
             piece.wrapper = null;
+            piece.ring = null;
             if (draggalbe.current) {
                 draggalbe.current[0].kill();
                 draggalbe.current = null;
@@ -89,6 +91,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
                 transform="scale(1)"
             >
                 <circle
+                    ref={ring}
                     r={30}
                     fill="none"
                     stroke={piece.stroke}
@@ -97,6 +100,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
                     cy={PIECE_DIMENSION/2}
                     transform="scale(0)"
                     opacity={1}
+                    transform-origin={`${PIECE_DIMENSION/2} ${PIECE_DIMENSION/2}`}
                 />
                 {map[piece.type]}
             </g>
