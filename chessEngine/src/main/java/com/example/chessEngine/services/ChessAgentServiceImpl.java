@@ -28,10 +28,13 @@ public class ChessAgentServiceImpl implements ChessAgentService{
       this.blackAgents.put(AgentName.RANDOM, new RandomAgent(AgentName.RANDOM, true));
       this.blackAgents.put(AgentName.CHATGPT, new ChatGptAgent(AgentName.CHATGPT, openAiChatClient, true));
       this.blackAgents.put(AgentName.CLAUDE, new ClaudeAgent(AgentName.CLAUDE, claudeChatClient,true));
+      this.blackAgents.put(AgentName.ALPHA_BETA, new AlphaBetaAgent(AgentName.ALPHA_BETA, true));
 
       this.whiteAgents.put(AgentName.RANDOM, new RandomAgent(AgentName.RANDOM, false));
       this.whiteAgents.put(AgentName.CHATGPT, new ChatGptAgent(AgentName.CHATGPT, openAiChatClient, false));
       this.whiteAgents.put(AgentName.CLAUDE, new ClaudeAgent(AgentName.CLAUDE, claudeChatClient,false));
+      this.whiteAgents.put(AgentName.ALPHA_BETA, new AlphaBetaAgent(AgentName.ALPHA_BETA, false));
+
     }
 
     @Override
