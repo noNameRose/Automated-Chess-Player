@@ -15,7 +15,14 @@ const GamePage = () => {
         }
     }, []);
     return (
-        <div className="max-w-260 min-h-screen border-2 mx-auto overflow-hidden flex flex-col md:flex-row">
+        <div className="max-w-260 
+                        min-h-screen 
+                        border-2 
+                        mx-auto 
+                        overflow-hidden 
+                        flex 
+                        flex-col 
+                        md:flex-row">
             <Board
                 firstPlayer={firstPlayer as PlayerString}
                 secondPlayer={secondPlayer as PlayerString}
