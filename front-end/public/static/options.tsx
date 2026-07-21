@@ -10,7 +10,7 @@ export const playerTheme = {
     "ChatGPT": "#4FBDA1",
     "Random": "#4B73BD",
     "Human": "#804BBD",
-    "Alpha-Beta": "green"
+    "Alpha-Beta": "#BD4BB7"
 };
 
 const options: option[] = [
