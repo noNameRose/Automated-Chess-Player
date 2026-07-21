@@ -15,7 +15,7 @@ const GamePage = () => {
         }
     }, []);
     return (
-        <div>
+        <div className="max-w-260 min-h-screen border-2 mx-auto overflow-hidden">
             <Board
                 firstPlayer={firstPlayer as PlayerString}
                 secondPlayer={secondPlayer as PlayerString}
