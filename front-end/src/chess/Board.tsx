@@ -215,8 +215,8 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                             }
                         }
                     >
-                        <svg viewBox="0 0 500 500" 
-                            className="border-2 w-screen h-screen"
+                        <svg viewBox="0 0 400 400" 
+                            className="border-2 w-full md:w-[60%]"
                         >
                             {board && board.renderCell()}
                             {board && board.renderPiece()}
