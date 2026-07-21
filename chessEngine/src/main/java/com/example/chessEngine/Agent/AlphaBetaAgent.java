@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class AlphaBetaAgent extends Agent{
 
-  public int depth = 6;
+  public int depth = 2;
 
   public AlphaBetaAgent(String name, boolean isMyPieceBlack) {
     super.name = name;
@@ -20,11 +20,11 @@ public class AlphaBetaAgent extends Agent{
     if (this.depth == currentDepth || state.isTerminal()) {
       return Map.of(
           "value", state.evaluate(this),
-          "move", null
+          "move", new int[] {0, 0, 0, 0}
       );
     }
     double v = Double.MAX_VALUE;
-    int[] move = null;
+    int[] move =  new int[4];
     Agent player = state.getCurrentPlayer();
     List<int[]> actions = state.getActions(player.myPieceIsBlack);
     for (int[] action: actions) {
@@ -54,11 +54,11 @@ public class AlphaBetaAgent extends Agent{
     if (this.depth == currentDepth || state.isTerminal()) {
       return Map.of(
           "value", state.evaluate(this),
-          "move", null
+          "move", new int[4]
       );
     }
-    double v = Double.MAX_VALUE;
-    int[] move = null;
+    double v = -Double.MAX_VALUE;
+    int[] move =  new int[4];
     Agent player = state.getCurrentPlayer();
     List<int[]> actions = state.getActions(player.myPieceIsBlack);
     for (int[] action: actions) {
@@ -89,7 +89,7 @@ public class AlphaBetaAgent extends Agent{
     Board cloneBoard = board.clone();
     Agent randomPlayer = new RandomAgent(AgentName.RANDOM, !this.myPieceIsBlack);
     ChessGameState state = new ChessGameState(this, randomPlayer, cloneBoard);
-    Map<String, Object> objectMap = this.alphaBetaMaxValues(state, Double.MIN_VALUE, Double.MAX_VALUE, 0);
+    Map<String, Object> objectMap = this.alphaBetaMaxValues(state, -Double.MAX_VALUE, Double.MAX_VALUE, 0);
     return (int[]) objectMap.get("move");
   }
 }
