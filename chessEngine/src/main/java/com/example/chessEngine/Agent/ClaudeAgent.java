@@ -57,11 +57,8 @@ public class ClaudeAgent extends Agent{
                                                     "legalMoves", board.getStringLegalMoves(this.isMyPieceIsBlack())
 
     ));
-    int count = 1;
     while (true) {
-      count++;
       try {
-        System.out.println("Number of attempt: " + count);
         String response = this.claudeChatClient.prompt(prompt).call().content();
         String[] strMoves = response.split(",");
         int[] moves = new  int[] {
