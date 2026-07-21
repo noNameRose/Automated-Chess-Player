@@ -413,7 +413,7 @@ public class Board {
         if (!count.containsKey(piece.type)) {
             count.put(piece.type, 0);
         }
-        count.put(piece.type, blackCounts.get(piece.type) + 1);
+        count.put(piece.type, count.get(piece.type) + 1);
       }
     }
     counts.add(blackCounts);
