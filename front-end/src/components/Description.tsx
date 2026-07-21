@@ -67,7 +67,7 @@ const Description = ({name, desc, hover, order} : DescriptionProp) => {
             </div>
             <div 
                 ref={text}
-                className="text-xl col-[1/4] row-[4/6] text-center font-bold"
+                className="col-[1/4] row-[4/6] text-center font-black"
                 style={
                     {
                         opacity: 0
