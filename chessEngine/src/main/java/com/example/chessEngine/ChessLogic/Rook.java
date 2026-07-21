@@ -22,6 +22,6 @@ public class Rook extends Piece{
 
   @Override
   public Piece clone() {
-    return new Queen(this.row, this.col, this.isBlack);
+    return new Rook(this.row, this.col, this.isBlack);
   }
 }
