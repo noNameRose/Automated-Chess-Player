@@ -10,7 +10,12 @@ const TrackingPanel = ({firstPlayer, secondPlayer}: TrackingPanelProp) => {
 
     return (
         <>
-        
+            <PlayerField
+                name={firstPlayer}
+            />
+            <PlayerField
+                name={secondPlayer}
+            />
         </>
     );
 };
