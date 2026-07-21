@@ -3,6 +3,7 @@ import TransitionContext from "../contexts/TransitionContext";
 import Board from "../chess/Board";
 import { useParams } from "react-router-dom";
 import type { PlayerString } from "../../public/static/chessConfig";
+import TrackingPanel from "../components/TrackingPanel";
 
 const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
@@ -19,6 +20,7 @@ const GamePage = () => {
                 firstPlayer={firstPlayer as PlayerString}
                 secondPlayer={secondPlayer as PlayerString}
             />
+            <TrackingPanel/>
         </div>
     );
 };
