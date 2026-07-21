@@ -20,7 +20,10 @@ const GamePage = () => {
                 firstPlayer={firstPlayer as PlayerString}
                 secondPlayer={secondPlayer as PlayerString}
             />
-            <TrackingPanel/>
+            <TrackingPanel
+                firstPlayer={firstPlayer as PlayerString}
+                secondPlayer={secondPlayer as PlayerString}
+            />
         </div>
     );
 };
