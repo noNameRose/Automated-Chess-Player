@@ -1,4 +1,5 @@
 import { WhiteCellFill, type PlayerString } from "../../public/static/chessConfig";
+import ThinkingLoading from "./loading/ThinkingLoading";
 import OptionImage from "./OptionImage";
 
 const PlayerField = ({name}: {name: PlayerString}) => {
@@ -22,7 +23,10 @@ const PlayerField = ({name}: {name: PlayerString}) => {
                     name={name}
                 />
             </div>
-            <h1 className="text-3xl font-black">{name}</h1>
+            <div>
+                <h1 className="text-3xl font-black">{name}</h1>
+                <ThinkingLoading/>
+            </div>
         </div>
     );
 };
