@@ -126,8 +126,11 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     };
 
     const fetchMove = async (): Promise<MoveResponse> => {
-        const setPlayerThinking = state.currentPlayer === "BLACK" ? setIsFirstPlayerThinking : setIsSeondPlayerThinking;
-        setPlayerThinking(true);
+        let setPlayerThinking = (dummy: boolean) => {};
+        if (thinkingContext) {
+            setPlayerThinking = state.currentPlayer === "BLACK" ? thinkingContext.handleFirstPlayerThinking : thinkingContext.handleSecondPlayerThinking;
+            setPlayerThinking(true);
+        }
         const reqBody: MoveRequest = {
             state: state.board as PieceStringBoard,
             isBlack: (state.currentPlayer === "BLACK"),
