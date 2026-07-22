@@ -126,6 +126,8 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     };
 
     const fetchMove = async (): Promise<MoveResponse> => {
+        const setPlayerThinking = state.currentPlayer === "BLACK" ? setIsFirstPlayerThinking : setIsSeondPlayerThinking;
+        setPlayerThinking(true);
         const reqBody: MoveRequest = {
             state: state.board as PieceStringBoard,
             isBlack: (state.currentPlayer === "BLACK"),
@@ -139,6 +141,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             body: JSON.stringify(reqBody)
         });
         const body = (await response.json()) as MoveResponse;
+        setPlayerThinking(false);
         return body;
     };
     
