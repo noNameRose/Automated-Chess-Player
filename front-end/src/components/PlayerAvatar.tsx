@@ -2,7 +2,7 @@ import { WhiteCellFill, type PlayerString } from "../../public/static/chessConfi
 import ThinkingLoading from "./loading/ThinkingLoading";
 import OptionImage from "./OptionImage";
 
-const PlayerField = ({name}: {name: PlayerString}) => {
+const PlayerField = ({name, firstPlayer}: {name: PlayerString, firstPlayer: boolean}) => {
     return (
         <div 
             className="flex items-center w-full p-[1em] rounded-[.5em]"
