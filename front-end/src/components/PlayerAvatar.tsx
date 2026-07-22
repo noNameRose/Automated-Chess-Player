@@ -25,7 +25,9 @@ const PlayerField = ({name, firstPlayer}: {name: PlayerString, firstPlayer: bool
             </div>
             <div className="text-xl">
                 <h1 className="font-black">{name}</h1>
-                <ThinkingLoading/>
+                <ThinkingLoading
+                    firstPlayer={firstPlayer}
+                />
             </div>
         </div>
     );
