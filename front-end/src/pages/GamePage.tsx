@@ -22,7 +22,13 @@ const GamePage = () => {
                         overflow-hidden 
                         flex 
                         flex-col 
-                        md:flex-row">
+                        sm:flex-row
+                        items-center
+                        justify-center
+                        gap-4
+                        py-8
+                        "
+        >
             <Board
                 firstPlayer={firstPlayer as PlayerString}
                 secondPlayer={secondPlayer as PlayerString}
