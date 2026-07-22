@@ -1,6 +1,6 @@
 const MoveHistory = () => {
     return (
-        <div className="bg-amber-50 self-stretch">
+        <div className="bg-amber-50 h-90 overflow-y-scroll">
 
         </div>
     );
