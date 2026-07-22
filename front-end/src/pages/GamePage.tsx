@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import TransitionContext from "../contexts/TransitionContext";
 import Board from "../chess/Board";
 import { useParams } from "react-router-dom";
@@ -8,6 +8,8 @@ import TrackingPanel from "../components/TrackingPanel";
 const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
     const {firstPlayer, secondPlayer} = useParams<{firstPlayer: PlayerString, secondPlayer: PlayerString}>();
+    const [isFirstPlayerThinking, setIsFirstPlayerThinking] = useState<boolean>(false);
+    const [isSecondPlayerThinking, setIsSeondPlayerThinking] = useState<boolean>(false);
 
     useEffect(() => {
         if (transitionContext) {
