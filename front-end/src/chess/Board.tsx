@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import type { PieceString, PlayerString } from "../../public/static/chessConfig";
 import { BoardEntity } from "./core/BoardEntity";
 import type { CellEntity } from "./core/CellEntity";
@@ -8,6 +8,7 @@ import type { coordinate } from "../contexts/CellCoordinatesContext";
 import CellCoordinateContext from "../contexts/CellCoordinatesContext";
 import ValidateUserMoveContext from "../contexts/ValidateUserMoveContext";
 import BoardContext from "../contexts/BoardContext";
+import ThinkingContext from "../contexts/ThinkingContext";
 
 
 type PieceStringBoard = (PieceString | null)[][]
@@ -64,6 +65,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                                     winner: null,
                                                     currentPlayer: null
     });
+    const thinkingContext = useContext(ThinkingContext);
     let blackDraggable = false;
     let whiteDraggable = false;
     if (firstPlayer === "Human") {

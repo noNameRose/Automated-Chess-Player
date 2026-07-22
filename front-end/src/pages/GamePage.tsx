@@ -4,6 +4,7 @@ import Board from "../chess/Board";
 import { useParams } from "react-router-dom";
 import type { PlayerString } from "../../public/static/chessConfig";
 import TrackingPanel from "../components/TrackingPanel";
+import ThinkingContext from "../contexts/ThinkingContext";
 
 const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
@@ -35,10 +36,21 @@ const GamePage = () => {
                 firstPlayer={firstPlayer as PlayerString}
                 secondPlayer={secondPlayer as PlayerString}
             />
-            <TrackingPanel
-                firstPlayer={firstPlayer as PlayerString}
-                secondPlayer={secondPlayer as PlayerString}
-            />
+            <ThinkingContext
+                value={
+                    {
+                        firstPlayerThinking: isFirstPlayerThinking,
+                        secondPlayerThinking: isSecondPlayerThinking,
+                        handleFirstPlayerThinking: setIsFirstPlayerThinking,
+                        handleSecondPlayerThinking: setIsSeondPlayerThinking
+                    }
+                }
+            >
+                <TrackingPanel
+                    firstPlayer={firstPlayer as PlayerString}
+                    secondPlayer={secondPlayer as PlayerString}
+                />
+            </ThinkingContext>
         </div>
     );
 };
