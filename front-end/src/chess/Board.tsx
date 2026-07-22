@@ -64,6 +64,8 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                                     winner: null,
                                                     currentPlayer: null
     });
+    const [isFirstPlayerThinking, setIsFirstPlayerThinking] = useState<boolean>(false);
+    const [isSecondPlayerThinking, setIsSeondPlayerThinking] = useState<boolean>(false);
     let blackDraggable = false;
     let whiteDraggable = false;
     if (firstPlayer === "Human") {
