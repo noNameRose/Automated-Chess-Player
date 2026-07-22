@@ -23,8 +23,8 @@ const PlayerField = ({name}: {name: PlayerString}) => {
                     name={name}
                 />
             </div>
-            <div>
-                <h1 className="text-3xl font-black">{name}</h1>
+            <div className="text-xl">
+                <h1 className="font-black">{name}</h1>
                 <ThinkingLoading/>
             </div>
         </div>
