@@ -13,10 +13,12 @@ const TrackingPanel = ({firstPlayer, secondPlayer}: TrackingPanelProp) => {
         <div className="w-full sm:w-[30%] self-stretch justify-center flex flex-col">
             <PlayerField
                 name={firstPlayer}
+                firstPlayer={true}
             />
             <MoveHistory/>
             <PlayerField
                 name={secondPlayer}
+                firstPlayer={false}
             />
         </div>
     );
