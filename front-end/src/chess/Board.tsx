@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import type { PieceString, PlayerString } from "../../public/static/chessConfig";
 import { BoardEntity } from "./core/BoardEntity";
 import type { CellEntity } from "./core/CellEntity";
@@ -75,10 +75,12 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
         whiteDraggable = true;
     }
 
-    let board: BoardEntity | null = null;
     let cellCoordinates: coordinate[] | null = null;
-    if (state.board) {
-        board = BoardEntity.parse(state.board, firstPlayer, secondPlayer);
+    let board: BoardEntity | null = useMemo(
+        () => (state.board ? BoardEntity.parse(state.board, firstPlayer, secondPlayer) : null ),
+        [state]
+    );
+    if (board) {
         cellCoordinates = board.getCellCoordinates();
     }
 
@@ -144,7 +146,6 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             body: JSON.stringify(reqBody)
         });
         const body = (await response.json()) as MoveResponse;
-        setPlayerThinking(false);
         return body;
     };
     
@@ -179,6 +180,10 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                             board: moveResponse.state,
                                             currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
                                         });
+                                        if (thinkingContext) {
+                                            const setPlayerThinking = state.currentPlayer === "BLACK" ? thinkingContext.handleFirstPlayerThinking : thinkingContext.handleSecondPlayerThinking;
+                                            setPlayerThinking(false);
+                                        }
                                     }
                     );
                     if (capturePiece) {
@@ -190,6 +195,10 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                             board: moveResponse.state,
                                             currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
                                         });
+                                        if (thinkingContext) {
+                                            const setPlayerThinking = state.currentPlayer === "BLACK" ? thinkingContext.handleFirstPlayerThinking : thinkingContext.handleSecondPlayerThinking;
+                                            setPlayerThinking(false);
+                                        }
                         });
                     }
                     
