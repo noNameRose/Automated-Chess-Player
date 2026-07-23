@@ -32,10 +32,6 @@ const GamePage = () => {
                         py-8
                         "
         >
-            <Board
-                firstPlayer={firstPlayer as PlayerString}
-                secondPlayer={secondPlayer as PlayerString}
-            />
             <ThinkingContext
                 value={
                     {
@@ -46,6 +42,10 @@ const GamePage = () => {
                     }
                 }
             >
+                <Board
+                    firstPlayer={firstPlayer as PlayerString}
+                    secondPlayer={secondPlayer as PlayerString}
+                />
                 <TrackingPanel
                     firstPlayer={firstPlayer as PlayerString}
                     secondPlayer={secondPlayer as PlayerString}
