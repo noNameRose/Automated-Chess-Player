@@ -1,8 +1,9 @@
 import { useContext, useEffect, useRef } from "react";
 import ThinkingContext from "../../contexts/ThinkingContext";
 import gsap from "gsap";
+import type { PlayerString } from "../../../public/static/chessConfig";
 
-const ThinkingLoading = ({firstPlayer}: {firstPlayer: boolean}) => {
+const ThinkingLoading = ({firstPlayer, playerName}: {firstPlayer: boolean, playerName: PlayerString}) => {
     const thinkingContext = useContext(ThinkingContext);
     const dotStyle = "w-[10px] h-[10px] bg-black rounded-[50%]";
     const tl = useRef<GSAPTimeline | null>(null);
