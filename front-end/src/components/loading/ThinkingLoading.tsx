@@ -41,18 +41,18 @@ const ThinkingLoading = ({firstPlayer}: {firstPlayer: boolean}) => {
         }
     }, []);
 
-    // useEffect(() => {
-    //     if (thinkingContext?.firstPlayerThinking === firstPlayer) {
-    //         gsap.to(dom.current, {
-    //             opacity: 1
-    //         });
-    //     }
-    //     else {
-    //         gsap.to(dom.current, {
-    //             opacity: 0
-    //         });
-    //     }
-    // }, [thinkingContext]);
+    useEffect(() => {
+        if (thinkingContext?.firstPlayerThinking === firstPlayer) {
+            gsap.to(dom.current, {
+                opacity: 1
+            });
+        }
+        else {
+            gsap.to(dom.current, {
+                opacity: 0
+            });
+        }
+    }, [thinkingContext]);
 
     return (
         <div 
