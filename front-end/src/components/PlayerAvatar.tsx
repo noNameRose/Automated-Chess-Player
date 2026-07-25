@@ -23,7 +23,7 @@ const PlayerField = ({name, firstPlayer}: {name: PlayerString, firstPlayer: bool
                     name={name}
                 />
             </div>
-            <div className="text-xl">
+            <div className="text-xl flex flex-col gap-4">
                 <h1 className="font-black">{name}</h1>
                 <ThinkingLoading
                     firstPlayer={firstPlayer}
