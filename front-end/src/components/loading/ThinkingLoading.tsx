@@ -1,11 +1,14 @@
 import { useContext, useEffect, useRef } from "react";
 import ThinkingContext from "../../contexts/ThinkingContext";
 import gsap from "gsap";
-import type { PlayerString } from "../../../public/static/chessConfig";
+import { BlackCellFill, type PlayerString } from "../../../public/static/chessConfig";
 
 const ThinkingLoading = ({firstPlayer, playerName}: {firstPlayer: boolean, playerName: PlayerString}) => {
     const thinkingContext = useContext(ThinkingContext);
     const dotStyle = "w-[10px] h-[10px] bg-black rounded-[50%]";
+    const dotCssStyle = {
+        backgroundColor: BlackCellFill[playerName]
+    };
     const tl = useRef<GSAPTimeline | null>(null);
     const dom = useRef<HTMLDivElement | null>(null);
     const dot1 = useRef<HTMLDivElement | null>(null);
@@ -64,9 +67,9 @@ const ThinkingLoading = ({firstPlayer, playerName}: {firstPlayer: boolean, playe
                 opacity: 1
             }
         }>
-            <div ref={dot1} className={dotStyle}></div>
-            <div ref={dot2} className={dotStyle}></div>
-            <div ref={dot3} className={dotStyle}></div>
+            <div ref={dot1} className={dotStyle} style={dotCssStyle}></div>
+            <div ref={dot2} className={dotStyle} style={dotCssStyle}></div>
+            <div ref={dot3} className={dotStyle} style={dotCssStyle}></div>
         </div>
     );
 };
