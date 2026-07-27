@@ -1,5 +1,10 @@
 import { createContext } from "react";
 
-const GameOverContext = createContext<boolean>(false);
+type GameOver = {
+    isGameOver: boolean,
+    handleGameOver: (isGameOver: boolean) => void
+}
+
+const GameOverContext = createContext<GameOver | null>(null);
 
 export default GameOverContext;
