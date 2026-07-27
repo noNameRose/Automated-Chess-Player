@@ -64,7 +64,7 @@ const ThinkingLoading = ({firstPlayer, playerName}: {firstPlayer: boolean, playe
             className="flex gap-4"
             style={
             {
-                opacity: 1
+                opacity: 0
             }
         }>
             <div ref={dot1} className={dotStyle} style={dotCssStyle}></div>
