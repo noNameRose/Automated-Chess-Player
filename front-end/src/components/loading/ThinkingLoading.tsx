@@ -2,10 +2,12 @@ import { useContext, useEffect, useRef } from "react";
 import ThinkingContext from "../../contexts/ThinkingContext";
 import gsap from "gsap";
 import { BlackCellFill, type PlayerString } from "../../../public/static/chessConfig";
+import GameOverContext from "../../contexts/GameOverContext";
 
 const ThinkingLoading = ({firstPlayer, playerName}: {firstPlayer: boolean, playerName: PlayerString}) => {
     const thinkingContext = useContext(ThinkingContext);
     const dotStyle = "w-[10px] h-[10px] bg-black rounded-[50%]";
+    const gameOverContext = useContext(GameOverContext);
     const dotCssStyle = {
         backgroundColor: BlackCellFill[playerName]
     };
@@ -46,7 +48,7 @@ const ThinkingLoading = ({firstPlayer, playerName}: {firstPlayer: boolean, playe
     }, []);
 
     useEffect(() => {
-        if (thinkingContext?.firstPlayerThinking === firstPlayer) {
+        if (thinkingContext?.firstPlayerThinking === firstPlayer && !gameOverContext?.isGameOver) {
             gsap.to(dom.current, {
                 opacity: 1
             });
