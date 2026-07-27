@@ -9,6 +9,7 @@ import CellCoordinateContext from "../contexts/CellCoordinatesContext";
 import ValidateUserMoveContext from "../contexts/ValidateUserMoveContext";
 import BoardContext from "../contexts/BoardContext";
 import ThinkingContext from "../contexts/ThinkingContext";
+import GameOverContext from "../contexts/GameOverContext";
 
 
 type PieceStringBoard = (PieceString | null)[][]
@@ -64,6 +65,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                                     currentPlayer: null
     });
     const thinkingContext = useContext(ThinkingContext);
+    const gameOverContext = useContext(GameOverContext);
     let blackDraggable = false;
     let whiteDraggable = false;
     if (firstPlayer === "Human") {
@@ -148,9 +150,9 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     
 
     useEffect(() => {
-        // if (state.isGameOver) {
-        //     return;
-        // }
+        if (gameOverContext && gameOverContext.isGameOver) {
+            return;
+        }
         tl.current = gsap.timeline();
         // Fetch board at the beginning of a new game
         if (state.atStart) {
@@ -177,6 +179,9 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                             board: moveResponse.state,
                                             currentPlayer: nextPlayer
                                         });
+                                        if (moveResponse.gameOver) {
+                                            gameOverContext?.handleGameOver(true);
+                                        }
                                         if (thinkingContext) {
                                            thinkingContext.handleFirstPlayerThinking(nextPlayer === "BLACK");
                                         }
@@ -188,10 +193,12 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                         const nextPlayer = state.currentPlayer === "BLACK" ? "WHITE" : "BLACK";
                                         setState({
                                             ...state, 
-                                            // isGameOver: moveResponse.gameOver,
                                             board: moveResponse.state,
                                             currentPlayer: nextPlayer
                                         });
+                                        if (moveResponse.gameOver) {
+                                            gameOverContext?.handleGameOver(true);
+                                        }
                                         if (thinkingContext) {
                                            thinkingContext.handleFirstPlayerThinking(nextPlayer === "BLACK");
                                         }
