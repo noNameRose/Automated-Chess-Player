@@ -46,7 +46,6 @@ type GameState = {
     board: (PieceStringBoard | null),
     currentPlayer: "BLACK" | "WHITE" | null,
     winner: PlayerString | null,
-    isGameOver: boolean,
     atStart: boolean,
 };
 
@@ -60,7 +59,6 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     const tl = useRef<GSAPTimeline | null>(null);
     const [state, setState] = useState<GameState>({
                                                     board: null,
-                                                    isGameOver: false,
                                                     atStart: true,
                                                     winner: null,
                                                     currentPlayer: null
@@ -102,7 +100,6 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             const resBody = await response.json() as ValidateMoveResponse;
             setState({
                 ...state,
-                isGameOver: resBody.gameOver,
                 board: resBody.state,
                 currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
             });
@@ -151,9 +148,9 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     
 
     useEffect(() => {
-        if (state.isGameOver) {
-            return;
-        }
+        // if (state.isGameOver) {
+        //     return;
+        // }
         tl.current = gsap.timeline();
         // Fetch board at the beginning of a new game
         if (state.atStart) {
@@ -176,7 +173,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                         const nextPlayer = state.currentPlayer === "BLACK" ? "WHITE" : "BLACK";
                                         setState({
                                             ...state, 
-                                            isGameOver: moveResponse.gameOver,
+                                            // isGameOver: moveResponse.gameOver,
                                             board: moveResponse.state,
                                             currentPlayer: nextPlayer
                                         });
@@ -191,7 +188,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                         const nextPlayer = state.currentPlayer === "BLACK" ? "WHITE" : "BLACK";
                                         setState({
                                             ...state, 
-                                            isGameOver: moveResponse.gameOver,
+                                            // isGameOver: moveResponse.gameOver,
                                             board: moveResponse.state,
                                             currentPlayer: nextPlayer
                                         });

@@ -10,6 +10,7 @@ const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
     const {firstPlayer, secondPlayer} = useParams<{firstPlayer: PlayerString, secondPlayer: PlayerString}>();
     const [isFirstPlayerThinking, setIsFirstPlayerThinking] = useState<boolean>(true);
+    const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
     useEffect(() => {
         if (transitionContext) {
