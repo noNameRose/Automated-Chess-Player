@@ -9,7 +9,7 @@ import ThinkingContext from "../contexts/ThinkingContext";
 const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
     const {firstPlayer, secondPlayer} = useParams<{firstPlayer: PlayerString, secondPlayer: PlayerString}>();
-    const [isFirstPlayerThinking, setIsFirstPlayerThinking] = useState<boolean>(false);
+    const [isFirstPlayerThinking, setIsFirstPlayerThinking] = useState<boolean>(true);
 
     useEffect(() => {
         if (transitionContext) {
