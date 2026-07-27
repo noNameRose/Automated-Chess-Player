@@ -122,7 +122,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             ...state,
             board: body.state,
             atStart: false,
-            currentPlayer: "BLACK"
+            currentPlayer: "WHITE"
         });
     };
 

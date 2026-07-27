@@ -10,7 +10,7 @@ import GameOverContext from "../contexts/GameOverContext";
 const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
     const {firstPlayer, secondPlayer} = useParams<{firstPlayer: PlayerString, secondPlayer: PlayerString}>();
-    const [isFirstPlayerThinking, setIsFirstPlayerThinking] = useState<boolean>(true);
+    const [isFirstPlayerThinking, setIsFirstPlayerThinking] = useState<boolean>(false);
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
     const [firstPlayerMoves, setFirstPlayerMoves] = useState<string[]>([]);
     const [secondPlayerMoves, setSecondPlayerMoves] = useState<string[]>([]);
