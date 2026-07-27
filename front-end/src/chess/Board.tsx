@@ -130,8 +130,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     const fetchMove = async (): Promise<MoveResponse> => {
         let setPlayerThinking = (dummy: boolean) => {};
         if (thinkingContext) {
-            setPlayerThinking = state.currentPlayer === "BLACK" ? thinkingContext.handleFirstPlayerThinking : thinkingContext.handleSecondPlayerThinking;
-            setPlayerThinking(true);
+            thinkingContext.handleFirstPlayerThinking(state.currentPlayer === "BLACK");
         }
         const reqBody: MoveRequest = {
             state: state.board as PieceStringBoard,
@@ -174,34 +173,34 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                     piece?.moveToCell(tl.current as GSAPTimeline, 
                                     cell as CellEntity,
                                     capturePiece ? () => {} : () => {
+                                        const nextPlayer = state.currentPlayer === "BLACK" ? "WHITE" : "BLACK";
                                         setState({
                                             ...state, 
                                             isGameOver: moveResponse.gameOver,
                                             board: moveResponse.state,
-                                            currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
+                                            currentPlayer: nextPlayer
                                         });
                                         if (thinkingContext) {
-                                            const setPlayerThinking = state.currentPlayer === "BLACK" ? thinkingContext.handleFirstPlayerThinking : thinkingContext.handleSecondPlayerThinking;
-                                            setPlayerThinking(false);
+                                           thinkingContext.handleFirstPlayerThinking(nextPlayer === "BLACK");
                                         }
                                     }
                     );
                     if (capturePiece) {
                         capturePiece.changeOpacity(tl.current as GSAPTimeline, 0, () => {});
                         piece?.explodeRing(tl.current as GSAPTimeline, () => {
+                                        const nextPlayer = state.currentPlayer === "BLACK" ? "WHITE" : "BLACK";
                                         setState({
                                             ...state, 
                                             isGameOver: moveResponse.gameOver,
                                             board: moveResponse.state,
-                                            currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
+                                            currentPlayer: nextPlayer
                                         });
                                         if (thinkingContext) {
-                                            const setPlayerThinking = state.currentPlayer === "BLACK" ? thinkingContext.handleFirstPlayerThinking : thinkingContext.handleSecondPlayerThinking;
-                                            setPlayerThinking(false);
+                                           thinkingContext.handleFirstPlayerThinking(nextPlayer === "BLACK");
                                         }
                         });
                     }
-                    
+
                 });
             }
         }

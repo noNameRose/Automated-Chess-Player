@@ -10,7 +10,6 @@ const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
     const {firstPlayer, secondPlayer} = useParams<{firstPlayer: PlayerString, secondPlayer: PlayerString}>();
     const [isFirstPlayerThinking, setIsFirstPlayerThinking] = useState<boolean>(false);
-    const [isSecondPlayerThinking, setIsSeondPlayerThinking] = useState<boolean>(false);
 
     useEffect(() => {
         if (transitionContext) {
@@ -35,9 +34,7 @@ const GamePage = () => {
                 value={
                     {
                         firstPlayerThinking: isFirstPlayerThinking,
-                        secondPlayerThinking: isSecondPlayerThinking,
-                        handleFirstPlayerThinking: setIsFirstPlayerThinking,
-                        handleSecondPlayerThinking: setIsSeondPlayerThinking
+                        handleFirstPlayerThinking: setIsFirstPlayerThinking
                     }
                 }
             >
