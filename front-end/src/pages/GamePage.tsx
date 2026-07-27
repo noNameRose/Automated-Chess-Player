@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import type { PlayerString } from "../../public/static/chessConfig";
 import TrackingPanel from "../components/TrackingPanel";
 import ThinkingContext from "../contexts/ThinkingContext";
+import GameOverContext from "../contexts/GameOverContext";
 
 const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
@@ -18,37 +19,46 @@ const GamePage = () => {
         }
     }, []);
     return (
-        <div className="max-w-260 
-                        min-h-screen 
-                        mx-auto 
-                        overflow-hidden 
-                        flex 
-                        flex-col 
-                        sm:flex-row
-                        items-center
-                        justify-center
-                        gap-4
-                        py-8
-                        "
-        >
-            <ThinkingContext
-                value={
-                    {
-                        firstPlayerThinking: isFirstPlayerThinking,
-                        handleFirstPlayerThinking: setIsFirstPlayerThinking
-                    }
+        <GameOverContext
+            value={
+                {
+                    isGameOver: isGameOver,
+                    handleGameOver: setIsGameOver
                 }
+            }
+        >
+            <div className="max-w-260 
+                            min-h-screen 
+                            mx-auto 
+                            overflow-hidden 
+                            flex 
+                            flex-col 
+                            sm:flex-row
+                            items-center
+                            justify-center
+                            gap-4
+                            py-8
+                            "
             >
-                <Board
-                    firstPlayer={firstPlayer as PlayerString}
-                    secondPlayer={secondPlayer as PlayerString}
-                />
-                <TrackingPanel
-                    firstPlayer={firstPlayer as PlayerString}
-                    secondPlayer={secondPlayer as PlayerString}
-                />
-            </ThinkingContext>
-        </div>
+                <ThinkingContext
+                    value={
+                        {
+                            firstPlayerThinking: isFirstPlayerThinking,
+                            handleFirstPlayerThinking: setIsFirstPlayerThinking
+                        }
+                    }
+                >
+                    <Board
+                        firstPlayer={firstPlayer as PlayerString}
+                        secondPlayer={secondPlayer as PlayerString}
+                    />
+                    <TrackingPanel
+                        firstPlayer={firstPlayer as PlayerString}
+                        secondPlayer={secondPlayer as PlayerString}
+                    />
+                </ThinkingContext>
+            </div>
+         </GameOverContext>
     );
 };
 
