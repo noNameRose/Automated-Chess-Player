@@ -61,6 +61,39 @@ public final class PieceRepresentation {
     return isBlack ? BLACK_QUEEN : WHITE_QUEEN;
   }
 
+  public static String getFileAndRank(int row, int col) {
+    return  ((char) (col + 'a')) + "" + (8 - row);
+  }
+
+  public static String getFile(int col) {
+    return ((char) (col + 'a')) + "";
+  }
+
+  public static String getMoveNotation(Board board, int[] from, int[] to) {
+    Piece piece = board.getPiece(from[0], from[1]);
+    Piece capturePiece = board.getPiece(to[0], to[1]);
+    String type = piece.type;
+    String move = "";
+    if (!type.equals(PAWN)) {
+      move += type;
+    }
+    else {
+      move += getFileAndRank(to[0], to[1]);
+      if (capturePiece == null) {
+        return move;
+      }
+      else {
+        move = getFile(from[1]) + "x";
+      }
+      return move + getFileAndRank(to[0], to[1]);
+    }
+    if (capturePiece != null) {
+      move += "x";
+    }
+    move += getFileAndRank(to[0], to[1]);
+    return move;
+  }
+
 
 
 
