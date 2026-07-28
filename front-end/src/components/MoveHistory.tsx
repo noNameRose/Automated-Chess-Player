@@ -7,7 +7,7 @@ const MoveHistory = () => {
     const secondPlayerMoves = history?.secondPlayerMoves;
     return (
         <div className="bg-amber-50 h-90 overflow-y-scroll">
-            <div className="flex gap-40 font-bold">
+            <div className="flex font-bold justify-around">
                 <div className="flex flex-col">
                     {firstPlayerMoves?.map(move => (
                         <div>{move}</div>
