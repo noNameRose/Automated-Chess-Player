@@ -10,6 +10,7 @@ import ValidateUserMoveContext from "../contexts/ValidateUserMoveContext";
 import BoardContext from "../contexts/BoardContext";
 import ThinkingContext from "../contexts/ThinkingContext";
 import GameOverContext from "../contexts/GameOverContext";
+import PlayerMovesContexts from "../contexts/PlayerMovesContext";
 
 
 type PieceStringBoard = (PieceString | null)[][]
@@ -65,6 +66,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                                     winner: null,
                                                     currentPlayer: null
     });
+    const playerMoveContext = useContext(PlayerMovesContexts);
     const thinkingContext = useContext(ThinkingContext);
     const gameOverContext = useContext(GameOverContext);
     let blackDraggable = false;
@@ -167,13 +169,15 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                 promise.then((moveResponse: MoveResponse) => {
                     const fromCell = moveResponse.from;
                     const toCell = moveResponse.to;
+                    const move = moveResponse.move;
                     const piece = board?.getPiece(fromCell[0], fromCell[1]);
                     const cell = board?.getCell(toCell[0], toCell[1]);
                     const capturePiece = board?.getPiece(toCell[0], toCell[1]);
                     piece?.moveToCell(tl.current as GSAPTimeline, 
                                     cell as CellEntity,
                                     capturePiece ? () => {} : () => {
-                                        const nextPlayer = state.currentPlayer === "BLACK" ? "WHITE" : "BLACK";
+                                        const currentPlayer = state.currentPlayer;
+                                        const nextPlayer = currentPlayer === "BLACK" ? "WHITE" : "BLACK";
                                         setState({
                                             ...state, 
                                             // isGameOver: moveResponse.gameOver,
@@ -186,12 +190,19 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                         if (thinkingContext) {
                                            thinkingContext.handleFirstPlayerThinking(nextPlayer === "BLACK");
                                         }
+                                        if (currentPlayer === "BLACK") {
+                                            playerMoveContext?.addFirstPlayerMoves(move);
+                                        }
+                                        else {
+                                            playerMoveContext?.addSecondPlayerMoves(move);
+                                        }
                                     }
                     );
                     if (capturePiece) {
                         capturePiece.changeOpacity(tl.current as GSAPTimeline, 0, () => {});
                         piece?.explodeRing(tl.current as GSAPTimeline, () => {
-                                        const nextPlayer = state.currentPlayer === "BLACK" ? "WHITE" : "BLACK";
+                                        const currentPlayer = state.currentPlayer;
+                                        const nextPlayer = currentPlayer === "BLACK" ? "WHITE" : "BLACK";
                                         setState({
                                             ...state, 
                                             board: moveResponse.state,
@@ -202,6 +213,12 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                         }
                                         if (thinkingContext) {
                                            thinkingContext.handleFirstPlayerThinking(nextPlayer === "BLACK");
+                                        }
+                                        if (currentPlayer === "BLACK") {
+                                            playerMoveContext?.addFirstPlayerMoves(move);
+                                        }
+                                        else {
+                                            playerMoveContext?.addSecondPlayerMoves(move);
                                         }
                         });
                     }
