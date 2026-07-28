@@ -1,7 +1,7 @@
-export type PieceString = "BP" | "BR" | "BQ" | "BKI" | "BK" | "BB" 
-                  | "WP" | "WR" | "WQ" | "WKI" | "WK" | "WB";
+export type PieceString = "BP" | "BR" | "BQ" | "BK" | "BN" | "BB" 
+                  | "WP" | "WR" | "WQ" | "WK" | "WN" | "WB";
 
-export type PieceType = "P" | "R" | "Q" | "KI" | "K" | "B";
+export type PieceType = "P" | "R" | "Q" | "K" | "N" | "B";
 
 export type PlayerString = "Human" | "Claude" | "ChatGPT" | "Random" | "Alpha-Beta";
 
