@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import PlayerMovesContexts from "../contexts/PlayerMovesContext";
+import MoveList from "./MoveList";
 
 const MoveHistory = () => {
     const history = useContext(PlayerMovesContexts);
@@ -8,16 +9,8 @@ const MoveHistory = () => {
     return (
         <div className="bg-amber-50 h-90 overflow-y-scroll">
             <div className="flex font-bold justify-around">
-                <div className="flex flex-col">
-                    {firstPlayerMoves?.map(move => (
-                        <div>{move}</div>
-                    ))}
-                </div>
-                <div>
-                    {secondPlayerMoves?.map(move => (
-                        <div>{move}</div>
-                    ))}
-                </div>
+                <MoveList moves={firstPlayerMoves as string[]}/>
+                <MoveList moves={secondPlayerMoves as string[]}/>
             </div>
         </div>
     );
