@@ -7,14 +7,14 @@ public final class BoardInitializer {
   private static final int ROWS = 8;
   private static final int COLS = 8;
   public static final String[][] congig = {
-      {"BR", "BK", "BB", "BQ", "BKI", "BB", "BK", "BR"},
+      {"BR", "BN", "BB", "BQ", "BK", "BB", "BN", "BR"},
       {"BP", "BP", "BP", "BP", "BP", "BP", "BP", "BP"},
       {null, null, null, null, null, null, null, null },
       {null, null, null, null, null, null, null, null },
       {null, null, null, null, null, null, null, null },
       {null, null, null, null, null, null, null, null },
       {"WP", "WP", "WP", "WP", "WP", "WP", "WP", "WP"},
-      {"WR", "WK", "WB", "WQ", "WKI", "WB", "WK", "WR"},
+      {"WR", "WN", "WB", "WQ", "WK", "WB", "WN", "WR"},
   };
 
   public static void initialize(Board board) {
