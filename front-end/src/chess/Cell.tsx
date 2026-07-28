@@ -11,6 +11,17 @@ const Cell = ({cell}: {cell: CellEntity}) => {
                 height={CELL_DIMENSION}
                 fill={cell.fill}
             />
+            {cell.col === 0 && (
+                <text
+                    dominantBaseline="middle"
+                    textAnchor="middle"
+                    x={-CELL_DIMENSION/2}
+                    fontWeight={"bold"}
+                    y={CELL_DIMENSION/2}
+                >
+                   {8 - cell.row}
+                </text>
+            )}
         </g>
     );
 };
