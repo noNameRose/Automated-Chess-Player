@@ -42,7 +42,8 @@ type ValidateMoveRequest = {
 
 type ValidateMoveResponse = {
     state: PieceStringBoard,
-    gameOver: boolean
+    gameOver: boolean,
+    move: string
 }
 
 type GameState = {
