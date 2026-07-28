@@ -69,12 +69,14 @@ public class GameController {
     @PostMapping("/game/make_move")
     public ResponseEntity<ValidateMoveResponse> validateMove(@RequestBody ValidateMoveRequest request) {
       Board board = Board.parse(request.getState());
+      Board clone = board.clone();
       this.chessAgentService.isMoveValid(board, request.getFrom(), request.getTo());
       return ResponseEntity
           .status(HttpStatus.ACCEPTED)
           .body(
               ValidateMoveResponse
                   .builder()
+                  .move(PieceRepresentation.getMoveNotation(clone, request.getFrom(), request.getTo()))
                   .state(board.getBoardString())
                   .isGameOver(board.isGameOver())
                   .build()
