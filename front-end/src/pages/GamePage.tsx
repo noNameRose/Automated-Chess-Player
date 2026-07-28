@@ -13,8 +13,8 @@ const GamePage = () => {
     const {firstPlayer, secondPlayer} = useParams<{firstPlayer: PlayerString, secondPlayer: PlayerString}>();
     const [isFirstPlayerThinking, setIsFirstPlayerThinking] = useState<boolean>(false);
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
-    const [firstPlayerMoves, setFirstPlayerMoves] = useState<string[]>(["d3", "nxd3"]);
-    const [secondPlayerMoves, setSecondPlayerMoves] = useState<string[]>(["d6", "Qxe6"]);
+    const [firstPlayerMoves, setFirstPlayerMoves] = useState<string[]>([]);
+    const [secondPlayerMoves, setSecondPlayerMoves] = useState<string[]>([]);
 
     const addFirstPlayerMove = (move: string) => {
         const moves = [...firstPlayerMoves];
