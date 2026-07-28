@@ -9,8 +9,8 @@ const MoveHistory = () => {
     return (
         <div className="bg-amber-50 h-90 overflow-y-scroll">
             <div className="flex font-bold justify-around">
-                <MoveList moves={firstPlayerMoves as string[]}/>
                 <MoveList moves={secondPlayerMoves as string[]}/>
+                <MoveList moves={firstPlayerMoves as string[]}/>
             </div>
         </div>
     );
