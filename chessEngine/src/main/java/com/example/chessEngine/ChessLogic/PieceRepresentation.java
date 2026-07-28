@@ -18,25 +18,25 @@ public final class PieceRepresentation {
 
 
   public static final String WHITE_PAWN = "WP";
-  public static final String WHITE_KNIGHT = "WK";
+  public static final String WHITE_KNIGHT = "WN";
   public static final String WHITE_BISHOP = "WB";
   public static final String WHITE_ROOK = "WR";
   public static final String WHITE_QUEEN = "WQ";
-  public static final String WHITE_KING = "WKI";
+  public static final String WHITE_KING = "WK";
 
 
   public static final String BLACK_PAWN = "BP";
-  public static final String BLACK_KNIGHT = "BK";
+  public static final String BLACK_KNIGHT = "BN";
   public static final String BLACK_BISHOP = "BB";
   public static final String BLACK_ROOK = "BR";
   public static final String BLACK_QUEEN = "BQ";
-  public static final String BLACK_KING = "BKI";
+  public static final String BLACK_KING = "BK";
 
   public static final String PAWN = "P";
   public static final String BISHOP = "B";
-  public static final String KING = "KI";
+  public static final String KING = "K";
   public static final String QUEEN = "Q";
-  public static final String KNIGHT = "K";
+  public static final String KNIGHT = "N";
   public static final String ROOK = "R";
 
 
