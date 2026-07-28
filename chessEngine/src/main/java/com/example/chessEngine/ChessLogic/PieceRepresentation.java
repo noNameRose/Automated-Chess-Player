@@ -74,14 +74,17 @@ public final class PieceRepresentation {
     Piece capturePiece = board.getPiece(to[0], to[1]);
     String type = piece.type;
     String move = "";
+    // If piece is not a pawn
     if (!type.equals(PAWN)) {
       move += type;
-    }
+    } // If piece is a pawn
     else {
       move += getFileAndRank(to[0], to[1]);
+      // If the pawn simply move forward
       if (capturePiece == null) {
+        // File and rank is enough as notation
         return move;
-      }
+      } // If the pawn capture a piece
       else {
         move = getFile(from[1]) + "x";
       }
