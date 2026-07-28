@@ -104,11 +104,19 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
         });
         if (response.ok) {
             const resBody = await response.json() as ValidateMoveResponse;
+            const currentPlayer = state.currentPlayer;
+            const nextPlayer = currentPlayer === "BLACK" ? "WHITE": "BLACK";
             setState({
                 ...state,
                 board: resBody.state,
-                currentPlayer: state.currentPlayer === "BLACK" ? "WHITE" : "BLACK"
+                currentPlayer: nextPlayer
             });
+            if (currentPlayer === "BLACK") {
+                playerMoveContext?.addFirstPlayerMoves(resBody.move);
+            }
+            else {
+                playerMoveContext?.addSecondPlayerMoves(resBody.move);
+            }
         }
         else {
             setState({
