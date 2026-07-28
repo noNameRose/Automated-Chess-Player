@@ -15,4 +15,5 @@ public class MoveResponse {
     private int[] from;
     private int[] to;
     private boolean isGameOver;
+    private String move;
 }
