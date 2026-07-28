@@ -32,7 +32,7 @@ public class ClaudeAgent extends Agent{
                       Each row in the board will be separated by a newline.
                       If the representation of a piece starts with "B", then it is a black piece.
                       If the representation of a piece starts with "W" then it is a white piece.
-                      KI = King, Q = Queen, R = Rook, B = Bishop, k = Knight, P = Pawn, nu = empty cell.
+                      K = King, Q = Queen, R = Rook, B = Bishop, N = Knight, P = Pawn, nu = empty cell.
         
                       Side to move: {side}
         
