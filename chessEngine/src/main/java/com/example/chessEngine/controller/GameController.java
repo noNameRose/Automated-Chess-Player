@@ -3,6 +3,7 @@ package com.example.chessEngine.controller;
 
 import com.example.chessEngine.ChessLogic.Board;
 import com.example.chessEngine.ChessLogic.BoardInitializer;
+import com.example.chessEngine.ChessLogic.PieceRepresentation;
 import com.example.chessEngine.dto.*;
 import com.example.chessEngine.services.BoardStateService;
 import com.example.chessEngine.services.ChessAgentService;
@@ -47,6 +48,7 @@ public class GameController {
     @PostMapping("/game")
     public ResponseEntity<MoveResponse> getMove(@RequestBody MoveRequest request) {
         Board board = Board.parse(request.getState());
+        Board clone = board.clone();
         int[] move = this.chessAgentService.makeMove(request.getPlayerName(), request.isBlack(), board);
         int[] from = new int[] {move[0], move[1]};
         int[] to = new int[] {move[2], move[3]};
@@ -57,6 +59,7 @@ public class GameController {
                         MoveResponse.builder()
                                 .from(from)
                                 .to(to)
+                                .move(PieceRepresentation.getMoveNotation(clone, from, to))
                                 .isGameOver(board.isGameOver())
                                 .state(board.getBoardString())
                                 .build()
