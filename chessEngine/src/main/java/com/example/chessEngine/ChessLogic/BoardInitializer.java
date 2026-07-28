@@ -6,15 +6,30 @@ public final class BoardInitializer {
 
   private static final int ROWS = 8;
   private static final int COLS = 8;
+
+  private static final String BK = PieceRepresentation.BLACK_KING;
+  private static final String BN = PieceRepresentation.BLACK_KNIGHT;
+  private static final String BB = PieceRepresentation.BLACK_BISHOP;
+  private static final String BQ = PieceRepresentation.BLACK_QUEEN;
+  private static final String BR = PieceRepresentation.BLACK_ROOK;
+  private static final String BP = PieceRepresentation.BLACK_PAWN;
+
+  private static final String WK = PieceRepresentation.WHITE_KING;
+  private static final String WN = PieceRepresentation.WHITE_KNIGHT;
+  private static final String WB = PieceRepresentation.WHITE_BISHOP;
+  private static final String WQ = PieceRepresentation.WHITE_QUEEN;
+  private static final String WR = PieceRepresentation.WHITE_ROOK;
+  private static final String WP = PieceRepresentation.WHITE_PAWN;
+
   public static final String[][] congig = {
-      {"BR", "BN", "BB", "BQ", "BK", "BB", "BN", "BR"},
-      {"BP", "BP", "BP", "BP", "BP", "BP", "BP", "BP"},
+      {BR, BN, BB, BQ, BK, BB, BN, BR},
+      {BP, BP, BP, BP, BP, BP, BP, BP},
       {null, null, null, null, null, null, null, null },
       {null, null, null, null, null, null, null, null },
       {null, null, null, null, null, null, null, null },
       {null, null, null, null, null, null, null, null },
-      {"WP", "WP", "WP", "WP", "WP", "WP", "WP", "WP"},
-      {"WR", "WN", "WB", "WQ", "WK", "WB", "WN", "WR"},
+      {WP, WP, WP, WP, WP, WP, WP, WP},
+      {WR, WN, WB, WQ, WK, WB, WN, WR},
   };
 
   public static void initialize(Board board) {
@@ -27,22 +42,22 @@ public final class BoardInitializer {
           boolean isBlack = color == 'B';
           String pieceName = pieceStr.substring(1);
           switch (pieceName) {
-            case "P":
+            case PieceRepresentation.PAWN:
               board.setPiece(i, j, new Pawn(i, j, isBlack));
               break;
-            case "R":
+            case PieceRepresentation.ROOK:
               board.setPiece(i, j, new Rook(i, j, isBlack));
               break;
-            case "K":
+            case PieceRepresentation.KNIGHT:
               board.setPiece(i, j, new Knight(i, j, isBlack));
               break;
-            case "B":
+            case PieceRepresentation.BISHOP:
               board.setPiece(i, j, new Bishop(i, j, isBlack));
               break;
-            case "Q":
+            case PieceRepresentation.QUEEN:
               board.setPiece(i, j, new Queen(i, j, isBlack));
               break;
-            case "KI":
+            case PieceRepresentation.KING:
               board.setPiece(i, j, new King(i, j, isBlack));
               break;
           }
