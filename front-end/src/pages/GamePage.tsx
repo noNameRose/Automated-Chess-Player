@@ -16,6 +16,18 @@ const GamePage = () => {
     const [firstPlayerMoves, setFirstPlayerMoves] = useState<string[]>(["d3", "nxd3"]);
     const [secondPlayerMoves, setSecondPlayerMoves] = useState<string[]>(["d6", "Qxe6"]);
 
+    const addFirstPlayerMove = (move: string) => {
+        const moves = [...firstPlayerMoves];
+        moves.push(move);
+        setFirstPlayerMoves(moves);
+    }
+    
+    const addSecondPlayerMove = (move: string) => {
+        const moves = [...secondPlayerMoves];
+        moves.push(move);
+        setSecondPlayerMoves(moves);
+    }
+
     useEffect(() => {
         if (transitionContext) {
             transitionContext.handleTransition(false);
@@ -26,7 +38,9 @@ const GamePage = () => {
             value={
                 {
                     firstPlayerMoves: firstPlayerMoves,
-                    secondPlayerMoves: secondPlayerMoves
+                    secondPlayerMoves: secondPlayerMoves,
+                    addFirstPlayerMoves: addFirstPlayerMove,
+                    addSecondPlayerMoves: addSecondPlayerMove
                 }
             }
         >
