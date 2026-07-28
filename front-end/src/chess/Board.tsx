@@ -22,6 +22,7 @@ type MoveResponse = {
     state: PieceStringBoard,
     from: number[],
     to: number[],
+    move: string,
     gameOver: boolean
 };
 
