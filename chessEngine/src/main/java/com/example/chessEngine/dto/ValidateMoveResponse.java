@@ -12,4 +12,5 @@ import lombok.Setter;
 public class ValidateMoveResponse {
   private String[][] state;
   private boolean isGameOver;
+  private String move;
 }
