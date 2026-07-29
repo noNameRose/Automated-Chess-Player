@@ -1,4 +1,4 @@
-import type { CellColor } from "../../../public/static/chessConfig";
+import { CELL_DIMENSION, PIECE_DIMENSION, type CellColor } from "../../../public/static/chessConfig";
 
 export class CellEntity {
     public x: number;
@@ -7,6 +7,8 @@ export class CellEntity {
     public col: number;
     public dom: SVGGElement | null = null;
     public fill: CellColor;
+    public pieceX: number;
+    public pieceY: number;
 
     private constructor(x: number, y: number, row: number, col: number, fill: CellColor) {
         this.x = x;
@@ -14,6 +16,8 @@ export class CellEntity {
         this.row = row;
         this.col = col;
         this.fill = fill;
+        this.pieceX = this.x + CELL_DIMENSION/2 - PIECE_DIMENSION/2;
+        this.pieceY = this.y + CELL_DIMENSION/2 - PIECE_DIMENSION/2;
     }
 
     public static Builder() {
