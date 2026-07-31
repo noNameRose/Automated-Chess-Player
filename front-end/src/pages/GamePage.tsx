@@ -74,7 +74,7 @@ const GamePage = () => {
                             }
                         }
                     >
-                        <div className="w-[60%] flex flex-col gap-4">
+                        <div className="w-full sm:w-[60%] flex flex-col gap-4">
                             <div className="flex gap-4">
                                 <Button>
                                     Home
