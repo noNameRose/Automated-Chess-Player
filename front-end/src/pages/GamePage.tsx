@@ -7,6 +7,7 @@ import TrackingPanel from "../components/TrackingPanel";
 import ThinkingContext from "../contexts/ThinkingContext";
 import GameOverContext from "../contexts/GameOverContext";
 import PlayerMovesContexts from "../contexts/PlayerMovesContext";
+import Button from "../components/Button";
 
 const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
@@ -74,6 +75,14 @@ const GamePage = () => {
                         }
                     >
                         <div className="w-[60%]">
+                            <div className="flex gap-4">
+                                <Button>
+                                    Home
+                                </Button>
+                                <Button>
+                                    Reset
+                                </Button>
+                            </div>
                             <Board
                                 firstPlayer={firstPlayer as PlayerString}
                                 secondPlayer={secondPlayer as PlayerString}
