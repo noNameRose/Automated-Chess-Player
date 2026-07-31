@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AgentOptions from "../components/AgentOptions";
 import Button from "../components/Button";
 import OptionDescription from "../components/OptionDescriptions";
@@ -40,6 +40,14 @@ const LandingPage = () => {
     const handleClick2 = (name: Player) => {
         setSecondPlayer(name);
     };
+
+    useEffect(() => {
+        if (transitionContext) {
+            if (transitionContext.isShow) {
+                transitionContext.handleTransition(false);
+            }
+        }
+    }, []);
 
     return (
         <MouseEventContext
