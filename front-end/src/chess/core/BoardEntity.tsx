@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { BlackCellFill, BlackPieceFill, BlackPieceStroke, CELL_DIMENSION, WhiteCellFill, WhitePieceFill, WhitePieceStroke, type CellColor, type PieceColor, type PieceString, type PlayerString } from "../../../public/static/chessConfig";
+import { BlackCellFill, BlackPieceFill, BlackPieceStroke, CELL_DIMENSION, PIECE_DIMENSION, WhiteCellFill, WhitePieceFill, WhitePieceStroke, type CellColor, type PieceColor, type PieceString, type PlayerString } from "../../../public/static/chessConfig";
 import { CellEntity } from "./CellEntity";
 import { PieceEntity } from "./PieceEntity";
 import Cell from "../Cell";
@@ -68,8 +68,8 @@ export class BoardEntity {
                                   .name(name)
                                   .row(i)
                                   .col(j)
-                                  .x(cell.x)
-                                  .y(cell.y)
+                                  .x(cell.x + CELL_DIMENSION/2 - PIECE_DIMENSION/2)
+                                  .y(cell.y + CELL_DIMENSION/2 - PIECE_DIMENSION/2)
                                   .fill(color as PieceColor)
                                   .stroke(stroke)
                                   .build();
@@ -86,8 +86,8 @@ export class BoardEntity {
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
                 coordinates.push({
-                    x: this.cells[i][j].x,
-                    y: this.cells[i][j].y
+                    x: this.cells[i][j].pieceX,
+                    y: this.cells[i][j].pieceY
                 });
             }
         }

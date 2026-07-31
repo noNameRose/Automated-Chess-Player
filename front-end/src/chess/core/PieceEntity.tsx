@@ -28,7 +28,7 @@ export class PieceEntity {
     public moveToCell(tl: GSAPTimeline, cell: CellEntity, handleComplete?: () => void): void {
         tl.to(this.container, {
             attr: {
-                transform: `translate(${cell.x}, ${cell.y})`
+                transform: `translate(${cell.pieceX}, ${cell.pieceY})`
             },
             ease: "back.inOut",
             onComplete: handleComplete
