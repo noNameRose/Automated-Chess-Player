@@ -28,11 +28,24 @@ export class BoardEntity {
             const row = [];
             for (let j = 0; j < this.cols; j++) {
                 let color;
+                let rankColor;
                 if (i % 2 === 0) {
                     color = (j % 2 === 0) ? BlackCellFill[firstPlayer] : WhiteCellFill[secondPlayer];
                 }
                 else {
                     color = (j % 2 === 0) ? WhiteCellFill[secondPlayer] : BlackCellFill[firstPlayer];
+                }
+                if (color === BlackCellFill[firstPlayer]) {
+                    rankColor = WhiteCellFill[firstPlayer];
+                }
+                if (color === WhiteCellFill[firstPlayer]) {
+                    rankColor = BlackCellFill[firstPlayer];
+                }
+                if (color === BlackCellFill[secondPlayer]) {
+                    rankColor = WhiteCellFill[secondPlayer];
+                }
+                if (color === WhiteCellFill[secondPlayer]) {
+                    rankColor = BlackCellFill[secondPlayer];
                 }
                 const cell: CellEntity = CellEntity
                                             .Builder()
@@ -41,6 +54,7 @@ export class BoardEntity {
                                             .x(this.startX + (CELL_DIMENSION * j))
                                             .y(this.startY + (CELL_DIMENSION * i))
                                             .fill(color as CellColor)
+                                            .rankColor(rankColor as string)
                                             .build();
                 row.push(cell);
             }
