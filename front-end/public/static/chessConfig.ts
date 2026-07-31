@@ -6,7 +6,7 @@ export type PieceType = "P" | "R" | "Q" | "K" | "N" | "B";
 export type PlayerString = "Human" | "Claude" | "ChatGPT" | "Random" | "Alpha-Beta";
 
 export const CELL_DIMENSION = 50;
-export const PIECE_DIMENSION = CELL_DIMENSION;
+export const PIECE_DIMENSION = CELL_DIMENSION/1.1;
 export const PIECE_STROKE = PIECE_DIMENSION/2;
 
 type CHATGPT_CELL_FILL = "#BD674C";
