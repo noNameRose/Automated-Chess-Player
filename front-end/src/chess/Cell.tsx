@@ -13,13 +13,25 @@ const Cell = ({cell}: {cell: CellEntity}) => {
             />
             {cell.col === 0 && (
                 <text
-                    dominantBaseline="middle"
-                    textAnchor="middle"
-                    x={-CELL_DIMENSION/2}
+                    dominantBaseline="hanging"
+                    textAnchor="start"
+                    x={5}
                     fontWeight={"bold"}
-                    y={CELL_DIMENSION/2}
+                    y={5}
+                    fontSize={10}
                 >
                    {8 - cell.row}
+                </text>
+            )}
+            {cell.row === 7 && (
+                <text
+                    fontSize={10}
+                    dominantBaseline="text-after-edge"
+                    textAnchor="end"
+                    y={CELL_DIMENSION}
+                    x={CELL_DIMENSION}
+                >
+                    {String.fromCharCode("a".charCodeAt(0) + cell.col)}
                 </text>
             )}
         </g>
