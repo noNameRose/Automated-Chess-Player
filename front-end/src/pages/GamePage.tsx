@@ -73,10 +73,12 @@ const GamePage = () => {
                             }
                         }
                     >
-                        <Board
-                            firstPlayer={firstPlayer as PlayerString}
-                            secondPlayer={secondPlayer as PlayerString}
-                        />
+                        <div className="w-[60%]">
+                            <Board
+                                firstPlayer={firstPlayer as PlayerString}
+                                secondPlayer={secondPlayer as PlayerString}
+                            />
+                        </div>
                         <TrackingPanel
                             firstPlayer={firstPlayer as PlayerString}
                             secondPlayer={secondPlayer as PlayerString}

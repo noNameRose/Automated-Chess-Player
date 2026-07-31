@@ -263,7 +263,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                         }
                     >
                         <svg viewBox="0 0 400 400" 
-                            className="w-full md:w-[60%]"
+                            className="w-full"
                         >
                             {board && board.renderCell()}
                             {board && board.renderPiece()}
