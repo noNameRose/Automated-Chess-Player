@@ -19,6 +19,7 @@ const Cell = ({cell}: {cell: CellEntity}) => {
                     fontWeight={"bold"}
                     y={5}
                     fontSize={10}
+                    fill={cell.rankColor}
                 >
                    {8 - cell.row}
                 </text>
@@ -30,6 +31,7 @@ const Cell = ({cell}: {cell: CellEntity}) => {
                     textAnchor="end"
                     y={CELL_DIMENSION}
                     x={CELL_DIMENSION}
+                    fill={cell.rankColor}
                 >
                     {String.fromCharCode("a".charCodeAt(0) + cell.col)}
                 </text>
