@@ -90,7 +90,17 @@ const GamePage = () => {
                                 >
                                     Home
                                 </Button>
-                                <Button>
+                                <Button
+                                    button={
+                                        {
+                                            onClick: () => {
+                                                if (transitionContext) {
+                                                    transitionContext.handleTransition(true);
+                                                }
+                                            }
+                                        }
+                                    }
+                                >
                                     Restart
                                 </Button>
                             </div>
