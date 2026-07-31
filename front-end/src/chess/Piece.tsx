@@ -46,7 +46,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
                         for (let i = 0; i < board.rows; i++) {
                             for (let j = 0; j < board.cols; j++) {
                                 const cell = board.cells[i][j];
-                                if (cell.x === x && cell.y === y) {
+                                if (Math.round(cell.pieceX) === Math.round(x) && Math.round(cell.pieceY) === Math.round(y)) {
                                     destinateCell = cell;
                                     break;
                                 }
