@@ -8,7 +8,7 @@ import { SplitText } from "gsap/all";
 gsap.registerPlugin(SplitText)
 
 const PixelTransition = ({children}: {children: ReactNode}) => {
-    const [isShow, setShow] = useState<Boolean>(false);
+    const [isShow, setShow] = useState<boolean>(false);
     const [toPage, setToPage] = useState<string | null>(null);
     const pixelContainer = useRef<HTMLDivElement | null>(null);
     const initialDelay = useRef<number | null>(1);
@@ -113,6 +113,7 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                 value={title}
             >
                 <TransitionContext value={{
+                    isShow: isShow,
                     handleTransition: setShow,
                     toPage: setToPage
                 }}>
