@@ -7,10 +7,11 @@ export class CellEntity {
     public col: number;
     public dom: SVGGElement | null = null;
     public fill: CellColor;
+    public rankColor: string;
     public pieceX: number;
     public pieceY: number;
 
-    private constructor(x: number, y: number, row: number, col: number, fill: CellColor) {
+    private constructor(x: number, y: number, row: number, col: number, fill: CellColor, rankColor: string) {
         this.x = x;
         this.y = y;
         this.row = row;
@@ -18,6 +19,7 @@ export class CellEntity {
         this.fill = fill;
         this.pieceX = this.x + CELL_DIMENSION/2 - PIECE_DIMENSION/2;
         this.pieceY = this.y + CELL_DIMENSION/2 - PIECE_DIMENSION/2;
+        this.rankColor = rankColor;
     }
 
     public static Builder() {
@@ -30,6 +32,7 @@ export class CellEntity {
         private _row!: number;
         private _col!: number;
         private _fill!: CellColor;
+        private _rankColor!: string;
 
         public x(x: number) {
             this._x = x;
@@ -56,8 +59,13 @@ export class CellEntity {
             return this;
         }
 
+        public rankColor(rankColor: string) {
+            this._rankColor = rankColor;
+            return this;
+        }
+
         public build(): CellEntity {
-            return new CellEntity(this._x, this._y, this._row, this._col, this._fill);
+            return new CellEntity(this._x, this._y, this._row, this._col, this._fill, this._rankColor);
         }
 
     }
