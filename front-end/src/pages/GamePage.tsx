@@ -91,7 +91,7 @@ const GamePage = () => {
                                     Home
                                 </Button>
                                 <Button>
-                                    Reset
+                                    Restart
                                 </Button>
                             </div>
                             <Board
