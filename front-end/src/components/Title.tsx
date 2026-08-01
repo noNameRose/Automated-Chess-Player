@@ -68,7 +68,7 @@ const Title = () => {
                     </div>);
             })
             }
-            <div className="col-[3/14] row-[2/5] z-30 flex items-center justify-center gap-4">
+            <div className="col-[3/14] row-[2/5] z-30 flex items-center justify-center gap-4 overflow-hidden">
                 <Characters
                     characters={["A", "I"]}
                 />
