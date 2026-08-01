@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import TransitionContext from "../contexts/TransitionContext";
 import Board from "../chess/Board";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import type { PlayerString } from "../../public/static/chessConfig";
 import TrackingPanel from "../components/TrackingPanel";
 import ThinkingContext from "../contexts/ThinkingContext";
@@ -16,6 +16,7 @@ const GamePage = () => {
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
     const [firstPlayerMoves, setFirstPlayerMoves] = useState<string[]>([]);
     const [secondPlayerMoves, setSecondPlayerMoves] = useState<string[]>([]);
+    const loc = useLocation();
 
     const addFirstPlayerMove = (move: string) => {
         const moves = [...firstPlayerMoves];
@@ -30,10 +31,11 @@ const GamePage = () => {
     }
 
     useEffect(() => {
-        if (transitionContext) {
+        if (transitionContext?.isShow) {
             transitionContext.handleTransition(false);
         }
     }, []);
+
     return (
         <PlayerMovesContexts
             value={
@@ -96,6 +98,8 @@ const GamePage = () => {
                                             onClick: () => {
                                                 if (transitionContext) {
                                                     transitionContext.handleTransition(true);
+                                                    transitionContext.toPage(loc.pathname);
+                                                    transitionContext.handleComplete(() => () => location.reload())
                                                 }
                                             }
                                         }
