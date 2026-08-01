@@ -59,7 +59,7 @@ type BoardProp = {
 }
 
 const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
-    const URL = "http://localhost:8080/game";
+    const URL = import.meta.env.VITE_API_URL;
     const tl = useRef<GSAPTimeline | null>(null);
     const [state, setState] = useState<GameState>({
                                                     board: null,
