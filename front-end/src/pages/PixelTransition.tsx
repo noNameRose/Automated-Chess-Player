@@ -10,6 +10,7 @@ gsap.registerPlugin(SplitText)
 const PixelTransition = ({children}: {children: ReactNode}) => {
     const [isShow, setShow] = useState<boolean>(false);
     const [toPage, setToPage] = useState<string | null>(null);
+    const [callBack, setCallBack] = useState<(() => void) | null>(null);
     const pixelContainer = useRef<HTMLDivElement | null>(null);
     const initialDelay = useRef<number | null>(1);
     const title = useRef<HTMLHeadingElement | null>(null);
@@ -40,6 +41,10 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                 onComplete: () => {
                     if (toPage)
                         navigate(toPage);
+                    if (callBack) {
+                        callBack();
+                    }
+                    
                 }
             });
 
@@ -106,7 +111,7 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                     isShow: isShow,
                     handleTransition: setShow,
                     toPage: setToPage,
-                    callBack: null
+                    handleComplete: setCallBack
                 }}>
                     {children}
                 </TransitionContext>
