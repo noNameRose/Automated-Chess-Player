@@ -17,20 +17,16 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
 
     useEffect(() => {
         if (isShow) {
-            if (title.current) {
-                const split = SplitText.create(title.current, {
-                    type: "chars"
-                });
-                gsap.to(split.chars, 
-                {
-                    y: 300,
-                    duration: 0.8,
-                    stagger: {
-                        amount: 0.2
-                    },
-                    ease: "back.in",
-                });
-            }
+            gsap.to(".character", 
+            {
+                delay: 0.2,
+                y: 300,
+                duration: 0.8,
+                stagger: {
+                    amount: 0.2
+                },
+                ease: "back.in",
+            });
             gsap.set(pixelContainer.current, {
                 zIndex: 200
             });    
@@ -49,22 +45,16 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
 
         }
         else {
-            if (title.current) {
-                const split = SplitText.create(title.current, {
-                    type: "chars"
-                });
-                gsap.fromTo(split.chars, {
-                    y: 300,
-                }, 
-                {
-                    y: 0,
-                    duration: 0.8,
-                    stagger: {
-                        amount: 0.2
-                    },
-                    ease: "back.out"
-                });
-            }
+            gsap.to(".character", 
+            {
+                delay: 0.2,
+                y: 0,
+                duration: 0.8,
+                stagger: {
+                    amount: 0.2
+                },
+                ease: "back.out"
+            });
             gsap.to(document.querySelectorAll("#pixel"), {
                 transform: "scale(0)",
                 delay: initialDelay.current ? initialDelay.current : 0,
