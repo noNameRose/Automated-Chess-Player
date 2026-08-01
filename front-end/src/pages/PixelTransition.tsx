@@ -105,7 +105,8 @@ const PixelTransition = ({children}: {children: ReactNode}) => {
                 <TransitionContext value={{
                     isShow: isShow,
                     handleTransition: setShow,
-                    toPage: setToPage
+                    toPage: setToPage,
+                    callBack: null
                 }}>
                     {children}
                 </TransitionContext>
