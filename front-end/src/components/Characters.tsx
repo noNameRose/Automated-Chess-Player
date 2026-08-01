@@ -1,6 +1,6 @@
 const Characters = ({characters}: {characters: string[]}) => {
     return (
-        <div className="flex gap-4">
+        <div className="flex font-black text-white text-7xl">
             {characters.map(ch => (
                 <p>
                     {ch}
