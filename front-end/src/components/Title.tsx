@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import TitleContext from "../contexts/TitleContext";
+import Characters from "./Characters";
 
 const Title = () => {
     const titleRef = useContext(TitleContext);
@@ -68,17 +69,12 @@ const Title = () => {
             })
             }
             <div className="col-[3/14] row-[2/5] z-30 flex items-center justify-center overflow-hidden">
-                <h1 
-                    ref={titleRef}
-                    className="font-bold text-7xl text-white relative"
-                    style={
-                        {
-                            fontSize: "clamp(37px, 5vw, 90px)"
-                        }
-                    }
-                >
-                    AI Chess
-                </h1>
+                <Characters
+                    characters={["A", "I"]}
+                />
+                <Characters
+                    characters={["C", "h", "e", "s", "s"]}
+                />
             </div>
         </div>
     );
