@@ -1,9 +1,6 @@
-import { useContext } from "react";
-import TitleContext from "../contexts/TitleContext";
 import Characters from "./Characters";
 
 const Title = () => {
-    const titleRef = useContext(TitleContext);
     return (
         <div    
             className="grid z-200"

@@ -139,7 +139,6 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     };
 
     const fetchMove = async (): Promise<MoveResponse> => {
-        let setPlayerThinking = (dummy: boolean) => {};
         if (thinkingContext) {
             thinkingContext.handleFirstPlayerThinking(state.currentPlayer === "BLACK");
         }
