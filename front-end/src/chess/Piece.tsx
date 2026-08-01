@@ -37,10 +37,8 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
                     radius: 15
                 },
                 onDragEnd: async () => {
-                    let attr: string | string[] = gsap.getProperty(container.current, "transform") as string;
-                    attr = attr.split(",");
-                    const x = +attr[attr.length - 2];
-                    const y = +attr[attr.length - 1].slice(0, attr[attr.length - 1].length - 1);
+                    const x = +gsap.getProperty(container.current, "x");
+                    const y = +gsap.getProperty(container.current, "y");
                     let destinateCell = null;
                     if (board) {
                         for (let i = 0; i < board.rows; i++) {
