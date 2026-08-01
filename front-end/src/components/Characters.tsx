@@ -2,7 +2,7 @@ const Characters = ({characters}: {characters: string[]}) => {
     return (
         <div className="flex font-black text-white text-7xl">
             {characters.map(ch => (
-                <p>
+                <p className="character">
                     {ch}
                 </p>
             ))}
