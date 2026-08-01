@@ -4,7 +4,7 @@ type transition = {
     isShow: boolean,
     handleTransition: (show: boolean) => void,
     toPage: (url: string) => void,
-    callBack: (() => void) | null
+    handleComplete: ((callback: () => void) => void)
 }
 
 const TransitionContext = createContext<transition | null>(null);
