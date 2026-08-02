@@ -3,7 +3,7 @@ import MoveNotation from "./MoveNotations";
 
 const MoveList = ({moves, playerName, isBlack}: {moves: string[], playerName: PlayerString, isBlack: boolean}) => {
     return (
-        <div className="flex flex-col items-center grow w-1/2"
+        <div className="flex flex-col items-center grow w-1/2 overflow-hidden"
         >
             {moves.map(move => (
                 <MoveNotation

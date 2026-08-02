@@ -3,7 +3,7 @@ import { BlackCellFill, WhiteCellFill, type PlayerString } from "../../public/st
 const MoveNotation = ({isBlack, playerName, notation}: {isBlack: boolean, playerName: PlayerString, notation: string}) => {
     return (
         <div
-            className="w-full text-center py-2"
+            className="w-full text-center py-2 -translate-x-full"
             style={
                 {
                     backgroundColor: isBlack ?  BlackCellFill[playerName] : WhiteCellFill[playerName],
