@@ -1,4 +1,4 @@
-import { BlackCellFill, WhiteCellFill, type PlayerString } from "../../public/static/chessConfig";
+import { type PlayerString } from "../../public/static/chessConfig";
 import MoveNotation from "./MoveNotations";
 
 const MoveList = ({moves, playerName, isBlack}: {moves: string[], playerName: PlayerString, isBlack: boolean}) => {
