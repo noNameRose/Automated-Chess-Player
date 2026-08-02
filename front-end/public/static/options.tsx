@@ -32,7 +32,7 @@ const options: option[] = [
     },
     {
         name: "Alpha-Beta",
-        desc: "This agent make a move by searching several moves ahead with alpha-beta pruning, picking the strongest one it finds"
+        desc: "This agent make a move by searching several moves ahead with alpha-beta pruning algorithm, picking the strongest one it finds"
     }
 ];
 
