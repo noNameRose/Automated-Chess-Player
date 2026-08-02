@@ -15,7 +15,10 @@ const TrackingPanel = ({firstPlayer, secondPlayer}: TrackingPanelProp) => {
                 name={firstPlayer}
                 firstPlayer={true}
             />
-            <MoveHistory/>
+            <MoveHistory
+                firstPlayer={firstPlayer}
+                secondPlayer={secondPlayer}
+            />
             <PlayerField
                 name={secondPlayer}
                 firstPlayer={false}
