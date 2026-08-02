@@ -72,10 +72,10 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     const gameOverContext = useContext(GameOverContext);
     let blackDraggable = false;
     let whiteDraggable = false;
-    if (firstPlayer === "Human") {
+    if (firstPlayer === "Human" && state.currentPlayer === "BLACK") {
         blackDraggable = true;
     }
-    if (secondPlayer === "Human") {
+    if (secondPlayer === "Human" && state.currentPlayer === "WHITE") {
         whiteDraggable = true;
     }
 
