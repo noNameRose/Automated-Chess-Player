@@ -10,8 +10,8 @@ const MoveHistory = ({firstPlayer, secondPlayer}: {firstPlayer: PlayerString, se
     return (
         <div className="bg-amber-50 h-90 overflow-y-scroll">
             <div className="flex font-bold justify-around">
-                <MoveList moves={secondPlayerMoves as string[]} playerName={firstPlayer} isBlack/>
-                <MoveList moves={firstPlayerMoves as string[]} playerName={secondPlayer} isBlack={false}/>
+                <MoveList moves={secondPlayerMoves as string[]} playerName={secondPlayer} isBlack={false}/>
+                <MoveList moves={firstPlayerMoves as string[]} playerName={firstPlayer} isBlack/>
             </div>
         </div>
     );
