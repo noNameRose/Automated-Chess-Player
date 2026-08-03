@@ -5,14 +5,14 @@ import ChosenPlayerContext from "../contexts/ChosenPlayerContext";
 
 interface ButtonProp  {
     children: ReactNode,
-    button?: ComponentProps<'div'>,
+    button?: ComponentProps<'button'>,
     name?: Player,
     order?: "first" | "second"
 };
 
 const Button = ({children, name, order, ...props}: ButtonProp) => {
     const [isHover, setIsHover] = useState<Boolean>(false);
-    const button = useRef<HTMLDivElement | null>(null);
+    const button = useRef<HTMLButtonElement| null>(null);
     const background = useRef<HTMLDivElement | null>(null);
     const chosenPlayer = useContext(ChosenPlayerContext);
 
@@ -79,9 +79,15 @@ const Button = ({children, name, order, ...props}: ButtonProp) => {
     }, [chosenPlayer])
 
     return (
-        <div className="relative z-10">
+        <div className="relative z-10 transition-all"
+            style={
+                {
+                    opacity: props.button?.disabled ? 0.5 : 1,
+                }
+            }
+        >
             <div className="w-full h-full bg-black absolute top-0 left-0"></div>
-            <div 
+            <button
                 ref={button}
                 onMouseDown={handMouseDown}
                 onMouseUp={handleMouseUp}
@@ -102,13 +108,14 @@ const Button = ({children, name, order, ...props}: ButtonProp) => {
                         props.button.onMouseOut(e);
                     }
                 }}
-                className="font-black text-center border-2 px-[2em] py-[.5em] relative z-10 bg-primary cursor-pointer overflow-hidden"
+                className="font-black text-center border-2 px-[2em] py-[.5em] relative z-10 bg-primary cursor-pointer overflow-hidden w-full"
                 style={
                     {
                         fontSize: "clamp(15px, 1vw, 25px)",
                         willChange: "transform"
                     }
                 }
+                disabled={props.button?.disabled}
                 {...props}
             >
                 {children}
@@ -121,7 +128,7 @@ const Button = ({children, name, order, ...props}: ButtonProp) => {
                         }
                     }
                 ></div>
-            </div>
+            </button>
         </div>
     );
 };

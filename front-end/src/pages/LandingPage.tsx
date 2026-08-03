@@ -98,7 +98,8 @@ const LandingPage = () => {
                                                     transitionContext.handleTransition(true);
                                                     transitionContext.toPage(`/game/${firstPlayer}/${secondPlayer}`);
                                                 }
-                                            }
+                                            },
+                                            disabled: (firstPlayer === null) || (secondPlayer === null)
                                         }
                                     }
                                 >
