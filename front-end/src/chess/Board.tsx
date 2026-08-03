@@ -138,6 +138,9 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             atStart: false,
             currentPlayer: "WHITE"
         });
+        await (new Promise((resolve, reject) => {
+            setTimeout(() => resolve("dummy"), 1500);
+        }));
         fetchingContext?.handleFetching(false);
     };
 
