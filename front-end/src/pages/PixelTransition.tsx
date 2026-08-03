@@ -8,7 +8,7 @@ import { SplitText } from "gsap/all";
 gsap.registerPlugin(SplitText)
 
 const PixelTransition = ({children}: {children: ReactNode}) => {
-    const [isShow, setShow] = useState<boolean>(false);
+    const [isShow, setShow] = useState<boolean>(true);
     const [toPage, setToPage] = useState<string | null>(null);
     const [callBack, setCallBack] = useState<(() => void) | null>(null);
     const pixelContainer = useRef<HTMLDivElement | null>(null);
