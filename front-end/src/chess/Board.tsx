@@ -11,6 +11,7 @@ import BoardContext from "../contexts/BoardContext";
 import ThinkingContext from "../contexts/ThinkingContext";
 import GameOverContext from "../contexts/GameOverContext";
 import PlayerMovesContexts from "../contexts/PlayerMovesContext";
+import FetchingContext from "../contexts/FetchingContext";
 
 
 type PieceStringBoard = (PieceString | null)[][]
@@ -70,6 +71,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
     const playerMoveContext = useContext(PlayerMovesContexts);
     const thinkingContext = useContext(ThinkingContext);
     const gameOverContext = useContext(GameOverContext);
+    const fetchingContext = useContext(FetchingContext);
     let blackDraggable = false;
     let whiteDraggable = false;
     if (firstPlayer === "Human" && state.currentPlayer === "BLACK") {
@@ -136,6 +138,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             atStart: false,
             currentPlayer: "WHITE"
         });
+        fetchingContext?.handleFetching(false);
     };
 
     const fetchMove = async (): Promise<MoveResponse> => {
