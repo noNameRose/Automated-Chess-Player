@@ -8,9 +8,7 @@ import PixelTransition from './pages/PixelTransition.tsx'
 createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <PixelTransition>
-        <StrictMode>
           <App />
-        </StrictMode>
       </PixelTransition>
     </BrowserRouter>
 )
