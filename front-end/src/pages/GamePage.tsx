@@ -48,22 +48,22 @@ const GamePage = () => {
     }, [])
 
     useEffect(() => {
-        // if (isFetching) {
-        //     loadingTl.current?.to(loadingRef.current, {
-        //         zIndex: 200
-        //     }).to(loadingRef.current, {
-        //         opacity: 1
-        //     })
-        //     return;
-        // }
-        // if (transitionContext?.isShow && !isFetching) {
-        //     transitionContext.handleTransition(false);
-        //     loadingTl.current?.to(loadingRef.current, {
-        //         opacity: 0
-        //     }).to(loadingRef.current, {
-        //         zIndex: -200
-        //     })
-        // }
+        if (isFetching) {
+            loadingTl.current?.to(loadingRef.current, {
+                zIndex: 200
+            }).to(loadingRef.current, {
+                opacity: 1
+            })
+            return;
+        }
+        if (transitionContext?.isShow && !isFetching) {
+            transitionContext.handleTransition(false);
+            loadingTl.current?.to(loadingRef.current, {
+                opacity: 0
+            }).to(loadingRef.current, {
+                zIndex: -200
+            })
+        }
     }, [isFetching]);
 
     return (
@@ -156,7 +156,9 @@ const GamePage = () => {
                                 secondPlayer={secondPlayer as PlayerString}
                             />
                         </ThinkingContext>
-                        <FetchingLoading/>
+                        <FetchingLoading
+                            loadingRef={loadingRef}
+                        />
                     </div>
                 </GameOverContext>
             </PlayerMovesContexts>

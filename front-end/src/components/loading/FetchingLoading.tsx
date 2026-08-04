@@ -1,7 +1,7 @@
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type Ref } from "react";
 
-const FetchingLoading = () => {
+const FetchingLoading = ({loadingRef}: {loadingRef: Ref<HTMLDivElement> | null}) => {
     const FILL = "white";
     const tl = useRef<GSAPTimeline | null>(null);
     const pawn = useRef<SVGGElement | null>(null);
@@ -51,7 +51,8 @@ const FetchingLoading = () => {
         }
     }, []);
     return (
-        <div className="fixed top-1/2 left-1/2 -translate-1/2 z-200 w-[30vw] h-[20vh]"
+        <div className="fixed top-1/2 left-1/2 -translate-1/2 -z-200 w-[30vw] h-[20vh] opacity-0"
+             ref={loadingRef}
         >
             <svg 
                 viewBox="0 0 1000 1000" 
