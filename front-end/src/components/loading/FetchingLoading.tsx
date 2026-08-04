@@ -8,9 +8,39 @@ const FetchingLoading = () => {
     const queen = useRef<SVGGElement | null>(null);
     const knight = useRef<SVGGElement | null>(null);
     const rook = useRef<SVGGElement | null>(null);
+    const DY = 200;
     
     useEffect(() => {
-        tl.current = gsap.timeline();
+        tl.current = gsap.timeline({
+            delay: 1,
+            yoyo: true,
+            repeat: -1,
+            defaults: {
+               ease: "back.inOut"
+            }
+        });
+
+        tl.current
+        .to(pawn.current, {
+            attr: {
+                transform: `translate(0, ${DY})`
+            }
+        })
+        .to(queen.current, {
+            attr: {
+                transform:`translate(600,${200 - DY})`
+            }
+        }, "-=0.3")
+        .to(knight.current, {
+            attr: {
+                transform: `translate(1200, ${DY})`
+            }
+        }, "-=0.3")
+        .to(rook.current, {
+            attr: {
+                transform:`translate(1800,${200 - DY})`
+            }
+        }, "-=0.3")
         
         
         return () => {
@@ -26,7 +56,7 @@ const FetchingLoading = () => {
             <svg 
                 viewBox="0 0 1000 1000" 
                 preserveAspectRatio="xMinYMid meet"
-                className="w-full h-full border-2 border-red-500"
+                className="w-full h-full"
             >
                 <g transform="translate(0,0)" ref={pawn}>
                     <path fill={FILL} d="M320 32C386.3 32 440 85.7 440 152C440 179 431.1 203.9 416 224C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288L405.3 288L432 448L488.2 518.3C493.2 524.6 496 532.4 496 540.5C496 560.1 480.1 576 460.5 576L179.5 576C159.9 576 144 560.1 144 540.5C144 532.4 146.7 524.6 151.8 518.3L208 448L234.7 288L224 288C206.3 288 192 273.7 192 256C192 238.3 206.3 224 224 224C208.9 203.9 200 179 200 152C200 85.7 253.7 32 320 32z" />
