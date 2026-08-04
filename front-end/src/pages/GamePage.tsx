@@ -10,6 +10,7 @@ import PlayerMovesContexts from "../contexts/PlayerMovesContext";
 import Button from "../components/Button";
 import FetchingContext from "../contexts/FetchingContext";
 import gsap from "gsap";
+import FetchingLoading from "../components/loading/FetchingLoading";
 
 const GamePage = () => {
     const transitionContext = useContext(TransitionContext);
@@ -47,22 +48,22 @@ const GamePage = () => {
     }, [])
 
     useEffect(() => {
-        if (isFetching) {
-            loadingTl.current?.to(loadingRef.current, {
-                zIndex: 200
-            }).to(loadingRef.current, {
-                opacity: 1
-            })
-            return;
-        }
-        if (transitionContext?.isShow && !isFetching) {
-            transitionContext.handleTransition(false);
-            loadingTl.current?.to(loadingRef.current, {
-                opacity: 0
-            }).to(loadingRef.current, {
-                zIndex: -200
-            })
-        }
+        // if (isFetching) {
+        //     loadingTl.current?.to(loadingRef.current, {
+        //         zIndex: 200
+        //     }).to(loadingRef.current, {
+        //         opacity: 1
+        //     })
+        //     return;
+        // }
+        // if (transitionContext?.isShow && !isFetching) {
+        //     transitionContext.handleTransition(false);
+        //     loadingTl.current?.to(loadingRef.current, {
+        //         opacity: 0
+        //     }).to(loadingRef.current, {
+        //         zIndex: -200
+        //     })
+        // }
     }, [isFetching]);
 
     return (
@@ -155,20 +156,7 @@ const GamePage = () => {
                                 secondPlayer={secondPlayer as PlayerString}
                             />
                         </ThinkingContext>
-                        <div className="fixed 
-                                        top-1/2 
-                                        left-1/2 
-                                        -translate-1/2 
-                                        -z-200 
-                                        font-black 
-                                        text-6xl 
-                                        text-white
-                                        opacity-0
-                                        "
-                            ref={loadingRef}
-                        >
-                            Fetching
-                        </div>
+                        <FetchingLoading/>
                     </div>
                 </GameOverContext>
             </PlayerMovesContexts>
