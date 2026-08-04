@@ -1,5 +1,21 @@
+import gsap from "gsap";
+import { useEffect, useRef } from "react";
+
 const FetchingLoading = () => {
-    const FILL = "white"
+    const FILL = "white";
+    const tl = useRef<GSAPTimeline | null>(null);
+    
+    useEffect(() => {
+        tl.current = gsap.timeline();
+        
+        
+        return () => {
+            if (tl.current) {
+                tl.current.kill();
+                tl.current = null;
+            }
+        }
+    }, []);
     return (
         <div className="fixed top-1/2 left-1/2 -translate-1/2 z-200 w-[30vw] h-[20vh]"
         >
