@@ -56,14 +56,14 @@ const GamePage = () => {
             })
             return;
         }
-        if (transitionContext?.isShow && !isFetching) {
-            transitionContext.handleTransition(false);
-            loadingTl.current?.to(loadingRef.current, {
-                opacity: 0
-            }).to(loadingRef.current, {
-                zIndex: -200
-            })
-        }
+        // if (transitionContext?.isShow && !isFetching) {
+        //     transitionContext.handleTransition(false);
+        //     loadingTl.current?.to(loadingRef.current, {
+        //         opacity: 0
+        //     }).to(loadingRef.current, {
+        //         zIndex: -200
+        //     })
+        // }
     }, [isFetching]);
 
     return (

@@ -51,11 +51,11 @@ const FetchingLoading = ({loadingRef}: {loadingRef: Ref<HTMLDivElement> | null})
         }
     }, []);
     return (
-        <div className="fixed top-1/2 left-1/2 -translate-1/2 -z-200 w-[30vw] h-[20vh] opacity-0"
+        <div className="fixed top-1/2 left-1/2 -translate-1/2 -z-200 w-[30vw] h-[20vh] opacity-0 border-2 border-white"
              ref={loadingRef}
         >
             <svg 
-                viewBox="0 0 1000 1000" 
+                viewBox="-100 0 1000 1000" 
                 preserveAspectRatio="xMinYMid meet"
                 className="w-full h-full"
             >
