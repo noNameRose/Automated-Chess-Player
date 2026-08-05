@@ -51,7 +51,7 @@ const FetchingLoading = ({loadingRef}: {loadingRef: Ref<HTMLDivElement> | null})
         }
     }, []);
     return (
-        <div className="fixed top-1/2 left-1/2 -translate-1/2 -z-200 w-[30vw] h-[20vh] opacity-0 border-2 border-white"
+        <div className="fixed top-1/2 left-1/2 -translate-1/2 -z-200 w-[30vw] h-[20vh] opacity-0"
              ref={loadingRef}
         >
             <svg 
