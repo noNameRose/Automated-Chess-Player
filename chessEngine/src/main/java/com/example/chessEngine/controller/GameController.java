@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@CrossOrigin({"http://localhost:5173", "https://flourishing-beijinho-e3811c.netlify.app/"})
+@CrossOrigin({"http://localhost:5173",
+              "https://flourishing-beijinho-e3811c.netlify.app/",
+              "https://automated-chess-player-1.onrender.com"
+})
 public class GameController {
 
     private final BoardStateService boardStateService;
