@@ -51,8 +51,15 @@ const FetchingLoading = ({loadingRef}: {loadingRef: Ref<HTMLDivElement> | null})
         }
     }, []);
     return (
-        <div className="fixed top-1/2 left-1/2 -translate-1/2 -z-200 w-[30vw] h-[20vh] opacity-0"
-             ref={loadingRef}
+        <div 
+            className="fixed top-1/2 left-1/2 -translate-1/2 -z-200 opacity-0"
+            style={
+                {
+                    width: "clamp(15rem, 30vw, 45rem)",
+                    height: "clamp(6rem, 12vw, 40rem)"
+                }
+            }
+            ref={loadingRef}
         >
             <svg 
                 viewBox="-100 0 1000 1000" 
