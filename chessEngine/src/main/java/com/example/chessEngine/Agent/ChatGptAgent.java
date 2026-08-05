@@ -24,15 +24,22 @@ public class ChatGptAgent extends Agent{
                                                   "side", this.isMyPieceIsBlack() ? "Black" : "White",
                                                     "legalMoves", board.getStringLegalMoves(this.myPieceIsBlack)
     ));
-    String response = this.chatGptChatClient
-                      .prompt(prompt)
-                      .call().content();
-    String[] moves = response.split(",");
-    return new int[] {
-        Integer.parseInt(moves[0]),
-        Integer.parseInt(moves[1]),
-        Integer.parseInt(moves[2]),
-        Integer.parseInt(moves[3])
-    };
+    while (true) {
+      try {
+        String response = this.chatGptChatClient
+            .prompt(prompt)
+            .call().content();
+        String[] moves = response.split(",");
+        return new int[] {
+            Integer.parseInt(moves[0]),
+            Integer.parseInt(moves[1]),
+            Integer.parseInt(moves[2]),
+            Integer.parseInt(moves[3])
+        };
+      }
+      catch (Exception exception) {
+
+      }
+    }
   }
 }
