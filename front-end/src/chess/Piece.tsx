@@ -7,6 +7,7 @@ import gsap from "gsap";
 import CellCoordinateContext, { type coordinate } from "../contexts/CellCoordinatesContext";
 import ValidateUserMoveContext from "../contexts/ValidateUserMoveContext";
 import BoardContext from "../contexts/BoardContext";
+import GameOverContext from "../contexts/GameOverContext";
 
 gsap.registerPlugin(Draggable);
 
@@ -17,6 +18,7 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
     const draggalbe = useRef<Draggable[] | null>(null);
     const draggableContext = useContext(DraggableContext);
     const cellCoordinates = useContext(CellCoordinateContext);
+    const gameOver = useContext(GameOverContext);
     const validateUserMove = useContext(ValidateUserMoveContext);   
     const board = useContext(BoardContext);
 
@@ -27,8 +29,8 @@ const Piece = ({piece}: {piece: PieceEntity}) => {
         if (!draggableContext) {
             return;
         }
-        if ((draggableContext.isBlackDraggable && piece.name[0] === "B") ||
-            (draggableContext.isWhiteDraggable && piece.name[0] === "W")
+        if (((draggableContext.isBlackDraggable && piece.name[0] === "B") ||
+            (draggableContext.isWhiteDraggable && piece.name[0] === "W")) && !gameOver?.isGameOver
         ) {
             draggalbe.current = Draggable.create(piece.container, {
                 type: "x,y",
