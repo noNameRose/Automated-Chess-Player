@@ -17,7 +17,8 @@ import FetchingContext from "../contexts/FetchingContext";
 type PieceStringBoard = (PieceString | null)[][]
 
 type StateResponse = {
-    state: PieceStringBoard
+    state: PieceStringBoard,
+    conversationId: string
 }
 
 type MoveResponse = {

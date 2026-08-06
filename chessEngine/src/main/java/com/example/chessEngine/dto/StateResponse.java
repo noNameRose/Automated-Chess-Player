@@ -11,5 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StateResponse {
+    private String conversationId;
     private String[][] state;
 }
