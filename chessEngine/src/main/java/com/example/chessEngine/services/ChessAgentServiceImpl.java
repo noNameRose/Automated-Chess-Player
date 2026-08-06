@@ -6,6 +6,9 @@ import com.example.chessEngine.exception.AgentNotFoundException;
 import com.example.chessEngine.exception.IllegalMoveException;
 import org.springframework.ai.anthropic.AnthropicChatModel;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +25,10 @@ public class ChessAgentServiceImpl implements ChessAgentService{
 
 
     public ChessAgentServiceImpl(OpenAiChatModel openAiChatModel, AnthropicChatModel anthropicChatModel) {
-      this.openAiChatClient = ChatClient.create(openAiChatModel);
+      ChatMemory chatMemory = MessageWindowChatMemory.builder().maxMessages(100).build();
+      this.openAiChatClient = ChatClient.builder(openAiChatModel)
+          .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
+          .build();
       this.claudeChatClient = ChatClient.create(anthropicChatModel);
 
       this.blackAgents.put(AgentName.RANDOM, new RandomAgent(AgentName.RANDOM, true));
