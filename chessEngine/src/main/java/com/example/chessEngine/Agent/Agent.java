@@ -14,5 +14,10 @@ public abstract class Agent {
     return this.myPieceIsBlack;
   }
 
+  public int[] makeMove(Board board, String conversationId) {
+    return null;
+  }
+
   abstract public int[] makeMove(Board board);
+
 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AlphaBetaAgent extends Agent{
+public class AlphaBetaAgent extends Agent {
 
   public int depth = 4;
 
