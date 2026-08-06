@@ -60,16 +60,13 @@ public class GameController {
         Board clone = board.clone();
         int[] from = new int[2];
         int[] to = new int[2];
-        int tries = 1;
         while (true) {
-          System.out.println("Number of try: " + tries);
-          int[] move = this.chessAgentService.makeMove(request.getPlayerName(), request.isBlack(), board);
+          int[] move = this.chessAgentService.makeMove(request.getPlayerName(), request.isBlack(), board, request.getConversationId());
           from[0] = move[0];
           from[1] = move[1];
           to[0] = move[2];
           to[1] = move[3];
           boolean isValid = board.movePiece(from[0], from[1], to[0], to[1]);
-          tries++;
           if (isValid) {
             break;
           }
