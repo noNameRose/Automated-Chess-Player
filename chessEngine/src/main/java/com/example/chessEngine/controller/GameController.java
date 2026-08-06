@@ -7,6 +7,8 @@ import com.example.chessEngine.ChessLogic.PieceRepresentation;
 import com.example.chessEngine.dto.*;
 import com.example.chessEngine.services.BoardStateService;
 import com.example.chessEngine.services.ChessAgentService;
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,10 +54,22 @@ public class GameController {
     public ResponseEntity<MoveResponse> getMove(@RequestBody MoveRequest request) {
         Board board = Board.parse(request.getState());
         Board clone = board.clone();
-        int[] move = this.chessAgentService.makeMove(request.getPlayerName(), request.isBlack(), board);
-        int[] from = new int[] {move[0], move[1]};
-        int[] to = new int[] {move[2], move[3]};
-        board.movePiece(from[0], from[1], to[0], to[1]);
+        int[] from = new int[2];
+        int[] to = new int[2];
+        int tries = 1;
+        while (true) {
+          System.out.println("Number of try: " + tries);
+          int[] move = this.chessAgentService.makeMove(request.getPlayerName(), request.isBlack(), board);
+          from[0] = move[0];
+          from[1] = move[1];
+          to[0] = move[2];
+          to[1] = move[3];
+          boolean isValid = board.movePiece(from[0], from[1], to[0], to[1]);
+          tries++;
+          if (isValid) {
+            break;
+          }
+        }
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(
