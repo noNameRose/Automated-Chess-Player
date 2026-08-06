@@ -44,13 +44,13 @@ public class ChessAgentServiceImpl implements ChessAgentService{
     }
 
     @Override
-    public int[] makeMove(String agentName, boolean isBlack, Board state) {
+    public int[] makeMove(String agentName, boolean isBlack, Board state, String conversationId) {
         Map<String, Agent> agents = isBlack ? this.blackAgents : this.whiteAgents;
         Agent agent = agents.get(agentName);
         if (agent == null) {
             throw new AgentNotFoundException();
         }
-        int[] move = agent.makeMove(state);
+        int[] move = agent.getName().equals(AgentName.CHATGPT) ?  agent.makeMove(state, conversationId) : agent.makeMove(state);
         return move;
     }
 
