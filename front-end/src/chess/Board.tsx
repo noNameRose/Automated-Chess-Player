@@ -99,7 +99,8 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
         const reqBody: ValidateMoveRequest = {
             state: state.board as PieceStringBoard,
             from,
-            to
+            to,
+            conversationId: conversationId as string
         };
         const response = await fetch(url, {
             method: "POST",
@@ -156,7 +157,8 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
         const reqBody: MoveRequest = {
             state: state.board as PieceStringBoard,
             isBlack: (state.currentPlayer === "BLACK"),
-            playerName: state.currentPlayer === "BLACK" ? firstPlayer : secondPlayer
+            playerName: state.currentPlayer === "BLACK" ? firstPlayer : secondPlayer,
+            conversationId: conversationId as string
         };
         const response = await fetch(URL, {
             method: "POST",
