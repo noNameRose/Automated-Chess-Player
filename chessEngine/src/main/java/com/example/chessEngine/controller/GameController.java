@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 
 @RestController
 @CrossOrigin({"http://localhost:5173",
@@ -33,11 +35,13 @@ public class GameController {
 
     @GetMapping("/game")
     public ResponseEntity<StateResponse> startGame() {
+        String conversationId = UUID.randomUUID().toString();
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(StateResponse
                         .builder()
-                        .state(BoardInitializer.congig).
+                        .state(BoardInitializer.congig)
+                        .conversationId(conversationId).
                         build());
     }
 
