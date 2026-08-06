@@ -4,7 +4,6 @@ public class Prompt {
   public static String text = """
         You are a chess engine assistant.
         You will be given a chess board represented as an 8x8 grid, where row 0 is the top of the board and column 0 is the left side.
-        Think fast and answer instantly.
         
         Board (8x8 grid, row 0 = top):
         {board}
@@ -23,8 +22,8 @@ public class Prompt {
         
         Instructions:
         1. Analyze the position considering material, piece activity, king safety, pawn structure, and checkmate threats.
+        2. Identify your 2-3 strongest candidate moves from the legal moves list.
         2. Choose the single best move from the legal moves list above for {side}. Do not choose a move that is not in the list.
-        3. Think extremely fast.
         4. Respond ONLY with the chosen move as four comma-separated integers, copied exactly as it appears in the list, in this exact format:
         
         from_row,from_col,to_row,to_col
