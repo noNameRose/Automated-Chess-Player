@@ -12,4 +12,5 @@ public class ValidateMoveRequest {
   private String[][] state;
   private int[] from;
   private int[] to;
+  private String conversationId;
 }

@@ -32,14 +32,16 @@ type MoveResponse = {
 type MoveRequest = {
     state: PieceStringBoard,
     isBlack: boolean,
-    playerName: PlayerString
+    playerName: PlayerString,
+    conversationId: string
 };
 
 
 type ValidateMoveRequest = {
     state: PieceStringBoard,
     from: number[],
-    to: number[]
+    to: number[],
+    conversationId: string,
 };
 
 type ValidateMoveResponse = {

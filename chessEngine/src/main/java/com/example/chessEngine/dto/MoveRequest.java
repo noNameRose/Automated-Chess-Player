@@ -14,4 +14,5 @@ public class MoveRequest {
     private String[][] state;
     private boolean isBlack;
     private String playerName;
+    private String conversationId;
 }
