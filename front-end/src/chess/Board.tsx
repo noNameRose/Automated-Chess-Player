@@ -69,6 +69,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
                                                     winner: null,
                                                     currentPlayer: null
     });
+    const [conversationId, setConversationId] = useState<string | null>(null);
     const playerMoveContext = useContext(PlayerMovesContexts);
     const thinkingContext = useContext(ThinkingContext);
     const gameOverContext = useContext(GameOverContext);
@@ -139,6 +140,7 @@ const Board = ({firstPlayer, secondPlayer}: BoardProp) => {
             atStart: false,
             currentPlayer: "WHITE"
         });
+        setConversationId(body.conversationId);
         await (new Promise((resolve, _) => {
             setTimeout(() => resolve("dummy"), 1500);
         }));
